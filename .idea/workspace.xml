@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2ea539a6-fd50-4d5d-9fdf-bd1e386fc377" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/composer.phar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routing.yml" afterPath="$PROJECT_DIR$/app/config/routing.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+    </list>
+    <ignored path="TennisWebApp.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="TennisWebApp" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="AppKernel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="822">
+              <caret line="75" column="38" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/config/routing.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="10" column="61" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+              <folding>
+                <element signature="e#70#112#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="security.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="83" selection-start-line="19" selection-start-column="83" selection-end-line="19" selection-end-column="83" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Twig" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/ContactBundle/Controller/FriendController.php" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Entity/MemberRequest.php" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Repository/MemberRequestRepository.php" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Resources/views/Form/create.html.twig" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Form/PostType.php" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Resources/views/groupe/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Repository/PostRepository.php" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Entity/Post.php" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Entity/Groupe.php" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Resources/views/Agenda/all.html.twig" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Resources/views/Home/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Controller/PostController.php" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Resources/views/layout.html.twig" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Resources/views/groupe/users_list.html.twig" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Resources/views/friend/request/list.html.twig" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Resources/views/groupe/request/list.html.twig" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/CRUD/list.html.twig" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Resources/views/groupe/list.html.twig" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Resources/views/friend/list.html.twig" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Controller/GroupeController.php" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Resources/views/groupe/add.html.twig" />
+        <option value="$PROJECT_DIR$/src/APIRestBundle/Controller/RestPostController.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/Degree.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/DiplomeVise.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/Adresse.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Repository/EntrepriseRepository.php" />
+        <option value="$PROJECT_DIR$/src/APIRestBundle/Controller/AnnonceUserController.php" />
+        <option value="$PROJECT_DIR$/src/APIRestBundle/Controller/RestAnnonceUserController.php" />
+        <option value="$PROJECT_DIR$/src/AnnonceBundle/Repository/AnnonceRepository.php" />
+        <option value="$PROJECT_DIR$/src/AnnonceBundle/Resources/config/services.yml" />
+        <option value="$PROJECT_DIR$/src/AnnonceBundle/Subscriber/AnnonceSubscriber.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/Postulant.php" />
+        <option value="$PROJECT_DIR$/src/APIRestBundle/Resources/config/routing-rest.yml" />
+        <option value="$PROJECT_DIR$/src/EventBundle/Repository/EventRepository.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/Entreprise.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/Skill.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Repository/SkillRepository.php" />
+        <option value="$PROJECT_DIR$/src/APIRestBundle/Controller/RestEventController.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/Employer.php" />
+        <option value="$PROJECT_DIR$/src/APIRestBundle/Controller/RestAnnonceController.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Repository/CandidatRepository.php" />
+        <option value="$PROJECT_DIR$/src/AnnonceBundle/Entity/Annonce.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/Candidat.php" />
+        <option value="$PROJECT_DIR$/src/EventBundle/Entity/Event.php" />
+        <option value="$PROJECT_DIR$/src/APIRestBundle/Controller/RestUserController.php" />
+        <option value="$PROJECT_DIR$/app/AppKernel.php" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/app/config/security.yml" />
+        <option value="$PROJECT_DIR$/app/config/routing.yml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1855" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="1" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UserBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UserBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Entity" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TennisWebApp" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="SearchEverywhereHistoryKey" value="Event&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/EventBundle/Entity/Event.php&#10;Candidat&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Candidat.php&#10;User&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/User.php&#10;Empl&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Employer.php&#10;event&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/EventBundle/Entity/Event.php&#10;RestAnnon&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/APIRestBundle/Controller/RestAnnonceController.php&#10;RestE&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/APIRestBundle/Controller/RestEventController.php&#10;Skill&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Skill.php&#10;RestAnn&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/APIRestBundle/Controller/RestAnnonceController.php&#10;candi&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Candidat.php&#10;Annonce&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/AnnonceBundle/Entity/Annonce.php&#10;Entreprise&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Entreprise.php&#10;annonce&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/AnnonceBundle/Entity/Annonce.php&#10;can&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Candidat.php&#10;user&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/User.php&#10;Res&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/APIRestBundle/Controller/RestAnnonceController.php&#10;ca&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Candidat.php&#10;Employe&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Employer.php&#10;Adre&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Adresse.php&#10;Em&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Employer.php&#10;cand&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Candidat.php&#10;ser&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/User.php&#10;Can&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Candidat.php&#10;Emplo&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/Employer.php&#10;Post&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/PostBundle/Entity/Post.php&#10;PostC&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/PostBundle/Controller/PostController.php&#10;inde&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/PostBundle/Resources/views/Home/index.html.twig&#10;cre&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/PostBundle/Resources/views/Form/create.html.twig&#10;lay&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/PostBundle/Resources/views/layout.html.twig&#10;list&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/ContactBundle/Resources/views/groupe/list.html.twig&#10;Grou&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/ContactBundle/Entity/Groupe.php&#10;in&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/PostBundle/Resources/views/Home/index.html.twig&#10;Group&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/ContactBundle/Entity/Groupe.php&#10;Use&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/User.php&#10;lis&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/ContactBundle/Resources/views/groupe/list.html.twig&#10;sh&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/ContactBundle/Resources/views/groupe/show.html.twig&#10;Reque&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/ContactBundle/Entity/FriendRequest.php&#10;Friend&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/ContactBundle/Repository/FriendRequestRepository.php&#10;Arr&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/vendor/doctrine/collections/lib/Doctrine/Common/Collections/ArrayCollection.php&#10;l&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/PostBundle/Resources/views/layout.html.twig&#10;la&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/PostBundle/Resources/views/layout.html.twig&#10;Mem&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/ContactBundle/Entity/MemberRequest.php&#10;Contact&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/ContactBundle/Controller/ContactController.php&#10;Fri&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/UserBundle/Entity/FriendRequest.php&#10;CRUD&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/UserBundle/Controller/CRUDController.php&#10;CRU&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/ContactBundle/Controller/CRUDController.php&#10;Con&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/ContactBundle/Controller/ContactController.php&#10;layou&#9;FILE&#9;file:///Users/leo/Documents/projet/agenda/src/PostBundle/Resources/views/layout.html.twig&#10;Frie&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/FriendRequest.php&#10;fri&#9;FILE&#9;file:///home/leo/Documents/Project/agenda/src/UserBundle/Entity/FriendRequest.php" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/UserBundle/Repository" />
+      <recent name="$PROJECT_DIR$/src/APIRestBundle/Resources/config" />
+      <recent name="$PROJECT_DIR$/src/UserBundle" />
+      <recent name="D:\Projet\Agenda\web\img" />
+      <recent name="D:\Projet\Agenda\web\bootstrap" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/ContactBundle/Entity" />
+      <recent name="$PROJECT_DIR$/src/ContactBundle/Resources/views/friend/request" />
+      <recent name="$PROJECT_DIR$/src/ContactBundle/Resources/views" />
+      <recent name="D:\Projet\Agenda\src\PostBundle\Resources\views\Home" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2ea539a6-fd50-4d5d-9fdf-bd1e386fc377" name="Default" comment="" />
+      <created>1456991468112</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1456991468112</updated>
+      <workItem from="1465994931289" duration="10793000" />
+      <workItem from="1466025252215" duration="98000" />
+      <workItem from="1466025361824" duration="339000" />
+      <workItem from="1466025713341" duration="43000" />
+      <workItem from="1466027288099" duration="1388000" />
+      <workItem from="1466029032552" duration="62115000" />
+      <workItem from="1467056803969" duration="13078000" />
+      <workItem from="1467232076826" duration="14750000" />
+      <workItem from="1467276271977" duration="4727000" />
+      <workItem from="1474874747289" duration="1098000" />
+      <workItem from="1474984931341" duration="97000" />
+      <workItem from="1475055928333" duration="291000" />
+      <workItem from="1476778143234" duration="63000" />
+      <workItem from="1476780010343" duration="9360000" />
+      <workItem from="1476794182102" duration="1005000" />
+      <workItem from="1476795203203" duration="1465000" />
+      <workItem from="1476796761922" duration="11468000" />
+      <workItem from="1476866215267" duration="16162000" />
+      <workItem from="1476947764699" duration="14483000" />
+      <workItem from="1476968206875" duration="2607000" />
+      <workItem from="1476971556995" duration="23823000" />
+      <workItem from="1477010781722" duration="1840000" />
+      <workItem from="1477039989131" duration="24000" />
+      <workItem from="1477040977596" duration="728000" />
+      <workItem from="1477041818716" duration="1364000" />
+      <workItem from="1481022791737" duration="125000" />
+      <workItem from="1481023012820" duration="108000" />
+      <workItem from="1484644343816" duration="803000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="196412000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25594252" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.534375" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/ContactBundle/Resources/views/groupe/list.html.twig" />
+    <entry file="file://$PROJECT_DIR$/src/ContactBundle/Resources/views/friend/list.html.twig" />
+    <entry file="file://$PROJECT_DIR$/src/ContactBundle/Resources/views/groupe/users_list.html.twig" />
+    <entry file="file://$PROJECT_DIR$/src/PostBundle/Resources/views/Agenda/all.html.twig" />
+    <entry file="file://$PROJECT_DIR$/src/PostBundle/Resources/views/Form/create.html.twig" />
+    <entry file="file://$PROJECT_DIR$/src/PostBundle/Resources/views/Home/index.html.twig" />
+    <entry file="file://$PROJECT_DIR$/src/ContactBundle/Controller/GroupeController.php" />
+    <entry file="file://$PROJECT_DIR$/src/ContactBundle/Resources/views/groupe/add.html.twig" />
+    <entry file="file://$PROJECT_DIR$/src/PostBundle/Controller/PostController.php" />
+    <entry file="file://$PROJECT_DIR$/src/PostBundle/Entity/Post.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/CRUDController.php" />
+    <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config_prod.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routing_dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/services.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Controller/RestContactController.php" />
+    <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Controller/RestPostController.php" />
+    <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Resources/config/services.yml" />
+    <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Controller/DefaultController.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManagerInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1692">
+          <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Doctrine/UserManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/Degree.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/Adresse.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Repository/UserRepository.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/DiplomeVise.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AnnonceBundle/Resources/config/services.yml" />
+    <entry file="file://$PROJECT_DIR$/src/AnnonceBundle/Subscriber/AnnonceSubscriber.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/Postulant.php" />
+    <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Resources/config/routing-rest.yml" />
+    <entry file="file://$PROJECT_DIR$/src/EventBundle/Repository/EventRepository.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/Entreprise.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Repository/EntrepriseRepository.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/Skill.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Repository/SkillRepository.php" />
+    <entry file="file://$PROJECT_DIR$/src/AnnonceBundle/Repository/AnnonceRepository.php" />
+    <entry file="file://$PROJECT_DIR$/src/AnnonceBundle/Entity/Annonce.php" />
+    <entry file="file://$PROJECT_DIR$/src/EventBundle/Entity/Event.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Repository/CandidatRepository.php" />
+    <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Controller/RestUserController.php" />
+    <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Controller/RestEventController.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/Candidat.php" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/Employer.php" />
+    <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Controller/RestAnnonceController.php" />
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding>
+            <element signature="e#70#112#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="83" selection-start-line="19" selection-start-column="83" selection-end-line="19" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="822">
+          <caret line="75" column="38" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="61" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
