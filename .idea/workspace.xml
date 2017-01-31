@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ea539a6-fd50-4d5d-9fdf-bd1e386fc377" name="Default" comment="">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TennisBundle/Entity/Arbitre.php" afterPath="$PROJECT_DIR$/src/TennisBundle/Entity/Arbitre.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TennisBundle/Entity/Avertissement.php" afterPath="$PROJECT_DIR$/src/TennisBundle/Entity/Avertissement.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TennisBundle/Entity/Equipe.php" afterPath="$PROJECT_DIR$/src/TennisBundle/Entity/Equipe.php" />
@@ -10,6 +11,27 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TennisBundle/Entity/Matchs.php" afterPath="$PROJECT_DIR$/src/TennisBundle/Entity/Matchs.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TennisBundle/Entity/Point.php" afterPath="$PROJECT_DIR$/src/TennisBundle/Entity/Point.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TennisBundle/Entity/Terrain.php" afterPath="$PROJECT_DIR$/src/TennisBundle/Entity/Terrain.php" />
+=======
+<<<<<<< HEAD
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/component/font/Reef.otf" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/composer.phar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/Default/index.html.twig" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/UserBundle.php" afterPath="$PROJECT_DIR$/src/UserBundle/UserBundle.php" />
+=======
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/AppBundle.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TennisWebApp.iml" afterPath="$PROJECT_DIR$/.idea/TennisWebApp.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routing.yml" afterPath="$PROJECT_DIR$/app/config/routing.yml" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
     </list>
     <ignored path="TennisWebApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,26 +63,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
+      <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+=======
       <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/config.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="786">
               <caret line="76" column="38" lean-forward="false" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <file leaf-file-name="login_content.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="60">
               <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="125">
+              <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
+=======
+            <state relative-caret-position="75">
+              <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/bundles/UserBundle/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+=======
       <file leaf-file-name="Equipe.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Equipe.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -76,13 +123,26 @@
       <file leaf-file-name="Incident.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Incident.php">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-510">
               <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+=======
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="register_content.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+=======
       <file leaf-file-name="Joueur.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Joueur.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -142,11 +202,18 @@
       <file leaf-file-name="Arbitre.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Arbitre.php">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="615">
               <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding>
                 <element signature="e#39#87#0#PHP" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="60">
+              <caret line="4" column="32" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+              <folding />
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
             </state>
           </provider>
         </entry>
@@ -156,8 +223,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="Twig" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -167,6 +234,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/src/ContactBundle/Repository/MemberRequestRepository.php" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Resources/views/Form/create.html.twig" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Form/PostType.php" />
+        <option value="$PROJECT_DIR$/src/ContactBundle/Resources/views/groupe/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/PostBundle/Repository/PostRepository.php" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+        <option value="$PROJECT_DIR$/src/PostBundle/Entity/Post.php" />
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
         <option value="$PROJECT_DIR$/src/ContactBundle/Entity/Groupe.php" />
         <option value="$PROJECT_DIR$/src/PostBundle/Resources/views/Agenda/all.html.twig" />
         <option value="$PROJECT_DIR$/src/PostBundle/Resources/views/Home/index.html.twig" />
@@ -204,20 +283,40 @@
         <option value="$PROJECT_DIR$/src/UserBundle/Entity/Candidat.php" />
         <option value="$PROJECT_DIR$/src/EventBundle/Entity/Event.php" />
         <option value="$PROJECT_DIR$/src/APIRestBundle/Controller/RestUserController.php" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/app/AppKernel.php" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
+=======
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/layout.html.twig" />
+        <option value="$PROJECT_DIR$/src/UserBundle/UserBundle.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/Security/login.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig" />
+        <option value="$PROJECT_DIR$/web/bundles/UserBundle/css/style.css" />
+=======
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/TennisBundle/Entity/Incident.php" />
         <option value="$PROJECT_DIR$/src/TennisBundle/Entity/Arbitre.php" />
         <option value="$PROJECT_DIR$/src/TennisBundle/Entity/Avertissement.php" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/TennisBundle/Entity/Equipe.php" />
         <option value="$PROJECT_DIR$/src/TennisBundle/Entity/Joueur.php" />
         <option value="$PROJECT_DIR$/src/TennisBundle/Entity/Terrain.php" />
         <option value="$PROJECT_DIR$/src/TennisBundle/Entity/Point.php" />
         <option value="$PROJECT_DIR$/src/TennisBundle/Entity/Matchs.php" />
+=======
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
       </list>
     </option>
   </component>
@@ -292,6 +391,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+      <pane id="Scope" />
+=======
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -328,7 +431,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="web" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -346,15 +449,23 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="web" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="font" />
+=======
               <option name="myItemId" value="TennisBundle" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Entity" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -368,6 +479,13 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+=======
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -377,6 +495,7 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Controller" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -390,32 +509,37 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="web" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
+<<<<<<< HEAD
+              <option name="myItemId" value="bundles" />
+=======
               <option name="myItemId" value="tennis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tennis" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="UserBundle" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+<<<<<<< HEAD
+=======
       <pane id="Scope" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -429,18 +553,19 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/UserBundle/Repository" />
-      <recent name="$PROJECT_DIR$/src/APIRestBundle/Resources/config" />
-      <recent name="$PROJECT_DIR$/src/UserBundle" />
-      <recent name="D:\Projet\Agenda\web\img" />
-      <recent name="D:\Projet\Agenda\web\bootstrap" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/component/font" />
+      <recent name="$PROJECT_DIR$/src/UserBundle/Resources/FOSUserBundle" />
       <recent name="$PROJECT_DIR$/src/ContactBundle/Entity" />
       <recent name="$PROJECT_DIR$/src/ContactBundle/Resources/views/friend/request" />
       <recent name="$PROJECT_DIR$/src/ContactBundle/Resources/views" />
-      <recent name="D:\Projet\Agenda\src\PostBundle\Resources\views\Home" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web" />
+      <recent name="$PROJECT_DIR$/web/component/bootstrap" />
+      <recent name="$PROJECT_DIR$/app/Resources/FOSUserBundle" />
+      <recent name="$PROJECT_DIR$/src/UserBundle/Resources/views" />
+      <recent name="$PROJECT_DIR$/src/UserBundle/Repository" />
     </key>
   </component>
   <component name="RunManager">
@@ -541,16 +666,39 @@
       <workItem from="1477041818716" duration="1364000" />
       <workItem from="1481022791737" duration="125000" />
       <workItem from="1481023012820" duration="108000" />
+<<<<<<< HEAD
+      <workItem from="1484644343816" duration="2405000" />
+      <workItem from="1484646783265" duration="5870000" />
+      <workItem from="1485848778654" duration="1974000" />
+=======
       <workItem from="1484644343816" duration="803000" />
       <workItem from="1484645523752" duration="574000" />
       <workItem from="1484646573260" duration="1760000" />
       <workItem from="1484649884979" duration="551000" />
+<<<<<<< HEAD
       <workItem from="1485849939851" duration="8783000" />
+=======
+      <workItem from="1485849939851" duration="1162000" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="208080000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="205858000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28579324" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+    <option name="totallyTimeSpent" value="200459000" />
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -565,14 +713,29 @@
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2641357" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25546876" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32102272" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32011747" sideWeight="0.496875" order="7" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31354168" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32102272" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -603,8 +766,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/src/PostBundle/Entity/Post.php" />
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/CRUDController.php" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
     <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -626,6 +792,8 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/app/config/services.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -633,6 +801,7 @@
         </state>
       </provider>
     </entry>
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
     <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Controller/RestContactController.php" />
     <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Controller/RestPostController.php" />
     <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Resources/config/services.yml" />
@@ -663,6 +832,26 @@
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/Candidat.php" />
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/Employer.php" />
     <entry file="file://$PROJECT_DIR$/src/APIRestBundle/Controller/RestAnnonceController.php" />
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="83" selection-start-line="19" selection-start-column="83" selection-end-line="19" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/services.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+=======
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -692,11 +881,16 @@
         <state relative-caret-position="120">
           <caret line="16" column="80" lean-forward="false" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
           <folding />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="180">
+          <caret line="10" column="61" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
+=======
         <state relative-caret-position="120">
           <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
         </state>
@@ -707,19 +901,31 @@
         <state relative-caret-position="786">
           <caret line="76" column="38" lean-forward="false" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
           <folding />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="60">
           <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="216">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+=======
+        <state relative-caret-position="75">
+          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
           <folding />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Arbitre.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="615">
           <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding>
@@ -729,6 +935,72 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Equipe.php">
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="254">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/FOSUserBundle/views/ChangePassword/change_password.html.twig" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/FOSUserBundle/views/Security/login.html.twig" />
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/UserBundle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/FOSUserBundle/views/layout.html.twig" />
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Group/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/component/bootstrap/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="44" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/bundles/UserBundle/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Joueur.php">
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-45">
           <caret line="49" column="6" lean-forward="false" selection-start-line="49" selection-start-column="6" selection-end-line="49" selection-end-column="6" />
@@ -740,12 +1012,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Incident.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-510">
           <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+=======
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Joueur.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -753,9 +1032,29 @@
           <folding>
             <element signature="e#39#87#0#PHP" expanded="true" />
           </folding>
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Point.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+          <folding />
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+=======
     <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Terrain.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -786,8 +1085,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TennisBundle/Entity/Avertissement.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="210">
           <caret line="46" column="6" lean-forward="false" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+=======
+        <state relative-caret-position="417">
+          <caret line="42" column="18" lean-forward="false" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
+>>>>>>> 2fe4d38fde7c2199750962f5c080bf8ea926a3b6
+>>>>>>> f91293db79b0b1bbb4f887664ebecc09377aabd6
           <folding />
         </state>
       </provider>
