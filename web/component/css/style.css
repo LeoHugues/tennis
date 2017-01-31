@@ -1,0 +1,68 @@
+@font-face {
+    font-family: reef;
+    src: url(../font/Reef.otf);
+}
+
+body {
+    background-color: #7EBC65;
+}
+
+.row {
+    max-width: 100%;
+}
+
+.window-connection {
+    top: 25vh;
+}
+
+.content {
+    margin-top: 15px;
+}
+
+.content-block {
+    background-color: #D27842;
+    border: 10px solid #FFFFFF;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-family: reef;
+    font-size: 5em;
+}
+
+
+/*<========================== Side bar menu =============================>*/
+.sidebar-nav .navbar{
+    background-color: #185F4E;
+}
+
+.sidebar-nav .navbar li a{
+    color: #FFFFFF;
+}
+
+@media (min-width: 768px) {
+    .sidebar-nav .navbar{
+        min-height: 100vh;
+    }
+    .sidebar-nav .navbar .navbar-collapse {
+        padding: 0;
+        max-height: none;
+    }
+    .sidebar-nav .navbar ul {
+        float: none;
+    }
+    .sidebar-nav .navbar ul:not {
+        display: block;
+    }
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+    }
+    .sidebar-nav .navbar li a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}
+/*<========================================================================>*/
