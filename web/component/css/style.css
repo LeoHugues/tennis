@@ -32,14 +32,20 @@ h1 {
     font-size: 5em;
 }
 
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #555;
+    background-color: #F8D678;
+}
+
 
 /*<========================== Side bar menu =============================>*/
 .sidebar-nav .navbar{
     background-color: #185F4E;
+    border-color: #F8D678;
 }
 
 .sidebar-nav .navbar li a{
-    color: #FFFFFF;
+    color: #F8D678;
 }
 
 @media (min-width: 768px) {
