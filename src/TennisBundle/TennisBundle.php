@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle;
+namespace TennisBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AppBundle extends Bundle
+class TennisBundle extends Bundle
 {
 }
