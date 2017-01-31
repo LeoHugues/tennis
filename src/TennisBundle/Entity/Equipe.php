@@ -3,6 +3,7 @@
 namespace TennisBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Equipe
@@ -22,23 +23,34 @@ class Equipe
     private $id;
 
     /**
-     * @var \stdClass
+     * @var Joueur
      *
-     * @ORM\Column(name="joueur1", type="object")
-     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Joueur")
+     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Joueur", inversedBy="equipes", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $joueur1;
 
     /**
-     * @var \stdClass
+     * @var Joueur
      *
-     * @ORM\Column(name="joueur2", type="object", nullable=true)
-     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Joueur")
+     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Joueur", inversedBy="equipes", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $joueur2;
 
+    /**
+     * @var Matchs
+     *
+     * @ORM\ManyToMany(targetEntity="TennisBundle\Entity\Matchs", cascade={"persist", "remove"})
+     */
+    private $matchs;
+
+    /**
+     * @var Point
+     *
+     * @ORM\OneToMany(targetEntity="TennisBundle\Entity\Point", mappedBy="equipe", cascade={"persist", "remove"})
+     */
+    private $points;
 
     /**
      * Get id
@@ -96,6 +108,74 @@ class Equipe
     public function getJoueur2()
     {
         return $this->joueur2;
+    }
+
+    /**
+     * Add match
+     *
+     * @param matchs $match
+     */
+    public function addMatch(Matchs $match)
+    {
+        $match->addEquipe($this);
+        if (!$this->matchs->contains($match)) {
+            $this->matchs->add($match);
+        }
+    }
+
+    /**
+     * Remove match
+     *
+     * @param Matchs $match
+     */
+    public function removeMatch(Matchs $match)
+    {
+        $this->matchs->removeElement($match);
+    }
+
+
+    /**
+     * Get matchs
+     *
+     * @return ArrayCollection
+     */
+    public function getMatchs()
+    {
+        return $this->matchs;
+    }
+
+    /**
+     * Add point
+     *
+     * @param Points $point
+     */
+    public function addPoint(Point $point)
+    {
+        $point->setEquipe($this);
+        if (!$this->points->contains($point)) {
+            $this->points->add($point);
+        }
+    }
+
+    /**
+     * Remove point
+     *
+     * @param Point $point
+     */
+    public function removePoint(Point $point)
+    {
+        $this->points->removeElement($point);
+    }
+
+
+    /**
+     * Get points
+     *
+     * @return ArrayCollection
+     */
+    public function getPoints()
+    {
+        return $this->points;
     }
 }
 

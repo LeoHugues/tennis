@@ -35,19 +35,20 @@ class Point
      */
     private $datetimeFin;
 
+
     /**
-     * @var \stdClass
+     * @var Equipe
      *
-     * @ORM\Column(name="equipe", type="object")
+     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Equipe", inversedBy="points", cascade={"persist", "remove"})
      */
     private $equipe;
 
     /**
-     * @var \stdClass
+     * @var Matchs
      *
-     * @ORM\Column(name="matchs", type="object")
+     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Matchs", inversedBy="points", cascade={"persist", "remove"})
      */
-    private $matchs;
+    private $match;
 
 
     /**
@@ -133,27 +134,27 @@ class Point
     }
 
     /**
-     * Set matchs
+     * Set match
      *
-     * @param \stdClass $matchs
+     * @param \stdClass $match
      *
      * @return Point
      */
-    public function setMatchs($matchs)
+    public function setMatch($match)
     {
-        $this->matchs = $matchs;
+        $this->match = $match;
 
         return $this;
     }
 
     /**
-     * Get matchs
+     * Get match
      *
      * @return \stdClass
      */
-    public function getMatchs()
+    public function getMatch()
     {
-        return $this->matchs;
+        return $this->match;
     }
 }
 

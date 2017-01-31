@@ -42,13 +42,6 @@ class Incident
      */
     private $datetimeFin;
 
-    /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="matchs", type="object")
-     */
-    private $matchs;
-
 
     /**
      * Get id
@@ -130,30 +123,6 @@ class Incident
     public function getDatetimeFin()
     {
         return $this->datetimeFin;
-    }
-
-    /**
-     * Set matchs
-     *
-     * @param \stdClass $matchs
-     *
-     * @return Incident
-     */
-    public function setMatchs($matchs)
-    {
-        $this->matchs = $matchs;
-
-        return $this;
-    }
-
-    /**
-     * Get matchs
-     *
-     * @return \stdClass
-     */
-    public function getMatchs()
-    {
-        return $this->matchs;
     }
 }
 

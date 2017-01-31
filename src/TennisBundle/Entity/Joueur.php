@@ -2,6 +2,7 @@
 
 namespace TennisBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,7 +16,7 @@ class Joueur
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -42,6 +43,18 @@ class Joueur
      */
     private $nbVictoire;
 
+    /**
+     * @var Avertissement
+     *
+     * @ORM\OneToMany(targetEntity="TennisBundle\Entity\Avertissement", mappedBy="joueur",cascade={"persist", "remove"})
+     */
+    private $avertissements;
+
+
+    public function __construct() {
+        $this->avertissements = new ArrayCollection();
+        $this->equipes = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -123,6 +136,40 @@ class Joueur
     public function getNbVictoire()
     {
         return $this->nbVictoire;
+    }
+
+    /**
+     * Add avertissement
+     *
+     * @param Avertissement $avert
+     */
+    public function addAvertissement(Avertissement $avert)
+    {
+        $avert->setJoueur($this);
+        if (!$this->avertissements->contains($avert)) {
+            $this->avertissements->add($avert);
+        }
+    }
+
+    /**
+     * Remove avertissement
+     *
+     * @param Avertissement $avert
+     */
+    public function removeAvertissement(Avertissement $avert)
+    {
+        $this->avertissements->removeElement($avert);
+    }
+
+
+    /**
+     * Get avertissement
+     *
+     * @return Avertissement
+     */
+    public function getAvertissements()
+    {
+        return $this->avertissements;
     }
 }
 

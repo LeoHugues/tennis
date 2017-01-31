@@ -36,14 +36,18 @@ class Avertissement
     private $datetime;
 
     /**
-     * @var \stdClass
+     * @var Matchs
      *
-     * @ORM\Column(name="matchs", type="object")
-     * @ORMManyToOne(targetEntity="TennisBundle\Entity\Matchs", cascade={"persist", "remove"})
-     * @ORMJoinCol
+     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Matchs", cascade={"persist", "remove"})
      */
-    private $matchs;
+    private $match;
 
+    /**
+     * @var Joueur
+     *
+     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Joueur", inversedBy="avertissements", cascade={"persist", "remove"})
+     */
+    private $joueur;
 
     /**
      * Get id
@@ -106,25 +110,49 @@ class Avertissement
     /**
      * Set matchs
      *
-     * @param \stdClass $matchs
+     * @param Matchs $match
      *
      * @return Avertissement
      */
-    public function setMatchs($matchs)
+    public function setMatch($match)
     {
-        $this->matchs = $matchs;
+        $this->match = $match;
 
         return $this;
     }
 
     /**
-     * Get matchs
+     * Get match
+     *
+     * @return Matchs
+     */
+    public function getMatch()
+    {
+        return $this->match;
+    }
+
+    /**
+     * Set joueur
+     *
+     * @param Joueur $joueur
+     *
+     * @return Avertissement
+     */
+    public function setJoueur($joueur)
+    {
+        $this->joueur = $joueur;
+
+        return $this;
+    }
+
+    /**
+     * Get joueur
      *
      * @return \stdClass
      */
-    public function getMatchs()
+    public function getJoueur()
     {
-        return $this->matchs;
+        return $this->joueur;
     }
 }
 

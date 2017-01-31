@@ -2,6 +2,7 @@
 
 namespace TennisBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,6 +50,12 @@ class Arbitre
      */
     private $password;
 
+    /**
+     * @var Matchs
+     *
+     * @ORM\OneToMany(targetEntity="TennisBundle\Entity\Matchs", mappedBy="arbitre", cascade={"persist", "remove"})
+     */
+    private $matchs;
 
     /**
      * Get id
@@ -154,6 +161,40 @@ class Arbitre
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Add match
+     *
+     * @param Matchs $match
+     */
+    public function addMatch(Matchs $match)
+    {
+        $match->setArbitre($this);
+        if (!$this->matchs->contains($match)) {
+            $this->matchs->add($match);
+        }
+    }
+
+    /**
+     * Remove match
+     *
+     * @param Matchs $match
+     */
+    public function removeMatch(Matchs $match)
+    {
+        $this->matchs->removeElement($match);
+    }
+
+
+    /**
+     * Get matchs
+     *
+     * @return ArrayCollection
+     */
+    public function getMatchs()
+    {
+        return $this->matchs;
     }
 }
 
