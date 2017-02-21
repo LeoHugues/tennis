@@ -36,9 +36,9 @@ class Avertissement
     private $datetime;
 
     /**
-     * @var Matchs
+     * @var Match
      *
-     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Matchs", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Matchs", inversedBy="avertissements", cascade={"persist", "remove"})
      */
     private $match;
 

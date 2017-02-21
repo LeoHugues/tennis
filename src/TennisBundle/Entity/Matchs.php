@@ -60,7 +60,7 @@ class Matchs
     /**
      * @var Avertissement
      *
-     * @ORM\OneToMany(targetEntity="TennisBundle\Entity\Avertissement", mappedBy="matchs", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="TennisBundle\Entity\Avertissement", mappedBy="match", cascade={"persist", "remove"})
      */
     private $avertissements;
 

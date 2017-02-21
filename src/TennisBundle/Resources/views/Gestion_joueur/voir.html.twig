@@ -5,6 +5,19 @@
         <h1 class="text-center">Gestion des joueurs</h1>
     </div>
     <div class="col-sm-9 col-sm-offset-1 content content-block" >
-        <p>Nom : </p>
+        <div>
+            <p>Nom : {{ joueur.nom }}</p>
+            <p>Prénom : {{ joueur.prenom }}</p>
+            <p>Victoire : {{ joueur.nbVictoire }}</p>
+        </div>
+        <div>
+            <p>Liste des avertissements</p>
+            <li>
+                {% for avert in joueur.avertissements %}
+                    <ul>{{ avert.getMotif() }}</ul>
+                {% endfor %}
+            </li>
+        </div>
+
     </div>
 {% endblock %}
