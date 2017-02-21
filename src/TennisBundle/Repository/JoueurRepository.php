@@ -10,4 +10,8 @@ namespace TennisBundle\Repository;
  */
 class JoueurRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function trouverTousJoueur(){
+        $query = $this->_em->createQuery("SELECT j FROM TennisBundle:Joueur j");
+        return $query->getResult();
+    }
 }
