@@ -4,15 +4,25 @@ namespace TennisBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use TennisBundle\Entity\Matchs;
+use TennisBundle\Form\RencontreType;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="tennis_home")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render('TennisBundle:Default:index.html.twig');
+        $match = new Matchs();
+        $form = $this->createForm(RencontreType::class, $match);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+        }
+        return $this->render('TennisBundle:Default:index.html.twig', array('form' => $form->createView()));
     }
 
     /**

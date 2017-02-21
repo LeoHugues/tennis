@@ -65,12 +65,18 @@ class Matchs
     private $avertissements;
 
     /**
-     * @var Equipe
-     *
-     * @ORM\ManyToMany(targetEntity="TennisBundle\Entity\Equipe", cascade={"persist", "remove"})
+     * One Match has One Equipe1.
+     * @ORM\OneToOne(targetEntity="TennisBundle\Entity\Equipe")
+     * @ORM\JoinColumn(name="equipe1_id", referencedColumnName="id")
      */
-    private $equipes;
+    private $equipes1;
 
+    /**
+     * One Match has One Equipe2.
+     * @ORM\OneToOne(targetEntity="TennisBundle\Entity\Equipe")
+     * @ORM\JoinColumn(name="equipe2_id", referencedColumnName="id")
+     */
+    private $equipes2;
 
     /**
      * @var Point
@@ -261,37 +267,35 @@ class Matchs
     }
 
     /**
-     * Add equipe
-     *
-     * @param Equipe $equipe
+     * @return mixed
      */
-    public function addEquipe(Equipe $equipe)
+    public function getEquipes1()
     {
-        $equipe->addMatchs($this);
-        if (!$this->equipes->contains($equipe)) {
-            $this->equipes->add($equipe);
-        }
+        return $this->equipes1;
     }
 
     /**
-     * Remove equipe
-     *
-     * @param Equipe $equipe
+     * @param mixed $equipes1
      */
-    public function removeEquipe(Equipe $equipe)
+    public function setEquipes1($equipes1)
     {
-        $this->equipes->removeElement($equipe);
+        $this->equipes1 = $equipes1;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEquipes2()
+    {
+        return $this->equipes2;
+    }
 
     /**
-     * Get equipe
-     *
-     * @return ArrayCollection
+     * @param mixed $equipes2
      */
-    public function getEquipes()
+    public function setEquipes2($equipes2)
     {
-        return $this->equipes;
+        $this->equipes2 = $equipes2;
     }
 
     /**
