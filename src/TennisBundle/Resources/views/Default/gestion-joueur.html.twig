@@ -17,7 +17,9 @@
                 <li class="col-sm-6 col-lg-4 thumbnail">
                     <div class="li-text">
                         <h4 class="li-head">
-                            <a href="#">{{ joueur.getNom() }} {{ joueur.getPrenom() }}</a>
+                            <a href="{{ path('gestion-joueur_voir-joueur', {'id_joueur': joueur.getId()}) }}">
+                                {{ joueur.getNom() }} {{ joueur.getPrenom() }}
+                            </a>
                         </h4>
                         <p class="">
                             Nombre de victoire : {{ joueur.getNbVictoire() }}
@@ -29,7 +31,6 @@
                                 Avertissements : Oui
                             {% endif %}
                         </p>
-                        <span class="btn-success"><a href="/gestion-joueur"</span>
                     </div>
                 </li>
             {% endfor %}
