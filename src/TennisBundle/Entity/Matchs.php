@@ -4,6 +4,7 @@ namespace TennisBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Matchs
@@ -68,6 +69,8 @@ class Matchs
      * One Match has One Equipe1.
      * @ORM\OneToOne(targetEntity="TennisBundle\Entity\Equipe")
      * @ORM\JoinColumn(name="equipe1_id", referencedColumnName="id")
+     * @Assert\Type(type="TennisBundle\Entity\Equipe")
+     * @Assert\Valid()
      */
     private $equipes1;
 
@@ -75,6 +78,8 @@ class Matchs
      * One Match has One Equipe2.
      * @ORM\OneToOne(targetEntity="TennisBundle\Entity\Equipe")
      * @ORM\JoinColumn(name="equipe2_id", referencedColumnName="id")
+     * @Assert\Type(type="TennisBundle\Entity\Equipe")
+     * @Assert\Valid()
      */
     private $equipes2;
 

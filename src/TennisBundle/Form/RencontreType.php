@@ -15,6 +15,7 @@ class RencontreType extends AbstractType
         $builder
             ->add('equipes1', EquipeType::class)
             ->add('equipes2', EquipeType::class)
+            ->add('terrain')
         ;
     }
 
