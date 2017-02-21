@@ -4,6 +4,8 @@ namespace TennisBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use TennisBundle\Controller\JoueurController;
+use TennisBundle\TennisBundle;
 
 class DefaultController extends Controller
 {
@@ -17,10 +19,16 @@ class DefaultController extends Controller
 
     /**
      * @Route("/gestion-joueur", name="gestion_joueur")
+     *
+     * Contiendra la liste des joueurs
      */
     public function gestionJoueurAction()
     {
-        return $this->render('TennisBundle:Default:gestion-joueur.html.twig');
+        $joueursRep = $this->getDoctrine()->getRepository('TennisBundle:Joueur');
+        $joueurs = $joueursRep->trouverTousJoueur();
+        return $this->render('TennisBundle:Default:gestion-joueur.html.twig', array(
+            'joueurs' => $joueurs,
+        ));
     }
 
     /**

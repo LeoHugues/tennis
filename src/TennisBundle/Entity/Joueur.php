@@ -52,8 +52,8 @@ class Joueur
 
 
     public function __construct() {
+        $this->nbVictoire = 0;
         $this->avertissements = new ArrayCollection();
-        $this->equipes = new ArrayCollection();
     }
 
     /**

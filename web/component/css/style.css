@@ -26,6 +26,14 @@ body {
     border-radius: 10px;
 }
 
+.sub-content{
+    margin-top: 15px;
+    background-color: #D27842;
+    border: 10px solid #FFFFFF;
+    color: black;
+    border-radius: 10px;
+}
+
 h1 {
     margin-bottom: 20px;
     font-family: reef;
