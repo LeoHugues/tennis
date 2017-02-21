@@ -34,7 +34,7 @@ class Equipe
      * @var Joueur
      *
      * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Joueur", inversedBy="equipes", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $joueur2;
 

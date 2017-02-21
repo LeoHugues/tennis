@@ -37,6 +37,12 @@ class Terrain
     private $matchs;
 
 
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->getNom();
+    }
+
     /**
      * Get id
      *
