@@ -33,7 +33,7 @@ class Matchs
     /**
      * @var Terrain
      *
-     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Terrain", inversedBy="matchs", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="TennisBundle\Entity\Terrain", inversedBy="matchs")
      */
     private $terrain;
 
@@ -54,7 +54,7 @@ class Matchs
     /**
      * @var int
      *
-     * @ORM\Column(name="service_premier", type="integer")
+     * @ORM\Column(name="service_premier", type="integer", nullable=true)
      */
     private $servicePremier;
 
@@ -67,7 +67,7 @@ class Matchs
 
     /**
      * One Match has One Equipe1.
-     * @ORM\OneToOne(targetEntity="TennisBundle\Entity\Equipe")
+     * @ORM\OneToOne(targetEntity="TennisBundle\Entity\Equipe", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="equipe1_id", referencedColumnName="id")
      * @Assert\Type(type="TennisBundle\Entity\Equipe")
      * @Assert\Valid()
@@ -76,7 +76,7 @@ class Matchs
 
     /**
      * One Match has One Equipe2.
-     * @ORM\OneToOne(targetEntity="TennisBundle\Entity\Equipe")
+     * @ORM\OneToOne(targetEntity="TennisBundle\Entity\Equipe", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="equipe2_id", referencedColumnName="id")
      * @Assert\Type(type="TennisBundle\Entity\Equipe")
      * @Assert\Valid()
@@ -86,7 +86,7 @@ class Matchs
     /**
      * @var Point
      *
-     * @ORM\OneToMany(targetEntity="TennisBundle\Entity\Point", mappedBy="match", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="TennisBundle\Entity\Point", mappedBy="match")
      */
     private $points;
 
