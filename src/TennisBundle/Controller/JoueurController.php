@@ -44,6 +44,14 @@ class JoueurController extends Controller
         );
     }
 
-
-
+    /**
+     * @Route("/gestion-joueur/voir-joueur", name="gestion-joueur_voir-joueur")
+     * @param Joueur $joueur
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+   /* public function voirJoueurAction(Joueur $joueur){
+        return $this->render('TennisBundle:Gestion_joueur:voir.html.twig',
+            array ('joueur' => $joueur));
+    }
+*/
 }

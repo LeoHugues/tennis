@@ -29,7 +29,9 @@
                                 Avertissements : Oui
                             {% endif %}
                         </p>
-                        <span class="btn-success"><a href="/gestion-joueur"</span>
+                        {#<span class="btn-success">
+                             <a href="{{ path('/gestion-joueur/voir-joueur', {'joueur': joueur}) }}">Modifier</a>
+                        </span>#}
                     </div>
                 </li>
             {% endfor %}
