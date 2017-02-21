@@ -56,6 +56,12 @@ class Joueur
         $this->avertissements = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->getNom() . " - " . $this->getPrenom();
+    }
+
     /**
      * Get id
      *
