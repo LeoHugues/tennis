@@ -25,7 +25,7 @@ class Equipe
     /**
      * @var Joueur
      *
-     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="equipes", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="equipes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $joueur1;
@@ -33,7 +33,7 @@ class Equipe
     /**
      * @var Joueur
      *
-     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="equipes", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="equipes")
      * @ORM\JoinColumn(nullable=true)
      */
     private $joueur2;
@@ -41,14 +41,14 @@ class Equipe
     /**
      * @var Matchs
      *
-     * @ORM\ManyToMany(targetEntity="OrganisationBundle\Entity\Matchs", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="OrganisationBundle\Entity\Matchs")
      */
     private $matchs;
 
     /**
      * @var Point
      *
-     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Point", mappedBy="equipe", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Point", mappedBy="equipe")
      */
     private $points;
 

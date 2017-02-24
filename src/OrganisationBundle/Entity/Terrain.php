@@ -32,7 +32,7 @@ class Terrain
     /**
      * @var Matchs
      *
-     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Matchs", mappedBy="terrain", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Matchs", mappedBy="terrain")
      */
     private $matchs;
 
