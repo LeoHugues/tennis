@@ -12,7 +12,6 @@ use organisationBundle\OrganisationBundle;
 use OrganisationBundle\Entity\Matchs;
 use OrganisationBundle\Form\RencontreType;
 use OrganisationBundle\Controller\JoueurController;
-use OrganisationBundle\OrganisationBundle;
 
 class DefaultController extends Controller
 {
