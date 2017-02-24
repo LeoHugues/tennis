@@ -3,7 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@UserBundle/Resources/config/services.yml" }
-    - { resource: "@TennisBundle/Resources/config/services.yml" }
+    - { resource: "@OrganisationBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -76,3 +76,5 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: UserBundle\Entity\User
+    group:
+            group_class: UserBundle\Entity\Group

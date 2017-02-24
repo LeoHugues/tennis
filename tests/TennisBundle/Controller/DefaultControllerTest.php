@@ -1,6 +1,6 @@
 <?php
 
-namespace TennisBundle\Tests\Controller;
+namespace OrganisationBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
