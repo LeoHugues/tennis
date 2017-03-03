@@ -42,7 +42,7 @@ class DefaultController extends Controller
 
             return $this->render('@Tennis/Default/gestion-rencontre.html.twig');
         }
-        return $this->render('OrganisationBundle:Default:index-arbitre.html.twig', array('form' => $form->createView()));
+        return $this->render('OrganisationBundle:Default:index.html.twig', array('form' => $form->createView()));
     }
 
     /**
