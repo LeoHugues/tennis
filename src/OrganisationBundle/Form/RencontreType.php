@@ -17,6 +17,8 @@ class RencontreType extends AbstractType
             ->add('equipes1', EquipeType::class)
             ->add('equipes2', EquipeType::class)
             ->add('terrain')
+            ->add('arbitre')
+            ->add('date')
             ->add('nbSets', ChoiceType::class, array(
                 'choices'  => array(
                     '5 sets' => 5,
