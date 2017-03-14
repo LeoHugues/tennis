@@ -1,0 +1,13 @@
+{% block navbar %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {% include'FrontEndBundle:Navbar:navbarAdmin.html.twig' %}
+    {% elseif is_granted('ROLE_ORGA') %}
+        {% include'FrontEndBundle:Navbar:navbarOrga.html.twig' %}
+    {% elseif is_granted('ROLE_PRESS') %}
+        {% include'FrontEndBundle:Navbar:navbarPresse.html.twig' %}
+    {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% include 'FrontEndBundle:Navbar:navbarUser.html.twig' %}
+    {% else %}
+        {% include 'FrontEndBundle:Navbar:navbarVisitor.html.twig' %}
+    {% endif %}
+{% endblock %}
