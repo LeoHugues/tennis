@@ -4,20 +4,32 @@
     <div class="col-sm-9 col-sm-offset-1 content-block">
         <h1 class="text-center">Démarrer une rencontre</h1>
         {{ form_start(form) }}
-        <div class="col-sm-6">
-            {{ form_row(form.equipes1) }}
+        <div class="col-sm-12">
+            <div class="col-sm-6">
+                {{ form_row(form.equipes1) }}
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(form.equipes2) }}
+            </div>
         </div>
-        <div class="col-sm-6">
-            {{ form_row(form.equipes2) }}
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                {{ form_row(form.terrain) }}
+            </div>
+            <div class="col-sm-4">
+                {{ form_row(form.nbSets) }}
+            </div>
+            <div class="col-sm-4">
+                {{ form_row(form.nvxCompet) }}
+            </div>
         </div>
-        <div class="col-sm-4">
-            {{ form_row(form.terrain) }}
-        </div>
-        <div class="col-sm-4">
-            {{ form_row(form.nbSets) }}
-        </div>
-        <div class="col-sm-4">
-            {{ form_row(form.nvxCompet) }}
+        <div class="col-sm-12">
+            {#<div class="col-sm-6">
+                {{ form_row(form.arbitre) }}
+            </div>#}
+            <div class="col-sm-6">
+                {{ form_row(form.date) }}
+            </div>
         </div>
         {{ form_end(form) }}
     </div>

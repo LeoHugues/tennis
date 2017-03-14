@@ -11,7 +11,7 @@ use OrganisationBundle\Entity\Joueur;
 class JoueurController extends Controller
 {
     /**
-     * @Route("/gestion-joueur/créer-joueur", name="gestion-joueur_creer-joueur")
+     * @Route("/gestion-joueur/creer-joueur", name="gestion-joueur_creer-joueur")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */

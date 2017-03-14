@@ -24,12 +24,17 @@ class User extends BaseUser
         // your own logic
     }
 
-    /**
-     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\Group")
-     * @ORM\JoinTable(name="fos_user_user_group",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
-     * )
-     */
-    protected $groups;
+    public function getRoleString(){
+        $roles = parent::getRoles();
+        if(!empty($roles)){
+            return $roles[0];
+        }
+        else return "";
+    }
+
+    public function setRoleString($role){
+        $this->addRole($role);
+    }
+
+
 }
