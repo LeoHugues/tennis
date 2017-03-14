@@ -69,9 +69,8 @@ class SecurityController extends BaseController
                 return $this->redirectToRoute('admin_home');
             }
             elseif($currentUser->getRoleString() == 'ROLE_ORGA'){
-                return $this->redirectToRoute('')
+                return $this->redirectToRoute('tennis_organisation_home');
             }
-
         }
 
         return $this->renderLogin(array(
@@ -99,6 +98,9 @@ class SecurityController extends BaseController
         throw new \RuntimeException('You must configure the check path to be handled by the firewall using form_login in your security firewall configuration.');
     }
 
+    /**
+     * @Route("/logout", name="user-logout")
+     */
     public function logoutAction()
     {
         throw new \RuntimeException('You must activate the logout in your security firewall configuration.');

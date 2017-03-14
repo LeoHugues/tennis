@@ -16,11 +16,7 @@ use OrganisationBundle\Controller\JoueurController;
 class DefaultController extends Controller
 {
     /**
-<<<<<<< HEAD
-     * @Route("/", name="tennis_arbitre_home")
-=======
      * @Route("/organisation", name="tennis_organisation_home")
->>>>>>> 0880f8a9b11ddaee4bfcdb944ceaa43a97d638fa
      */
     public function indexAction(Request $request)
     {
