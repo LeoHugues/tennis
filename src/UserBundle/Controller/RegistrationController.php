@@ -31,6 +31,7 @@ class RegistrationController extends BaseController
         /** @var $dispatcher EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
 
+        /** @var User $user */
         $user = $userManager->createUser();
         $user->setEnabled(true);
 

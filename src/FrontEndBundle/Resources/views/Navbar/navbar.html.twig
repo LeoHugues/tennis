@@ -3,6 +3,8 @@
         {% include'FrontEndBundle:Navbar:navbarAdmin.html.twig' %}
     {% elseif is_granted('ROLE_ORGA') %}
         {% include'FrontEndBundle:Navbar:navbarOrga.html.twig' %}
+    {% elseif is_granted('ROLE_ARBITRE') %}
+        {% include'FrontEndBundle:Navbar:navbarArbitre.html.twig' %}
     {% elseif is_granted('ROLE_PRESS') %}
         {% include'FrontEndBundle:Navbar:navbarPresse.html.twig' %}
     {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}

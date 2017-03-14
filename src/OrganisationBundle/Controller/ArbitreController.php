@@ -11,11 +11,11 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class ArbitreController extends Controller
 {    
     /**
-     * @Route("organisation/index-arbitre", name="tennis_arbitre_home")
+     * @Route("arbitre/index-arbitre", name="tennis_arbitre_home")
      */
     public function indexAction()
     {
-        $arbitre = $this->getDoctrine()->getEntityManager()->getRepository('OrganisationBundle:Arbitre')->find($this->getUser()->getId());
+        $arbitre = $this->getUser();
         $matchs = [];
         /** @var Matchs $match */
         foreach ($arbitre->getMatchs() as $match) {

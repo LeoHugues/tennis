@@ -43,4 +43,20 @@ class User extends BaseUser
     public function setRoleString($role){
         $this->addRole($role);
     }
+
+    /**
+     * @return Matchs
+     */
+    public function getMatchs()
+    {
+        return $this->matchs;
+    }
+
+    /**
+     * @param Matchs $matchs
+     */
+    public function setMatchs($matchs)
+    {
+        $this->matchs = $matchs;
+    }
 }
