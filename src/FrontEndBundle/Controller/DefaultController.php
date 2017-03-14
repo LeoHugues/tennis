@@ -12,6 +12,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        if(true === $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
+            $currentUser =  $this->get('security.token_storage')->getToken()->getUser();
+            if($currentUser->getRoleString() == 'ROLE_ADMIN'){
+                return $this->redirectToRoute('admin_home');
+            }
+            elseif($currentUser->getRoleString() == 'ROLE_ORGA'){
+                return $this->redirectToRoute('tennis_organisation_home');
+            }
+        }
         return $this->render('FrontEndBundle:Default:index.html.twig');
     }
 
