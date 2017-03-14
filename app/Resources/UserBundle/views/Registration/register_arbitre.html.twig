@@ -1,0 +1,15 @@
+{% extends "FrontEndBundle::layout.html.twig" %}
+{% block content %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div>
+            {{ form_start(form, {'method': 'post', 'action': path('arbitre-registration'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+            {{ form_widget(form) }}
+            <input class="btn btn-success" type="submit" value="Valider"/>
+            {{ form_end(form) }}
+        </div>
+    {% else %}
+        <div>
+            Vous n'avez pas les droits
+        </div>
+    {% endif %}
+{% endblock %}

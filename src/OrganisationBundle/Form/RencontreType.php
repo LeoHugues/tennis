@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use OrganisationBundle\Form\EquipeType;
 use OrganisationBundle\Entity\Matchs;
 
 class RencontreType extends AbstractType
@@ -17,7 +18,7 @@ class RencontreType extends AbstractType
             ->add('equipes1', EquipeType::class)
             ->add('equipes2', EquipeType::class)
             ->add('terrain')
-            //->add('arbitre')
+            ->add('arbitre')
             ->add('date')
             ->add('nbSets', ChoiceType::class, array(
                 'choices'  => array(
