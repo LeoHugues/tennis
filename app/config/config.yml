@@ -77,3 +77,6 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: UserBundle\Entity\User
+    from_email:
+        address: "pierre.baumes@epsi.fr"
+        sender_name: "No Reply"
