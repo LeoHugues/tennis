@@ -1,18 +1,23 @@
-{% extends "FrontEndBundle::layout.html.twig" %}
 {% block content %}
     {% if is_granted('ROLE_ADMIN') %}
-        <div>
-            {{ form_start(form, {'method': 'post', 'action': path('user-registration'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-            {{ form_widget(form) }}
-            <input class="btn btn-success" type="submit" value="Valider"/>
-            {{ form_end(form) }}
+        <div class=" col-sm-8 col-sm-offset-1">
+            <div class="col-sm-offset-1 well window-connection content-block col-sm-12 user-form">
+                <h1 class="text-center">Création d'un utilisateur</h1>
+                {{ form_start(form, {'method': 'post', 'action': path('user-registration'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                {{ form_widget(form) }}
+                <input class="btn btn-success" type="submit" value="Valider"/>
+                {{ form_end(form) }}
+            </div>
         </div>
     {% else %}
-        <div>
-            {{ form_start(form, {'method': 'post', 'action': path('user-registration'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-            {{ form_widget(form) }}
-            <input class="btn btn-success" type="submit" value="Valider"/>
-            {{ form_end(form) }}
+        <div class=" col-sm-8 col-sm-offset-1">
+            <div class="col-sm-offset-1 well window-connection content-block col-sm-12 user-form">
+                <h1 class="text-center">Connection</h1>
+                {{ form_start(form, {'method': 'post', 'action': path('user-registration'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                {{ form_widget(form) }}
+                <input class="btn btn-success" type="submit" value="Valider"/>
+                {{ form_end(form) }}
+            </div>
         </div>
     {% endif %}
 {% endblock %}

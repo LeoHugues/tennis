@@ -80,7 +80,7 @@ class SecurityController extends BaseController
      */
     protected function renderLogin(array $data)
     {
-        return $this->render('@FOSUser/Security/login.html.twig', $data);
+        return $this->render('UserBundle:Security:login.html.twig', $data);
     }
 
     public function checkAction()

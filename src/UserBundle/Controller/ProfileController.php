@@ -51,7 +51,7 @@ class ProfileController extends BaseController
 
     /**
      * Edit the user.
-     *
+     * @Route("/profile-edit", name="user-profile-edit")
      * @param Request $request
      *
      * @return Response
@@ -100,7 +100,7 @@ class ProfileController extends BaseController
             return $response;
         }
 
-        return $this->render('@FOSUser/Profile/edit.html.twig', array(
+        return $this->render('UserBundle:Profile:edit.html.twig', array(
             'form' => $form->createView(),
         ));
     }
