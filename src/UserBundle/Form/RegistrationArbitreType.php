@@ -45,11 +45,7 @@ class RegistrationArbitreType extends BaseFormType
     {
         $this->configureOptions($resolver);
     }
-
-    public function getBlockPrefix()
-    {
-        return 'fos_user_registration';
-    }
+    
 
     public function getName()
     {
