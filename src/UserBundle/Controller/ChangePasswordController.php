@@ -22,6 +22,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FOS\UserBundle\Controller\ChangePasswordController as BaseController;
 
@@ -34,6 +35,7 @@ use FOS\UserBundle\Controller\ChangePasswordController as BaseController;
 class ChangePasswordController extends BaseController
 {
     /**
+     * @Route("/profile-pwd", name="user-profile-pwd")
      * Change user password.
      *
      * @param Request $request
@@ -75,7 +77,7 @@ class ChangePasswordController extends BaseController
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_profile_show');
+                $url = $this->generateUrl('user-profile');
                 $response = new RedirectResponse($url);
             }
 
@@ -84,7 +86,7 @@ class ChangePasswordController extends BaseController
             return $response;
         }
 
-        return $this->render('@FOSUser/ChangePassword/change_password.html.twig', array(
+        return $this->render('UserBundle:ChangePassword:change_password.html.twig', array(
             'form' => $form->createView(),
         ));
     }

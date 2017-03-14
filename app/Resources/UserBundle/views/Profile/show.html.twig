@@ -1,7 +1,4 @@
-
-{% extends (is_granted('ROLE_ORGA') or is_granted('ROLE_ADMIN')) == 'false'
-? 'FrontEndBundle::layout.html.twig'
-: 'OrganisationBundle::layout.html.twig' %}
+{% extends "UserBundle::layout.html.twig" %}
 
 {% block content %}
     {% include "UserBundle:Profile:show_content.html.twig" %}
