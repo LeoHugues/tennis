@@ -6,12 +6,15 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Model\UserManagerInterface;
+use OrganisationBundle\Entity\Arbitre;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use Symfony\Component\Routing\Annotation\Route;
 use UserBundle\Entity\User;
 use UserBundle\Form\RegistrationAdminType;
+use UserBundle\Form\RegistrationArbitreType;
 use UserBundle\Form\RegistrationType;
 
 class RegistrationController extends BaseController
@@ -59,6 +62,63 @@ class RegistrationController extends BaseController
                 }
 
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+
+                return $response;
+            }
+
+            $event = new FormEvent($form, $request);
+            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_FAILURE, $event);
+
+            if (null !== $response = $event->getResponse()) {
+                return $response;
+            }
+        }
+
+        return $this->render('UserBundle:Registration:register_content.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * @Route("organisation/registration-arbitre", name="arbitre-registration")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function registerArbitreAction(Request $request)
+    {
+        /** @var $userManager UserManagerInterface */
+        $userManager = $this->get('fos_user.user_manager');
+        /** @var $dispatcher EventDispatcherInterface */
+        $dispatcher = $this->get('event_dispatcher');
+
+        $arbitre = new Arbitre();
+        $arbitre->setEnabled(true);
+
+        $event = new GetResponseUserEvent($arbitre, $request);
+        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
+
+        if (null !== $event->getResponse()) {
+            return $event->getResponse();
+        }
+        
+        $form = $this->createForm(RegistrationArbitreType::class, $arbitre);
+        
+        $form->setData($arbitre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $event = new FormEvent($form, $request);
+                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+                $arbitre->setRoleString('ROLE_ORGA');
+                $userManager->updateUser($arbitre);
+
+                if (null === $response = $event->getResponse()) {
+                    $url = $this->generateUrl('fos_user_registration_confirmed');
+                    $response = new RedirectResponse($url);
+                }
+
+                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($arbitre, $request, $response));
 
                 return $response;
             }

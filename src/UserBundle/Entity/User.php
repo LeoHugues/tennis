@@ -35,6 +35,4 @@ class User extends BaseUser
     public function setRoleString($role){
         $this->addRole($role);
     }
-
-
 }
