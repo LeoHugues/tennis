@@ -63,16 +63,6 @@ class SecurityController extends BaseController
             ? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
             : null;
 
-        if(true === $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
-            $currentUser =  $this->get('security.token_storage')->getToken()->getUser();
-            if($currentUser->getRoleString() == 'ROLE_ADMIN'){
-                return $this->redirectToRoute('admin_home');
-            }
-            elseif($currentUser->getRoleString() == 'ROLE_ORGA'){
-                return $this->redirectToRoute('tennis_organisation_home');
-            }
-        }
-
         return $this->renderLogin(array(
             'last_username' => $lastUsername,
             'error' => $error,
@@ -90,7 +80,7 @@ class SecurityController extends BaseController
      */
     protected function renderLogin(array $data)
     {
-        return $this->render('@FOSUser/Security/login.html.twig', $data);
+        return $this->render('UserBundle:Security:login.html.twig', $data);
     }
 
     public function checkAction()

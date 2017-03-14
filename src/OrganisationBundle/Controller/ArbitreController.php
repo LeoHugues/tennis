@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: leo
- * Date: 3/3/17
- * Time: 2:49 PM
- */
 
 namespace OrganisationBundle\Controller;
 
@@ -15,9 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class ArbitreController extends Controller
-{
+{    
     /**
-     * @Route("/index-arbitre", name="tennis_arbitre_home")
+     * @Route("organisation/index-arbitre", name="tennis_arbitre_home")
      */
     public function indexAction()
     {
@@ -32,4 +26,6 @@ class ArbitreController extends Controller
         
         return $this->render('OrganisationBundle:Default:gestion-rencontre.html.twig', array('matchs' => $matchs));
     }
+    
+    
 }
