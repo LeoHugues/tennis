@@ -10,23 +10,10 @@
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use \Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use OrganisationBundle\Entity\Point;
 use \OrganisationBundle\Entity\Equipe;
 
 class LoadEquipeData extends AbstractFixture implements OrderedFixtureInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     public function load(ObjectManager $manager)
     {
         $equipe1 = new Equipe();
@@ -43,6 +30,10 @@ class LoadEquipeData extends AbstractFixture implements OrderedFixtureInterface
 
         $equipe3->setJoueur1($this->getReference('Gasquet'));
         $equipe3->setJoueur2($this->getReference('Murray'));
+
+        $this->addReference('Nadal-Monfils', $equipe1);
+        $this->addReference('Federer-Williams', $equipe2);
+        $this->addReference('Gasquet-Murray', $equipe3);
 
         $manager->persist($equipe1);
         $manager->flush();

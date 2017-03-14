@@ -28,6 +28,10 @@ class LoadTerrainData extends AbstractFixture implements OrderedFixtureInterface
         $terrain4 = new Terrain();
         $terrain4->setNom('Agora');
 
+        $this->addReference('Wimbledon', $terrain);
+        $this->addReference('Roland-Garros', $terrain2);
+        $this->addReference('Court', $terrain3);
+
         $manager->persist($terrain);
         $manager->persist($terrain2);
         $manager->persist($terrain3);
