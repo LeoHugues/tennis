@@ -25,7 +25,7 @@ class Equipe
     /**
      * @var Joueur
      *
-     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="equipes")
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="equipes", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $joueur1;
@@ -33,7 +33,7 @@ class Equipe
     /**
      * @var Joueur
      *
-     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="equipes")
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="equipes", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $joueur2;
@@ -69,7 +69,7 @@ class Equipe
      *
      * @return Equipe
      */
-    public function setJoueur1($joueur1)
+    public function setJoueur1(Joueur $joueur1)
     {
         $this->joueur1 = $joueur1;
 
@@ -93,7 +93,7 @@ class Equipe
      *
      * @return Equipe
      */
-    public function setJoueur2($joueur2)
+    public function setJoueur2(Joueur $joueur2)
     {
         $this->joueur2 = $joueur2;
 
