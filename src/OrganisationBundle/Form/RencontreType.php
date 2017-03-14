@@ -2,6 +2,8 @@
 
 namespace OrganisationBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,7 +20,15 @@ class RencontreType extends AbstractType
             ->add('equipes1', EquipeType::class)
             ->add('equipes2', EquipeType::class)
             ->add('terrain')
-            ->add('arbitre')
+            ->add('arbitre', EntityType::class, array(
+                'class' => 'UserBundle\Entity\User',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->andWhere("u.roles like '%ROLE_ARBITRE%' ")
+                        ->orderBy('u.username', 'ASC');
+                },
+                'choice_label' => 'username',
+            ))
             ->add('date')
             ->add('nbSets', ChoiceType::class, array(
                 'choices'  => array(
@@ -35,5 +45,39 @@ class RencontreType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => Matchs::class,
         ));
+    }
+
+    /**
+     * Add match
+     *
+     * @param Matchs $match
+     */
+    public function addMatch(Matchs $match)
+    {
+        $match->setArbitre($this);
+        if (!$this->matchs->contains($match)) {
+            $this->matchs->add($match);
+        }
+    }
+
+    /**
+     * Remove match
+     *
+     * @param Matchs $match
+     */
+    public function removeMatch(Matchs $match)
+    {
+        $this->matchs->removeElement($match);
+    }
+
+
+    /**
+     * Get matchs
+     *
+     * @return ArrayCollection
+     */
+    public function getMatchs()
+    {
+        return $this->matchs;
     }
 }

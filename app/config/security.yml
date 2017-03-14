@@ -6,6 +6,7 @@ security:
     role_hierarchy:
         ROLE_USER:        IS_AUTHENTICATED_ANONYMOUSLY
         ROLE_PRESS:       ROLE_USER
+        ROLE_ARBITRE:     ROLE_PRESS
         ROLE_ORGA:        ROLE_PRESS
         ROLE_ADMIN:       ROLE_ORGA
 
@@ -33,4 +34,5 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/profile, role: ROLE_USER}
         - { path: ^/organisation, role: ROLE_ORGA }
+        - { path: ^/arbitre, role: ROLE_ARBITRE }
         - { path: ^/admin, role: ROLE_ADMIN }

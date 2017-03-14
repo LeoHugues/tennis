@@ -74,35 +74,7 @@ class RegistrationController extends BaseController
             }
         }
 
-        return $this->render('UserBundle:Registration:register.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * @Route("organisation/registration-arbitre", name="arbitre-registration")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function registerArbitreAction(Request $request)
-    {
-        $arbitre = new Arbitre();
-
-        $form = $this->createForm(RegistrationArbitreType::class, $arbitre);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                $arbitre->setRoleString('ROLE_ORGA');
-                $arbitre->setEnabled(true);
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($arbitre);
-                $em->flush();
-
-                return $this->render('UserBundle:Registration:register_arbitre_confirmation.html.twig', array());
-            }
-        }
-
-        return $this->render('UserBundle:Registration:register_arbitre.html.twig', array(
+        return $this->render('FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
         ));
     }

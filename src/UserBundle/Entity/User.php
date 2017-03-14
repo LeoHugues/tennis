@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use OrganisationBundle\Entity\Matchs;
 
 /**
  * @ORM\Entity
@@ -17,6 +18,13 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var Matchs
+     *
+     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Matchs", mappedBy="arbitre", cascade={"persist", "remove"})
+     */
+    private $matchs;
 
     public function __construct()
     {

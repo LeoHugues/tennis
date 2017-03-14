@@ -38,10 +38,11 @@ class RegistrationAdminType extends BaseFormType
         $builder
             ->add('roleString', ChoiceType::class, array('label' => 'Role : ',
                 'choices' => array(
-                    'Utilisateur' => 'ROLE_USER',
-                    'Presse' => 'ROLE_PRESS',
-                    'Organisation' => 'ROLE_ORGA',
-                    'Administrateur' => 'ROLE_ADMIN',
+                    'Utilisateur'       => 'ROLE_USER',
+                    'Presse'            => 'ROLE_PRESS',
+                    'Arbitre'           => 'ROLE_ARBITRE',
+                    'Organisation'      => 'ROLE_ORGA',
+                    'Administrateur'    => 'ROLE_ADMIN',
                 )));
     }
 
