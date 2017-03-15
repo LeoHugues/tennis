@@ -1,9 +1,37 @@
 {% extends 'OrganisationBundle::layout.html.twig' %}
 
 {% block content %}
-    <div class="col-sm-9 col-sm-offset-1 content-block">
+    <div class="col-sm-12 col-sm-offset-1 content-block">
         <h1 class="text-center">Démarer une rencontre</h1>
-        <p> Afficher tous les matchs assigné à l'arbitre</p>
+        <div class="col-sm-12">
+            {% for match in matchs %}
+                <div class="col-sm-12">
+                    <div class="col-sm-1"><h3>{{ match.nvxCompet }}</h3></div>
+                    <div class="col-sm-2"><br>
+                        <label>{{ match.terrain.nom }}</label><br>
+                        {{ match.date|date("m/d/Y") }}
+                    </div>
+                    <div class="col-sm-3">
+                        <h3>Equipe 1 :</h3>
+                        {{ match.equipes1.joueur1}}
+                        {% if match.equipes1.joueur2 != null %}
+                            <br> {{ match.equipes1.joueur2 }}
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-3">
+                        <h3>Equipe 2 :</h3>
+                        {{ match.equipes2.joueur1}}
+                        {% if match.equipes2.joueur2 != null %}
+                            <br> {{ match.equipes2.joueur2 }}
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-3">
+                        <a class="btn-success btn">Démarrer la rencontre</a>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 
