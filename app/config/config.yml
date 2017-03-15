@@ -79,3 +79,6 @@ fos_user:
     user_class: UserBundle\Entity\User
     group:
             group_class: UserBundle\Entity\Group
+    from_email:
+        address: admin@example.com
+        sender_name: "No Reply"
