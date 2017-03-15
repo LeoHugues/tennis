@@ -24,7 +24,6 @@ class LoadMatchsData extends AbstractFixture implements OrderedFixtureInterface
         $date = new DateTime('2008-02-19');
 
         $match->setDate($date);
-        $match->setArbitre($this->getReference('Nili'));
         $match->setTerrain($this->getReference('Roland-Garros'));
         $match->setNvxCompet('quart');
         $match->setNbSets(4);
