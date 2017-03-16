@@ -33,8 +33,7 @@ class ArbitreController extends Controller
      */
     public function lancerRencontreAction(Request $request, $idRencontre)
     {
-        $rencontre = $this->getDoctrine()->getEntityManager()->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
-        
+        $rencontre = $this->getDoctrine()->getManager()->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
         return $this->render('OrganisationBundle:Default:rencontre.html.twig', array('rencontre' => $rencontre));
     }
 

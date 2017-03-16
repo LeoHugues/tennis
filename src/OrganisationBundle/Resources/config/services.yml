@@ -1,4 +1,4 @@
 services:
-#    tennis.example:
-#        class: OrganisationBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    tennis.point.manager:
+        class: OrganisationBundle\Service\ServicePointManager
+        arguments: ['@doctrine.orm.entity_manager']

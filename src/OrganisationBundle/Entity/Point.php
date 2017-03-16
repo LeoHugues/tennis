@@ -24,14 +24,14 @@ class Point
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datetime_deb", type="datetime")
+     * @ORM\Column(name="datetime_deb", type="datetime", nullable=true)
      */
     private $datetimeDeb;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datetime_fin", type="datetime")
+     * @ORM\Column(name="datetime_fin", type="datetime", nullable=true)
      */
     private $datetimeFin;
 
@@ -39,14 +39,14 @@ class Point
     /**
      * @var Equipe
      *
-     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Equipe", inversedBy="points", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Equipe", inversedBy="points")
      */
     private $equipe;
 
     /**
      * @var Matchs
      *
-     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Matchs", inversedBy="points", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Matchs", inversedBy="points")
      */
     private $match;
 
