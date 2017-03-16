@@ -44,16 +44,16 @@ class Joueur
     private $nbVictoire;
 
     /**
-     * @var Avertissement
+     * @var Incident
      *
-     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Avertissement", mappedBy="joueur",cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Incident", mappedBy="joueur",cascade={"persist", "remove"})
      */
-    private $avertissements;
+    private $incidents;
 
 
     public function __construct() {
         $this->nbVictoire = 0;
-        $this->avertissements = new ArrayCollection();
+        $this->incidents = new ArrayCollection();
     }
 
     public function __toString()
@@ -145,37 +145,37 @@ class Joueur
     }
 
     /**
-     * Add avertissement
+     * Add Incident
      *
-     * @param Avertissement $avert
+     * @param Incident $incid
      */
-    public function addAvertissement(Avertissement $avert)
+    public function addIncident(Incident $incid)
     {
-        $avert->setJoueur($this);
-        if (!$this->avertissements->contains($avert)) {
-            $this->avertissements->add($avert);
+        $incid->setJoueur($this);
+        if (!$this->incidents->contains($incid)) {
+            $this->incidents->add($incid);
         }
     }
 
     /**
-     * Remove avertissement
+     * Remove Incident
      *
-     * @param Avertissement $avert
+     * @param Incident $incid
      */
-    public function removeAvertissement(Avertissement $avert)
+    public function removeIncident(Incident $incid)
     {
-        $this->avertissements->removeElement($avert);
+        $this->incidents->removeElement($incid);
     }
 
 
     /**
-     * Get avertissement
+     * Get Incident
      *
-     * @return Avertissement
+     * @return Incident
      */
-    public function getAvertissements()
+    public function getIncidents()
     {
-        return $this->avertissements;
+        return $this->incidents;
     }
 }
 
