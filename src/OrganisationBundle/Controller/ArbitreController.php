@@ -32,6 +32,13 @@ class ArbitreController extends Controller
      */
     public function lancerRencontreAction()
     {
+        $event = new \StartMatchEvent($matchs);
+
+        // Launch the event for send mail to organisation people
+        $this
+            ->get('event_dispatcher')
+            ->dispatch(\MailEvents::onStartMatch, $event)
+        ;
 
         return $this->render('OrganisationBundle:Default:rencontre.html.twig', array());
     }

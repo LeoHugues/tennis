@@ -1,4 +1,5 @@
 services:
-#    tennis.example:
-#        class: OrganisationBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    oc_platform.beta.listener:
+        class: MailListener
+        tags:
+            - { name: kernel.event_listener, event: tennis.mail.start_match, method: notifyEmail }

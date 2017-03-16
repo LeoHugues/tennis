@@ -11,5 +11,15 @@ use Symfony\Component\EventDispatcher\Event;
 
 class StartMatchEvent extends Event
 {
+    protected $matchs;
 
+    public function __construct(\OrganisationBundle\Entity\Matchs $matchs)
+    {
+        $this->matchs = $matchs;
+    }
+
+    public function getMatchs()
+    {
+        return $this->matchs;
+    }
 }

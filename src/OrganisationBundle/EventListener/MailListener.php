@@ -2,7 +2,7 @@
 
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use OrganisationBundle\Entity\Matchs;
 
 /**
  * Created by PhpStorm.
@@ -12,8 +12,21 @@ use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
  */
 class MailListener
 {
-    public function onMatchStart(GetResponseForExceptionEvent $event)
-    {
+    protected $mailer;
 
+    public function onMatchStart(\Swift_Mailer $mailer)
+    {
+        $this->mailer = $mailer;
+    }
+
+    public function notifyEmail(Matchs $matchs)
+    {
+        $message = \Swift_Message::newInstance()
+            ->setSubject("Début d'un match")
+            ->setFrom('admin@votresite.com')
+            ->setTo('admin@votresite.com')
+            ->setBody("Le match du '".$matchs->getDate()."' a commencé.");
+
+        $this->mailer->send($message);
     }
 }
