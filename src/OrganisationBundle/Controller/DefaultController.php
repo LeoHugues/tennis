@@ -61,14 +61,11 @@ class DefaultController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Matchs $match */
             $match = $form->getData();
-            $match->setArbitre($this->getUser());
-            $match->setDate(new \DateTime());
-
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($match);
             $em->flush();
 
-            return $this->render('@Tennis/Default/gestion-rencontre.html.twig');
+            $this->addFlash('info', 'La rencontre a bien été créé');
         }
         return $this->render('OrganisationBundle:Default:index.html.twig', array('form' => $form->createView()));
     }
