@@ -4,8 +4,11 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_USER:        IS_AUTHENTICATED_ANONYMOUSLY
+        ROLE_PRESS:       ROLE_USER
+        ROLE_ARBITRE:     ROLE_PRESS
+        ROLE_ORGA:        ROLE_PRESS
+        ROLE_ADMIN:       ROLE_ORGA
 
     providers:
         fos_userbundle:
@@ -17,6 +20,8 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                #default_target_path: /redirect
+                #always_use_default_target_path: true
                 # if you are using Symfony < 2.8, use the following config instead:
                 # csrf_provider: form.csrf_provider
 
@@ -27,4 +32,7 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/profile, role: ROLE_USER}
+        - { path: ^/organisation, role: ROLE_ORGA }
+        - { path: ^/arbitre, role: ROLE_ARBITRE }
+        - { path: ^/admin, role: ROLE_ADMIN }

@@ -16,9 +16,37 @@ use OrganisationBundle\Controller\JoueurController;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/arbitre", name="tennis_arbitre_home")
+     * @Route("/organisation", name="tennis_organisation_home")
      */
     public function indexAction(Request $request)
+    {
+        $match = new Matchs();
+        $form = $this->createForm(RencontreType::class, $match);
+        $form->add('submit', SubmitType::class, array(
+            'label' => 'Commencer la rencontre',
+            'attr' => array(
+                'class' => 'col-sm-4 col-sm-offset-3 btn btn-default'
+            )
+        ));
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Matchs $match */
+            $match = $form->getData();
+            $match->setDate(new \DateTime());
+
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($match);
+            $em->flush();
+        }
+
+        return $this->render('OrganisationBundle:Default:index.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/admin", name="admin_home")
+     */
+    public function indexAdminAction(Request $request)
     {
         $match = new Matchs();
         $form = $this->createForm(RencontreType::class, $match);
@@ -57,14 +85,6 @@ class DefaultController extends Controller
         return $this->render('OrganisationBundle:Default:gestion-joueur.html.twig', array(
             'joueurs' => $joueurs,
         ));
-    }
-
-    /**
-     * @Route("/gestion-rencontre", name="gestion_rencontre")
-     */
-    public function gestionRencontreAction()
-    {
-        return $this->render('OrganisationBundle:Default:gestion-rencontre.html.twig');
     }
 
     /**
