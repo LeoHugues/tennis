@@ -20,6 +20,9 @@ class DefaultController extends Controller
             elseif($currentUser->getRoleString() == 'ROLE_ORGA'){
                 return $this->redirectToRoute('tennis_organisation_home');
             }
+            elseif($currentUser->getRoleString() == 'ROLE_ARBITRE'){
+                return $this->redirectToRoute('tennis_arbitre_home');
+            }
         }
         return $this->render('FrontEndBundle:Default:index.html.twig');
     }

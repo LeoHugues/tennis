@@ -59,11 +59,11 @@ class Matchs
     private $servicePremier;
 
     /**
-     * @var Avertissement
+     * @var Incident
      *
-     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Avertissement", mappedBy="match", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Incident", mappedBy="match", cascade={"persist", "remove"})
      */
-    private $avertissements;
+    private $incidents;
 
     /**
      * One Match has One Equipe1.
@@ -89,16 +89,6 @@ class Matchs
      * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Point", mappedBy="match")
      */
     private $points;
-
-    /**
-     *
-     * @ORM\ManyToMany(targetEntity="OrganisationBundle\Entity\Incident")
-     * @ORM\JoinTable(name="match_incidents",
-     *      joinColumns={@ORM\JoinColumn(name="match_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="incident_id", referencedColumnName="id", unique=true)}
-     *      )
-     */
-    private $incidents;
 
     /**
      * @var Arbitre
@@ -238,37 +228,37 @@ class Matchs
     }
 
     /**
-     * Add avertissement
+     * Add Incident
      *
-     * @param Avertissement $avert
+     * @param Incident $incid
      */
-    public function addAvertissement(Avertissement $avert)
+    public function addIncident(Incident $incid)
     {
-        $avert->setMatchs($this);
-        if (!$this->avertissements->contains($avert)) {
-            $this->avertissements->add($avert);
+        $incid->setMatch($this);
+        if (!$this->incidents->contains($incid)) {
+            $this->incidents->add($incid);
         }
     }
 
     /**
-     * Remove avertissement
+     * Remove Incident
      *
-     * @param Avertissement $avert
+     * @param Incident $incid
      */
-    public function removeAvertissement(Avertissement $avert)
+    public function removeIncident(Incident $incid)
     {
-        $this->avertissements->removeElement($avert);
+        $this->incidents->removeElement($incid);
     }
 
 
     /**
-     * Get avertissement
+     * Get Incident
      *
      * @return ArrayCollection
      */
-    public function getAvertissements()
+    public function getIncidents()
     {
-        return $this->avertissements;
+        return $this->incidents;
     }
 
     /**
@@ -335,39 +325,6 @@ class Matchs
     public function getPoints()
     {
         return $this->points;
-    }
-
-    /**
-     * Add incident
-     *
-     * @param Incident $incident
-     */
-    public function addIncident(Incident $incident)
-    {
-        if (!$this->incidents->contains($incident)) {
-            $this->incidents->add($incident);
-        }
-    }
-
-    /**
-     * Remove incident
-     *
-     * @param Incident $incident
-     */
-    public function removeIncident(Incident $incident)
-    {
-        $this->incidents->removeElement($incident);
-    }
-
-
-    /**
-     * Get incidents
-     *
-     * @return ArrayCollection
-     */
-    public function getIncidents()
-    {
-        return $this->incidents;
     }
 
     /**

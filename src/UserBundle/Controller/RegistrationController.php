@@ -26,6 +26,13 @@ class RegistrationController extends BaseController
      */
     public function registerAction(Request $request)
     {
+        $adminCreateUser = false;
+        if(true === $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+            if ($currentUser->getRoleString() == 'ROLE_ADMIN') {
+                $adminCreateUser = true;
+            }
+        }
         /** @var $userManager UserManagerInterface */
         $userManager = $this->get('fos_user.user_manager');
         /** @var $dispatcher EventDispatcherInterface */
@@ -52,18 +59,24 @@ class RegistrationController extends BaseController
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                $event = new FormEvent($form, $request);
-                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+                if(!$adminCreateUser){
+                    $event = new FormEvent($form, $request);
+                    $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+                }
                 $user->setRoleString($form["roleString"]->getData());
                 $userManager->updateUser($user);
 
-                if (null === $response = $event->getResponse()) {
-                    $url = $this->generateUrl('fos_user_registration_confirmed');
+                if(!$adminCreateUser) {
+                    if (null === $response = $event->getResponse()) {
+                        $url = $this->generateUrl('fos_user_registration_confirmed');
+                        $response = new RedirectResponse($url);
+                    }
+
+                    $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+                }else{
+                    $url = $this->generateUrl('admin_home');
                     $response = new RedirectResponse($url);
                 }
-
-                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
                 return $response;
             }
 

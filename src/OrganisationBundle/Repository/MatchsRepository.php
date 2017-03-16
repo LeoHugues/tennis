@@ -10,4 +10,8 @@ namespace OrganisationBundle\Repository;
  */
 class MatchsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllMatchs(){
+        $query = $this->_em->createQuery("SELECT m FROM OrganisationBundle:Matchs m");
+        return $query->getResult();
+    }
 }
