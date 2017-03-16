@@ -5,6 +5,7 @@ namespace OrganisationBundle\Controller;
 
 use OrganisationBundle\Entity\Matchs;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArbitreController extends Controller
@@ -30,10 +31,11 @@ class ArbitreController extends Controller
     /**
      * @Route("arbitre/lancer-rencontre/{idRencontre}", name="tennis_arbitre_lancer_rencontre")
      */
-    public function lancerRencontreAction()
+    public function lancerRencontreAction(Request $request, $idRencontre)
     {
-
-        return $this->render('OrganisationBundle:Default:rencontre.html.twig', array());
+        $rencontre = $this->getDoctrine()->getEntityManager()->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
+        
+        return $this->render('OrganisationBundle:Default:rencontre.html.twig', array('rencontre' => $rencontre));
     }
 
     

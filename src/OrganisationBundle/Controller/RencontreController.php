@@ -21,6 +21,31 @@ class RencontreController extends Controller
      * @Route("/rencontre/{idMatch}/service/{idEquipe}", name="call_premier_serveur")
      */
     public function AjaxCallPremierService(Request $request, $idMatch, $idEquipe) {
+        $rencontre = $this->getDoctrine()->getEntityManager()->getRepository('OrganisationBundle:Matchs')->find($idMatch);
+        $rencontre->setServicePremier($idEquipe);
 
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($rencontre);
+        $em->flush();
+
+        return 'success';
+    }
+
+    /**
+     * Call qui permet à l'arbitre de déterminer le premier serveur
+     *
+     * @Route("/rencontre/{idMatch}/service/{idEquipe}", name="call_add_point")
+     */
+    public function AjaxCallAddPoint(Request $request, $idMatch, $idEquipe) {
+        $rencontre = $this->getDoctrine()->getEntityManager()->getRepository('OrganisationBundle:Matchs')->find($idMatch);
+        $rencontre->setServicePremier($idEquipe);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($rencontre);
+        $em->flush();
+
+        return 'success';
     }
 }
