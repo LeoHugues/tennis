@@ -18,12 +18,12 @@
                 {% if rencontre.equipes2.joueur2 != null %}
                     <br> {{ rencontre.equipes2.joueur2 }}
                 {% endif %}
-                <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn-service btn btn-primary">Equipe 1</button>
+                <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn-service btn btn-primary">Equipe 2</button>
             </div>
         </div>
     </div>
 
-
+    <div id="div1"></div>
 
     <!-- Modal -->
     <div id="service" class="modal fade" tabindex="-1" role="dialog">
@@ -74,7 +74,11 @@
 
         // Ajouter un point à l'équipe
         $( ".btn-add-point" ).click(function() {
-            alert( $(this).data("id") );
+            var url = "{{ path('call_add_point', {'idRencontre': rencontre.id, 'idEquipe':'text' }) }}";
+            url = url.replace("text", $(this).data("id"));
+            $.ajax({url: url, success: function(result){
+                $("#div1").html(result);
+            }});
         });
 
 

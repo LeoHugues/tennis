@@ -42,6 +42,20 @@ class Incident
      */
     private $datetimeFin;
 
+    /**
+     * @var Matchs
+     *
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Matchs", inversedBy="incidents", cascade={"persist", "remove"})
+     */
+    private $match;
+
+    /**
+     * @var Joueur
+     *
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="incidents", cascade={"persist", "remove"})
+     */
+    private $joueur;
+
 
     /**
      * Get id
@@ -123,6 +137,54 @@ class Incident
     public function getDatetimeFin()
     {
         return $this->datetimeFin;
+    }
+
+    /**
+     * Set matchs
+     *
+     * @param Matchs $match
+     *
+     * @return Incident
+     */
+    public function setMatch($match)
+    {
+        $this->match = $match;
+
+        return $this;
+    }
+
+    /**
+     * Get match
+     *
+     * @return Matchs
+     */
+    public function getMatch()
+    {
+        return $this->match;
+    }
+
+    /**
+     * Set joueur
+     *
+     * @param Joueur $joueur
+     *
+     * @return Incident
+     */
+    public function setJoueur($joueur)
+    {
+        $this->joueur = $joueur;
+
+        return $this;
+    }
+
+    /**
+     * Get Joueur
+     *
+     * @return Joueur
+     */
+    public function getJoueur()
+    {
+        return $this->joueur;
     }
 }
 

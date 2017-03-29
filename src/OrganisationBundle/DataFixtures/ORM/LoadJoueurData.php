@@ -11,7 +11,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use OrganisationBundle\Entity\Joueur;
-use \OrganisationBundle\Entity\Avertissement;
+use \OrganisationBundle\Entity\Incident;
 
 class LoadJoueurData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -24,17 +24,20 @@ class LoadJoueurData extends AbstractFixture implements OrderedFixtureInterface
         $joueur->setNbVictoire(15);
 
         $joueur2       = new Joueur();
-        $avertissement = new Avertissement();
+        $incident = new Incident();
 
-        $avertissement->setMotif('comportement');
-        $date = new DateTime('2016-03-14');
-        $date->format('d-m-Y');
-        $avertissement->setDatetime($date);
+        $incident->setMotif('comportement');
+        $dateDeb = new DateTime('2016-03-14');
+        $dateFin = new DateTime('2016-03-14');
+        $dateDeb->format('d-m-Y');
+        $dateFin->format('d-m-Y');
+        $incident->setDatetimeDeb($dateDeb);
+        $incident->setDatetimeFin($dateFin);
 
         $joueur2->setNom('Federer');
         $joueur2->setPrenom('Roger');
         $joueur2->setNbVictoire(11);
-        $joueur2->addAvertissement($avertissement);
+        $joueur2->addIncident($incident);
 
         $joueur3 = new Joueur();
 

@@ -1,0 +1,10 @@
+services:
+    tennis.point.manager:
+        class: OrganisationBundle\Service\ServicePointManager
+        arguments: ['@doctrine.orm.entity_manager']
+
+    organisation.match_mailer:
+        class: OrganisationBundle\EventListener\MatchSubscriber
+        arguments: ['@doctrine.orm.entity_manager', '@swiftmailer.mailer']
+        tags:
+          - { name: "organisation.match_mailer" }
