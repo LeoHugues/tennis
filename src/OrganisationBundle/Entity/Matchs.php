@@ -91,16 +91,6 @@ class Matchs
     private $points;
 
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="OrganisationBundle\Entity\Incident")
-     * @ORM\JoinTable(name="match_incidents",
-     *      joinColumns={@ORM\JoinColumn(name="match_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="incident_id", referencedColumnName="id", unique=true)}
-     *      )
-     */
-    private $incidents;
-
-    /**
      * @var Arbitre
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="matchs", cascade={"persist", "remove"})
