@@ -1,5 +1,0 @@
-services:
-    oc_platform.beta.listener:
-        class: MailListener
-        tags:
-            - { name: kernel.event_listener, event: tennis.mail.start_match, method: notifyEmail }

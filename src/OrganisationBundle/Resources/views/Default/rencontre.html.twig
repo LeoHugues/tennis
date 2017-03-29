@@ -1,6 +1,82 @@
 {% extends 'OrganisationBundle::layout.html.twig' %}
 
 {% block content %}
-    <h1>Ici se fera la gestion d'un match</h1>
+    <div class="container">
+        <h1>{{ rencontre.nvxCompet }} : {{ rencontre.terrain.nom }}</h1>
+        <div class="col-sm-12">
+            <div class="col-sm-6">
+                <h3>Equipe 1 :</h3>
+                {{ rencontre.equipes1.joueur1}}
+                {% if rencontre.equipes1.joueur2 != null %}
+                    <br> {{ rencontre.equipes1.joueur2 }}
+                {% endif %}
+                <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn btn-primary">Equipe 1</button>
+            </div>
+            <div class="col-sm-6">
+                <h3>Equipe 2 :</h3>
+                {{ rencontre.equipes2.joueur1}}
+                {% if rencontre.equipes2.joueur2 != null %}
+                    <br> {{ rencontre.equipes2.joueur2 }}
+                {% endif %}
+                <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn-service btn btn-primary">Equipe 1</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div id="service" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Premier service</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Selectionner l'équipe qui aura le premier service</p>
+                    <div class="col-sm-3">
+                        <h3>Equipe 1 :</h3>
+                        {{ rencontre.equipes1.joueur1}}
+                        {% if rencontre.equipes1.joueur2 != null %}
+                            <br> {{ rencontre.equipes1.joueur2 }}
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-3">
+                        <h3>Equipe 2 :</h3>
+                        {{ rencontre.equipes2.joueur1}}
+                        {% if rencontre.equipes2.joueur2 != null %}
+                            <br> {{ rencontre.equipes2.joueur2 }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-service btn btn-primary">Equipe 1</button>
+                    <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-service btn btn-primary">Equipe 2</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 {% endblock %}
 
+{% block javascripts %}
+    <script type="text/javascript">
+        $('#service').modal();
+
+        // Selection l'équipe qui servira la première
+        $( ".btn-service" ).click(function() {
+            var url = "{{ path('call_premier_serveur', {'idMatch': rencontre.id, 'idEquipe':'text' }) }}";
+            url = url.replace("text", $(this).data("id"));
+            $.ajax({url: url, success: function(result){
+                $("#div1").html(result);
+            }});
+        });
+
+        // Ajouter un point à l'équipe
+        $( ".btn-add-point" ).click(function() {
+            alert( $(this).data("id") );
+        });
+
+
+    </script>
+{% endblock %}
