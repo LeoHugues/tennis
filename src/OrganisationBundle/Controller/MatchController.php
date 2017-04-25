@@ -2,9 +2,11 @@
 
 namespace OrganisationBundle\Controller;
 
+use OrganisationBundle\Form\ImportRencontreType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use OrganisationBundle\Entity\Terrain;
 use OrganisationBundle\Form\TerrainType;
@@ -76,6 +78,32 @@ class MatchController extends Controller
         $match = $this->getDoctrine()->getManager()->find(Matchs::class, $id_match);
         return $this->render('OrganisationBundle:Match:modifier-match.html.twig',
                 array('match' => $match));
+    }
+
+    /**
+     * @Route("/organisation/import-match", name="import_matchs")
+     */
+    public function importMatchAction(Request $request)
+    {
+        $form = $this->createForm(ImportRencontreType::class);
+        $form->add('submit', SubmitType::class, array(
+            'label' => 'Importer',
+            'attr' => array(
+                'class' => 'col-sm-4 col-sm-offset-3 btn btn-success'
+            )
+        ));
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form['fichier']->getData();
+            $fileName = md5(uniqid()).'.xls';
+            $file->move(
+                "/web/upload",
+                $fileName
+            );
+        }
+
+        return $this->render('OrganisationBundle:Match:import-match.html.twig', array('form' => $form->createView()));
     }
 
 }
