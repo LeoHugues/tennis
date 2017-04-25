@@ -12,6 +12,7 @@ namespace OrganisationBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class RencontreController extends Controller
@@ -30,7 +31,7 @@ class RencontreController extends Controller
         $em->persist($rencontre);
         $em->flush();
 
-        return 'success';
+        return new Response('success');
     }
 
     /**

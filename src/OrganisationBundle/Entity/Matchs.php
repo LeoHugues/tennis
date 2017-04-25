@@ -84,7 +84,7 @@ class Matchs
     private $equipes2;
 
     /**
-     * @var Point
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Point", mappedBy="match")
      */
@@ -96,6 +96,11 @@ class Matchs
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="matchs", cascade={"persist", "remove"})
      */
     private $arbitre;
+
+    public function __construct()
+    {
+        $this->points = new ArrayCollection();
+    }
 
     /**
      * Get id

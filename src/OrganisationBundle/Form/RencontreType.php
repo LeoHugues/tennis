@@ -47,37 +47,4 @@ class RencontreType extends AbstractType
         ));
     }
 
-    /**
-     * Add match
-     *
-     * @param Matchs $match
-     */
-    public function addMatch(Matchs $match)
-    {
-        $match->setArbitre($this);
-        if (!$this->matchs->contains($match)) {
-            $this->matchs->add($match);
-        }
-    }
-
-    /**
-     * Remove match
-     *
-     * @param Matchs $match
-     */
-    public function removeMatch(Matchs $match)
-    {
-        $this->matchs->removeElement($match);
-    }
-
-
-    /**
-     * Get matchs
-     *
-     * @return ArrayCollection
-     */
-    public function getMatchs()
-    {
-        return $this->matchs;
-    }
 }
