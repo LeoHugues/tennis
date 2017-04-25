@@ -43,7 +43,7 @@
                         </h4>
                         <p>Terrain : {{ match.getTerrain().getNom() }}</p>
                         <p>Date : {{ match.getDate()|date('Y-m-d H:i:s') }}</p>
-                        <p>Arbitre : {{ match.getArbitre().getUsername() }}</p>
+                        <p>Arbitre : {{ match.arbitre.username }}</p>
                     </div>
                 </li>
             {% endfor %}
