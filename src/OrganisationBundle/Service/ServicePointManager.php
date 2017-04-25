@@ -39,74 +39,75 @@ class ServicePointManager
         return $this->getScore($rencontre);
     }
 
-    public function getScore($match)
-    {
-        //$match = $this->em->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
+    public function getScore(Matchs $match)
+    {//dump($match->getPoints()->count());die;
         $equipe1 = array('set' => 0, 'jeu' => 0, 'point' => 0);
         $equipe2 = array('set' => 0, 'jeu' => 0, 'point' => 0);
         $score = array(
             'set' => array(),
-            'jeu' => array(
-                'equipe1' => 0,
-                'equipe2' => 0
-            ),
-            'point' => array(
-                'equipe1' => 0,
-                'equipe2' => 0
-            )
+            'jeu' => array(),
+            'point' => array()
         );
-
         /** @var Point $point */
         foreach ($match->getPoints() as $point)
         {
-            if ($equipe1['point'] > 3 || $equipe2['point'] > 3) {
-                $jeuTermine = false;
-                if ($equipe1['point'] - $equipe2['point']  > 1 ) {
+            if ($match->getEquipes1() == $point->getEquipe()) {
+                $equipe1['point'] += 1;
+            } else {
+                $equipe2['point'] += 1;
+            }
+            if ($this->leJeuEstTermine($equipe1, $equipe2)) {
+                $equipe1['point'] = 0;
+                $equipe2['point'] = 0;
+                if ($match->getEquipes1() == $point->getEquipe()) {
                     $equipe1['jeu'] += 1;
-                    $jeuTermine = true;
-                } elseif ($equipe2['point'] - $equipe1['point']  > 1 ){
-                    $equipe2['jeu'] += 1;
-                    $jeuTermine = true;
-                }
-
-                if ($jeuTermine == true) {
-                    $equipe1['point'] = 0;
-                    $equipe2['point'] = 0;
-
-                    if ($equipe1['jeu'] > 5 || $equipe2['jeu'] > 5) {
-                        $setTermine = false;
-                        if ($equipe1['jeu'] - $equipe2['jeu']  > 1 ) {
-                            $equipe1['set'] += 1;
-                            $setTermine = true;
-                        } elseif ($equipe2['jeu'] - $equipe1['jeu']  > 1 ){
-                            $equipe2['set'] += 1;
-                            $setTermine = true;
-                        }
-
-                        if ($setTermine == true) {
-                            $score['set'] += array(array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']));
-                            $equipe1['jeu'] = 0;
-                            $equipe2['jeu'] = 0;
-                        }
-                    }
                 } else {
+                    $equipe2['jeu'] += 1;
+                }
+                if ($this->leSetEstTermine($equipe1, $equipe2)) {
+                    $score['jeu'] = array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);
+                    $equipe1['jeu'] = 0;
+                    $equipe2['jeu'] = 0;
                     if ($match->getEquipes1() == $point->getEquipe()) {
-                        $equipe1['jeu'] += 1;
+                        $equipe1['set'] += 1;
                     } else {
-                        $equipe2['jeu'] += 1;
+                        $equipe2['set'] += 1;
                     }
-                    $score['jeu'] += array('equipe1' => array($equipe1['jeu'], 'equipe2' => $equipe2['jeu']));
+                    $score['set'] += array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);$score['point'] = array('equipe1' => $equipe1['point'], 'equipe2' => $equipe2['point']);
+                } else {
+                    $score['jeu'] = array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);
+                    $score['point'] = array('equipe1' => $equipe1['point'], 'equipe2' => $equipe2['point']);
                 }
             } else {
-                if ($match->getEquipes1() == $point->getEquipe()) {
-                    $equipe1['point'] += 1;
-                } else {
-                    $equipe2['point'] += 1;
-                }
-                $score['point'] += array('equipe1' => array($equipe1['point'], 'equipe2' => $equipe2['point']));
+                $score['point'] = array('equipe1' => $equipe1['point'], 'equipe2' => $equipe2['point']);
             }
         }
 
         return $score;
+    }
+
+    public function leJeuEstTermine($equipe1, $equipe2) {
+
+        $jeuTermine = false;
+        if ($equipe1['point'] > 3 || $equipe2['point'] > 3) {
+            // Si l'écart de point du jeu est supérieur à égal à 2
+            if ($equipe1['point'] - $equipe2['point'] > 1 || $equipe2['point'] - $equipe1['point'] > 1) {
+                $jeuTermine = true;
+            }
+        }
+
+        return $jeuTermine;
+    }
+
+    public function leSetEstTermine($equipe1, $equipe2) {
+
+        $setTermine = false;
+        if ($equipe1['jeu'] > 5 || $equipe2['jeu'] > 5) {
+            if ($equipe1['jeu'] - $equipe2['jeu'] > 1 || $equipe2['jeu'] - $equipe1['jeu'] > 1) {
+                $setTermine = false;
+            }
+        }
+
+        return $setTermine;
     }
 }
