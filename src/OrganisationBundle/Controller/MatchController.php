@@ -2,6 +2,7 @@
 
 namespace OrganisationBundle\Controller;
 
+use OrganisationBundle\MatchEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -12,6 +13,7 @@ use organisationBundle\OrganisationBundle;
 use OrganisationBundle\Entity\Matchs;
 use OrganisationBundle\Form\RencontreType;
 use OrganisationBundle\Controller\JoueurController;
+use OrganisationBundle\Event\CreateMatchEvent;
 
 class MatchController extends Controller
 {
@@ -38,6 +40,11 @@ class MatchController extends Controller
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($match);
             $em->flush();
+
+            $event->setMatch($match);
+            $this->get("event_dispatcher")->dispatch(
+                MatchEvents::AFTER_MATCH_CREATED, $event
+            );
         }
 
         return $this->render('OrganisationBundle:Match:index.html.twig', array('form' => $form->createView()));

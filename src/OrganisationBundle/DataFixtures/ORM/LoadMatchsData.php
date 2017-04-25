@@ -12,7 +12,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use OrganisationBundle\Entity\Matchs;
 use OrganisationBundle\Entity\Equipe;
-use OrganisationBundle\Entity\Avertissement;
+use OrganisationBundle\Entity\Incident;
 use OrganisationBundle\Entity\Joueur;
 
 class LoadMatchsData extends AbstractFixture implements OrderedFixtureInterface
@@ -35,18 +35,21 @@ class LoadMatchsData extends AbstractFixture implements OrderedFixtureInterface
         $joueur->setPrenom('Raphael');
         $joueur->setNbVictoire(15);
 
-        $joueur2       = new Joueur();
-        $avertissement = new Avertissement();
+        $joueur2  = new Joueur();
+        $incident = new Incident();
 
-        $avertissement->setMotif('comportement');
-        $date = new DateTime('2016-03-14');
-        $date->format('d-m-Y');
-        $avertissement->setDatetime($date);
+        $incident->setMotif('comportement');
+        $dateDeb = new DateTime('2016-03-14');
+        $dateFin = new DateTime('2016-03-14');
+        $dateDeb->format('d-m-Y');
+        $dateFin->format('d-m-Y');
+        $incident->setDatetimeDeb($dateDeb);
+        $incident->setDatetimeFin($dateFin);
 
         $joueur2->setNom('Federer');
         $joueur2->setPrenom('Roger');
         $joueur2->setNbVictoire(11);
-        $joueur2->addAvertissement($avertissement);
+        $joueur2->addIncident($incident);
 
         $joueur3 = new Joueur();
 
@@ -71,6 +74,14 @@ class LoadMatchsData extends AbstractFixture implements OrderedFixtureInterface
 
         $match->setEquipes1($equipe);
         $match->setEquipes2($equipe2);
+
+        $user = new \UserBundle\Entity\User();
+
+        $user->setUsername('Tartanpion');
+        $user->setEmail('tartanpion@gmail.com');
+        $user->setPassword('password');
+
+        $match->setArbitre($user);
 
         $manager->persist($match);
         $manager->flush();
