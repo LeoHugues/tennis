@@ -13,8 +13,8 @@
         <div>
             <p>Liste des avertissements</p>
             <li>
-                {% for avert in joueur.avertissements %}
-                    <ul>{{ avert.getMotif() }}</ul>
+                {% for incid in joueur.incidents %}
+                    <ul>{{ incid.getMotif() }}</ul>
                 {% endfor %}
             </li>
         </div>
