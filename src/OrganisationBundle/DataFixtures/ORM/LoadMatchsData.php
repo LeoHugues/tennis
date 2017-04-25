@@ -83,6 +83,7 @@ class LoadMatchsData extends AbstractFixture implements OrderedFixtureInterface
 
         $match->setArbitre($user);
 
+        $manager->persist($user);
         $manager->persist($match);
         $manager->flush();
     }
