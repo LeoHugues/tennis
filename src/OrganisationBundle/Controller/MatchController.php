@@ -40,13 +40,12 @@ class MatchController extends Controller
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($match);
             $em->flush();
-        }
 
-        $event  = new CreateMatchEvent();
-        $event->setMatch($match);
-        $this->get("dispatcher")->dispatch(
-            MatchEvents::AFTER_MATCH_CREATED, $event
-        );
+            $event->setMatch($match);
+            $this->get("event_dispatcher")->dispatch(
+                MatchEvents::AFTER_MATCH_CREATED, $event
+            );
+        }
 
         return $this->render('OrganisationBundle:Match:index.html.twig', array('form' => $form->createView()));
     }
