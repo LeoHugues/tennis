@@ -2,3 +2,7 @@ services:
     tennis.point.manager:
         class: OrganisationBundle\Service\ServicePointManager
         arguments: ['@doctrine.orm.entity_manager']
+
+    tennis.start.match.event:
+        class: OrganisationBundle\EventListener\StartMatchSuscriber
+        arguments: ['@swiftmailer.mailer']
