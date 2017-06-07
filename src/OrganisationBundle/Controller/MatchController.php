@@ -35,7 +35,6 @@ class MatchController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Matchs $match */
             $match = $form->getData();
-            $match->setDate(new \DateTime());
 
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($match);
