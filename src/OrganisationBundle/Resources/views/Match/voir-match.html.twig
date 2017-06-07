@@ -4,29 +4,32 @@
     <div class="col-lg-11 col-sm-offset-1 content-block">
         <h1 class="text-center">Match n°{{ match.getId() }}</h1>
     </div>
-    <div class="col-lg-11 col-sm-offset-1 content content-block" >
+    <div class="col-lg-11 col-sm-offset-1 content content-block" style="padding:20px;">
         <div class="row">
             <div class="col-lg-6">
-                <p>Equipe 1 :</p>
-                <p>Joueur 1 : {{ match.getEquipes1().getJoueur1().getNom() }}</p>
-                <p>Joueur 2 : {{ match.getEquipes1().getJoueur2().getNom() }}</p>
+                <p><span style="font-weight:bold;">Equipe 1 :</span></p>
+                <p><span style="font-weight:bold;">Joueur 1 :</span> <span class="pull-right">{{ match.getEquipes1().getJoueur1().getNom() }}</span></p>
+                <p><span style="font-weight:bold;">Joueur 2 :</span> <span class="pull-right">{{ match.getEquipes1().getJoueur2().getNom() }}</span></p>
             </div>
             <div class="col-lg-6">
-                <p>Equipe 2 :</p>
-                <p>Joueur 1 : {{ match.getEquipes2().getJoueur1().getNom() }}</p>
-                <p>Joueur 2 : {{ match.getEquipes2().getJoueur2().getNom() }}</p>
+                <p><span style="font-weight:bold;">Equipe 2 :</span></p>
+                <p><span style="font-weight:bold;">Joueur 1 :</span> <span class="pull-right">{{ match.getEquipes2().getJoueur1().getNom() }}</span></p>
+                <p><span style="font-weight:bold;">Joueur 2 :</span> <span class="pull-right">{{ match.getEquipes2().getJoueur2().getNom() }}</span></p>
             </div>
         </div>
+
+        <hr>
+
         <div class="row">
             <div class="col-lg-6">
-                <p>Terrain : {{ match.getTerrain().getNom() }}</p>
-                <p>Date : {{ match.getDate()|date('Y-m-d H:i:s') }}</p>
-                <p>Arbitre : {{ match.getArbitre().getUsername() }}</p>
-                <p>Nombre de set : {{ match.getNbSets() }}</p>
-                <p>Compétition : {{ match.getNvxCompet() }}</p>
+                <p><span style="font-weight:bold;">Terrain :</span> <span class="pull-right">{{ match.getTerrain().getNom() }}</span></p>
+                <p><span style="font-weight:bold;">Date :</span> <span class="pull-right">{{ match.getDate()|date('Y-m-d H:i:s') }}</span></p>
+                <p><span style="font-weight:bold;">Arbitre :</span> <span class="pull-right">{{ match.getArbitre().getUsername() }}</span></p>
+                <p><span style="font-weight:bold;">Nombre de set :</span> <span class="pull-right">{{ match.getNbSets() }}</span></p>
+                <p><span style="font-weight:bold;">Compétition :</span> <span class="pull-right">{{ match.getNvxCompet() }}</span></p>
             </div>
             <div class="col-lg-6">
-                <p>Liste des incidents</p>
+                <p><span style="font-weight:bold;">Liste des incidents</span></p>
                 {% if not match.getIncidents().isEmpty() %}
                     {% for incid in match.getIncidents() %}
                         <ul>

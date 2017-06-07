@@ -53,7 +53,7 @@ class Joueur
     /**
      * @var datetime
      *
-     * @ORM\Column(name="date de naissance", type="datetime", nullable=true)
+     * @ORM\Column(name="date_de_naissance", type="datetime", nullable=true)
      */
     private $naissance;
 
