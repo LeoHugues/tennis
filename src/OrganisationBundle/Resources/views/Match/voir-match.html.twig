@@ -9,12 +9,16 @@
             <div class="col-lg-6">
                 <p>Equipe 1 :</p>
                 <p>Joueur 1 : {{ match.getEquipes1().getJoueur1().getNom() }}</p>
-                <p>Joueur 2 : {{ match.getEquipes1().getJoueur2().getNom() }}</p>
+                {% if match.getEquipes1().getJoueur2() != null %}
+                    <p>Joueur 2 : {{ match.getEquipes1().getJoueur2().getNom() }}</p>
+                {% endif %}
             </div>
             <div class="col-lg-6">
                 <p>Equipe 2 :</p>
                 <p>Joueur 1 : {{ match.getEquipes2().getJoueur1().getNom() }}</p>
-                <p>Joueur 2 : {{ match.getEquipes2().getJoueur2().getNom() }}</p>
+                {% if match.getEquipes1().getJoueur2() != null %}
+                    <p>Joueur 2 : {{ match.getEquipes2().getJoueur2().getNom() }}</p>
+                {% endif %}
             </div>
         </div>
         <div class="row">

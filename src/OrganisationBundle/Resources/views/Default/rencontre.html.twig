@@ -11,9 +11,6 @@
                     <br> {{ rencontre.equipes1.joueur2 }}
                 {% endif %}
                 <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
-                <div class="col-sm-12">
-                    <h1>Score : <span id="jeu-1">0</span> | <span id="point-1">0</span> </h1>
-                </div>
             </div>
             <div class="col-sm-6">
                 <h3>Equipe 2 :</h3>
@@ -22,8 +19,19 @@
                     <br> {{ rencontre.equipes2.joueur2 }}
                 {% endif %}
                 <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+            </div>
+            <div class="col-sm-12">
                 <div class="col-sm-12">
-                    <h1>Score : <span id="jeu-2">0</span> | <span id="point-2">0</span></h1>
+                    <div class="col-sm-2"> Equipe 1 </div>
+                    <div class="col-sm-3" id="set-1"></div>
+                    <div class="col-sm-1"><span id="jeu-1">0</span></div>
+                    <div class="col-sm-1"><span id="point-1">0</span></div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-2"> Equipe 2 </div>
+                    <div class="col-sm-3" id="set-2"></div>
+                    <div class="col-sm-1"><span id="jeu-2">0</span></div>
+                    <div class="col-sm-1"><span id="point-2">0</span></div>
                 </div>
             </div>
         </div>
@@ -80,11 +88,22 @@
         $( ".btn-add-point" ).click(function() {
             var url = "{{ path('call_add_point', {'idRencontre': rencontre.id, 'idEquipe':'text' }) }}";
             url = url.replace("text", $(this).data("id"));
-            $.ajax({url: url, success: function(result){
-                    $("#jeu-1").html(result.jeu.equipe1);
-                    $("#point-1").html(result.point.equipe1);
-                    $("#jeu-2").html(result.jeu.equipe2);
-                    $("#point-2").html(result.point.equipe2);
+            $.ajax({url: url, success: function(result) {
+                $('#set-1').html("");
+                $('#set-2').html("");
+                for (var i = 0; i < result.set.length; i++) {
+                    var span1 = $('<span/>');
+                    span1.text(result.set[i]['equipe1']);
+                    $('#set-1').append(span1);
+
+                    var span2 = $('<span/>');
+                    span2.text(result.set[i]['equipe2']);
+                    $('#set-2').append(span2);
+                }
+                $("#jeu-1").html(result.jeu.equipe1);
+                $("#point-1").html(result.point.equipe1);
+                $("#jeu-2").html(result.jeu.equipe2);
+                $("#point-2").html(result.point.equipe2);
             }});
         });
 
