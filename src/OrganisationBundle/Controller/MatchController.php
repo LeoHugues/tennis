@@ -96,14 +96,20 @@ class MatchController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form['fichier']->getData();
-            $fileName = md5(uniqid()).'.xls';
+            $fileName = md5(uniqid()).'.csv';
             $file->move(
                 "/web/upload",
                 $fileName
             );
+            //$csv = new SplFileObject('web/upload/'+$fileName, 'r');
+            //$csv->setFlags(SplFileObject::READ_CSV);
         }
 
         return $this->render('OrganisationBundle:Match:import-match.html.twig', array('form' => $form->createView()));
+    }
+
+    public function createMatchByCSV(){
+
     }
 
 }

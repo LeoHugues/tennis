@@ -29,7 +29,7 @@
                         <h4 class="li-head">
                             <p>Equipe 1 :</p>
                             <p><a href="{{ path('gestion-joueur_voir-joueur', {'id_joueur': match.getEquipes1().getJoueur1().getId()}) }}">Joueur 1 : {{ match.getEquipes1().getJoueur1().getNom() }}</a></p>
-                            {% if match.getEquipes1().getJoueur2()g != null %}
+                            {% if match.getEquipes1().getJoueur2() != null %}
                                 <p><a href="{{ path('gestion-joueur_voir-joueur', {'id_joueur': match.getEquipes1().getJoueur2().getId()}) }}">Joueur 2 : {{ match.getEquipes1().getJoueur2().getNom() }}</a></p>
                             {% endif %}
                         </h4>
