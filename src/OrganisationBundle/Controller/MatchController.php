@@ -45,6 +45,44 @@ class MatchController extends Controller
     }
 
     /**
+     * @Route("/organisation/edit-match/{id}", name="edit_match")
+     */
+    public function editMatchAction(Request $request, $id)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('OrganisationBundle:Matchs');
+        $match = $repository->find($id);
+
+        if(!empty($match)) {
+
+            $form = $this->createForm(RencontreType::class, $match);
+            $form->add(
+                'submit',
+                SubmitType::class,
+                array(
+                    'label' => 'Créer',
+                    'attr' => array(
+                        'class' => 'col-sm-4 col-sm-offset-3 btn btn-success'
+                    )
+                )
+            );
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                /** @var Matchs $match */
+                $match = $form->getData();
+
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($match);
+                $em->flush();
+            }
+        }
+
+        return $this->render('OrganisationBundle:Match:index.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
      * @Route("/liste-match", name="list_all_match")
      *
      * Contiendra la liste des matchs
