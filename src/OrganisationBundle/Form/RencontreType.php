@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,7 +30,9 @@ class RencontreType extends AbstractType
                 },
                 'choice_label' => 'username',
             ))
-            ->add('date')
+            ->add('date', DateTimeType::class, array(
+                'data' => new \DateTime()
+            ))
             ->add('nbSets', ChoiceType::class, array(
                 'choices'  => array(
                     '5 sets' => 5,
@@ -47,37 +50,4 @@ class RencontreType extends AbstractType
         ));
     }
 
-    /**
-     * Add match
-     *
-     * @param Matchs $match
-     */
-    public function addMatch(Matchs $match)
-    {
-        $match->setArbitre($this);
-        if (!$this->matchs->contains($match)) {
-            $this->matchs->add($match);
-        }
-    }
-
-    /**
-     * Remove match
-     *
-     * @param Matchs $match
-     */
-    public function removeMatch(Matchs $match)
-    {
-        $this->matchs->removeElement($match);
-    }
-
-
-    /**
-     * Get matchs
-     *
-     * @return ArrayCollection
-     */
-    public function getMatchs()
-    {
-        return $this->matchs;
-    }
 }

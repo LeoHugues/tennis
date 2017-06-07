@@ -6,8 +6,15 @@
     </div>
     <div class="col-lg-11 col-sm-offset-1 content-block">
         <a href="{{ path('create_match') }}">
-            <span class="text-center">
+            <span class="btn bt,-sucess text-center">
                 Créer un match
+            </span>
+        </a>
+    </div>
+    <div class="col-lg-11 col-sm-offset-1 content-block">
+        <a href="{{ path('import_matchs') }}">
+            <span class="text-center">
+                Importer un fichier
             </span>
         </a>
     </div>
@@ -22,17 +29,21 @@
                         <h4 class="li-head">
                             <p>Equipe 1 :</p>
                             <p><a href="{{ path('gestion-joueur_voir-joueur', {'id_joueur': match.getEquipes1().getJoueur1().getId()}) }}">Joueur 1 : {{ match.getEquipes1().getJoueur1().getNom() }}</a></p>
-                            <p><a href="{{ path('gestion-joueur_voir-joueur', {'id_joueur': match.getEquipes1().getJoueur2().getId()}) }}">Joueur 2 : {{ match.getEquipes1().getJoueur2().getNom() }}</a></p>
+                            {% if match.getEquipes1().getJoueur2() != null %}
+                                <p><a href="{{ path('gestion-joueur_voir-joueur', {'id_joueur': match.getEquipes1().getJoueur2().getId()}) }}">Joueur 2 : {{ match.getEquipes1().getJoueur2().getNom() }}</a></p>
+                            {% endif %}
                         </h4>
                         Contre
                         <h4 class="li-head">
                             <p>Equipe 2 :</p>
                             <p><a href="{{ path('gestion-joueur_voir-joueur', {'id_joueur': match.getEquipes2().getJoueur1().getId()}) }}">Joueur 1 : {{ match.getEquipes2().getJoueur1().getNom() }}</a></p>
-                            <p><a href="{{ path('gestion-joueur_voir-joueur', {'id_joueur': match.getEquipes2().getJoueur2().getId()}) }}">Joueur 2 : {{ match.getEquipes2().getJoueur2().getNom() }}</a></p>
+                            {% if match.getEquipes2().getJoueur2() != null %}
+                                <p><a href="{{ path('gestion-joueur_voir-joueur', {'id_joueur': match.getEquipes2().getJoueur2().getId()}) }}">Joueur 2 : {{ match.getEquipes2().getJoueur2().getNom() }}</a></p>
+                            {% endif %}
                         </h4>
                         <p>Terrain : {{ match.getTerrain().getNom() }}</p>
                         <p>Date : {{ match.getDate()|date('Y-m-d H:i:s') }}</p>
-                        <p>Arbitre : {{ match.getArbitre().getUsername() }}</p>
+                        <p>Arbitre : {{ match.arbitre.username }}</p>
                     </div>
                 </li>
             {% endfor %}

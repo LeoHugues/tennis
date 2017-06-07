@@ -91,6 +91,8 @@ class Matchs
     private $points;
 
     /**
+     * @var User
+     *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="matchs", cascade={"persist", "remove"})
      */
     private $arbitre;
