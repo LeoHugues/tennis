@@ -24,7 +24,6 @@ class StartMatchSuscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        // Liste des évènements écoutés et méthodes à appeler
         return array(
             OrgaEvents::START_MATCH => 'sendMail'
         );
@@ -36,9 +35,9 @@ class StartMatchSuscriber implements EventSubscriberInterface
 
         $message = \Swift_Message::newInstance()
             ->setSubject('Début du match dont l\'id est : ' . $match->getId())
-            ->setFrom('pierre.baumes@epsi.fr')
-            ->setTo('pierre.baumes@epsi.fr')
-            ->setBody('Match débuté !', 'text/html');
+            ->setFrom('p.baumes@gmail.com')
+            ->setTo('p.baumes@gmail.com')
+            ->setBody('Match débuté !');
 
         $this->mailer->send($message);
     }

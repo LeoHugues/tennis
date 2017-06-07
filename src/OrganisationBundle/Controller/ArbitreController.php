@@ -4,8 +4,10 @@ namespace OrganisationBundle\Controller;
 
 
 use OrganisationBundle\Entity\Matchs;
+use OrganisationBundle\EventListener\StartMatchSuscriber;
 use OrganisationBundle\OrgaEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use OrganisationBundle\Event\StartMatchEvent;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -36,13 +38,16 @@ class ArbitreController extends Controller
     public function lancerRencontreAction(Request $request, $idRencontre)
     {
         $rencontre = $this->getDoctrine()->getManager()->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
+        $mailer = $this->get('mailer');
 
         $event = new StartMatchEvent();
         $event->setMatch($rencontre);
 
-        $this->get("event_dispatcher")->dispatch(
-            OrgaEvents::START_MATCH, $event
-        );
+        $dispatcher = new EventDispatcher();
+        $subscriber = new StartMatchSuscriber($mailer);
+        $dispatcher->addSubscriber($subscriber);
+
+        $dispatcher->dispatch(OrgaEvents::START_MATCH, $event);
 
         return $this->render('OrganisationBundle:Default:rencontre.html.twig', array('rencontre' => $rencontre));
     }
