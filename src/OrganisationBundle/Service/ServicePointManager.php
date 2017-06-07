@@ -4,6 +4,7 @@ namespace OrganisationBundle\Service;
 
 
 use Doctrine\ORM\EntityManager;
+use OrganisationBundle\Entity\Equipe;
 use OrganisationBundle\Entity\Matchs;
 use OrganisationBundle\Entity\Point;
 
@@ -24,7 +25,9 @@ class ServicePointManager
     }
 
     public function addPoint($idRencontre, $idEquipe) {
+        /** @var Matchs $rencontre */
         $rencontre = $this->em->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
+        /** @var Equipe $equipe */
         $equipe = $this->em->getRepository('OrganisationBundle:Equipe')->find($idEquipe);
 
         $point = new Point();
@@ -65,15 +68,12 @@ class ServicePointManager
                     $equipe2['jeu'] += 1;
                 }
                 if ($this->leSetEstTermine($equipe1, $equipe2)) {
-                    $score['jeu'] = array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);
+                    $score['set'][] = array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);
                     $equipe1['jeu'] = 0;
                     $equipe2['jeu'] = 0;
-                    if ($match->getEquipes1() == $point->getEquipe()) {
-                        $equipe1['set'] += 1;
-                    } else {
-                        $equipe2['set'] += 1;
-                    }
-                    $score['set'] += array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);$score['point'] = array('equipe1' => $equipe1['point'], 'equipe2' => $equipe2['point']);
+
+                    $score['jeu'] += array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);
+                    $score['point'] = array('equipe1' => $equipe1['point'], 'equipe2' => $equipe2['point']);
                 } else {
                     $score['jeu'] = array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);
                     $score['point'] = array('equipe1' => $equipe1['point'], 'equipe2' => $equipe2['point']);
@@ -90,8 +90,10 @@ class ServicePointManager
 
         $jeuTermine = false;
         if ($equipe1['point'] > 3 || $equipe2['point'] > 3) {
-            // Si l'écart de point du jeu est supérieur à égal à 2
+            // Si l'écart de point du jeu est supérieur ou égal à 2
             if ($equipe1['point'] - $equipe2['point'] > 1 || $equipe2['point'] - $equipe1['point'] > 1) {
+                $jeuTermine = true;
+            } else if ($equipe1['point'] == 7 || $equipe2['point'] == 7) {
                 $jeuTermine = true;
             }
         }
@@ -103,8 +105,9 @@ class ServicePointManager
 
         $setTermine = false;
         if ($equipe1['jeu'] > 5 || $equipe2['jeu'] > 5) {
+            // Si l'écart de jeu du set est supérieur ou égal à 2
             if ($equipe1['jeu'] - $equipe2['jeu'] > 1 || $equipe2['jeu'] - $equipe1['jeu'] > 1) {
-                $setTermine = false;
+                $setTermine = true;
             }
         }
 
