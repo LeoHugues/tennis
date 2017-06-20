@@ -27,8 +27,14 @@ class JoueurController extends Controller
 
             $nom = $form['nom']->getData();
             $prenom = $form['prenom']->getData();
+            $naissance = $form['naissance']->getData();
+            $classement = $form['classement']->getData();
+            $nationalite = $form['nationalite']->getData();
             $joueur->setNom($nom);
             $joueur->setPrenom($prenom);
+            $joueur->setNaissance($naissance);
+            $joueur->setClassement($classement);
+            $joueur->setNationalite($nationalite);
 
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();
