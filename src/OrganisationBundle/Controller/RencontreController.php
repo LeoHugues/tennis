@@ -95,5 +95,4 @@ class RencontreController extends Controller
 
         return new JsonResponse($joueur);
     }
-
 }

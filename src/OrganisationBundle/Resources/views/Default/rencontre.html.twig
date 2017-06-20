@@ -7,12 +7,12 @@
             <div class="col-sm-6">
                 <div class="col-sm-12">
                     <h3>Equipe 1 :</h3>
-                    {{ rencontre.equipes1.joueur1}}
                     <button type="button" data-id="{{ rencontre.equipes1.joueur1.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                    {{ rencontre.equipes1.joueur1}}
                     <br>
                     {% if rencontre.equipes1.joueur2 != null %}
-                        {{ rencontre.equipes1.joueur2 }}
                         <button type="button" data-id="{{ rencontre.equipes1.joueur2.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                        {{ rencontre.equipes1.joueur2 }}
                         <br>
                     {% endif %}
                 </div>
@@ -23,12 +23,12 @@
             <div class="col-sm-6">
                 <div class="col-sm-12">
                     <h3>Equipe 2 :</h3>
-                    {{ rencontre.equipes2.joueur1}}
                     <button type="button" data-id="{{ rencontre.equipes2.joueur1.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                    {{ rencontre.equipes2.joueur1}}
                     <br>
                     {% if rencontre.equipes2.joueur2 != null %}
-                        {{ rencontre.equipes2.joueur2 }}
                         <button type="button" data-id="{{ rencontre.equipes2.joueur2.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                        {{ rencontre.equipes2.joueur2 }}
                         <br>
                     {% endif %}</div>
                 <div class="col-sm-12 action-btn">
@@ -50,9 +50,6 @@
                 </div>
             </div>
         </div>
-
-        <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal">Faire appel à un soigneur</button>
-
     </div>
 
 
