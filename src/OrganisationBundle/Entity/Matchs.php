@@ -113,10 +113,16 @@ class Matchs
      */
     private $score;
 
+    /**
+     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Avertissement", mappedBy="match")
+     */
+    private $advertissements;
+    
     public function __construct()
     {
         $this->points = new ArrayCollection();
         $this->status = $this::MATCHE_TERMINE;
+        $this->advertissements = new ArrayCollection();
     }
 
     /**
@@ -403,6 +409,23 @@ class Matchs
     public function setScore($score)
     {
         $this->score = $score;
+    }
+
+    public function addAvertissement(Avertissement $avertissement)
+    {
+        $this->avertissements[] = $avertissement;
+
+        return $this;
+    }
+
+    public function removeAvertissement(Avertissement $avertissement)
+    {
+        $this->avertissements->removeElement($avertissement);
+    }
+
+    public function getAvertissements()
+    {
+        return $this->avertissements;
     }
 }
 

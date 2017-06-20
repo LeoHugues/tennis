@@ -3,7 +3,7 @@
 {% block content %}
     <div class="col-lg-12 content-block">
         <h1>Importer un fichier</h1>
-        <form action="{{ path('import_matchs') }}" method="POST" class="form-horizontal">
+        <form action="{{ path('import_matchs') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
             {{ form_widget(form) }}
         </form>
     </div>

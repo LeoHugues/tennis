@@ -7,9 +7,13 @@
             <div class="col-sm-6">
                 <div class="col-sm-12">
                     <h3>Equipe 1 :</h3>
-                    {{ rencontre.equipes1.joueur1}}<br>
+                    <button type="button" data-id="{{ rencontre.equipes1.joueur1.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                    {{ rencontre.equipes1.joueur1}}
+                    <br>
                     {% if rencontre.equipes1.joueur2 != null %}
-                        {{ rencontre.equipes1.joueur2 }}<br>
+                        <button type="button" data-id="{{ rencontre.equipes1.joueur2.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                        {{ rencontre.equipes1.joueur2 }}
+                        <br>
                     {% endif %}
                 </div>
                 <div class="col-sm-12 action-btn">
@@ -19,11 +23,14 @@
             <div class="col-sm-6">
                 <div class="col-sm-12">
                     <h3>Equipe 2 :</h3>
-                    {{ rencontre.equipes2.joueur1}}<br>
+                    <button type="button" data-id="{{ rencontre.equipes2.joueur1.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                    {{ rencontre.equipes2.joueur1}}
+                    <br>
                     {% if rencontre.equipes2.joueur2 != null %}
-                        {{ rencontre.equipes2.joueur2 }}<br>
-                    {% endif %}
-                </div>
+                        <button type="button" data-id="{{ rencontre.equipes2.joueur2.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                        {{ rencontre.equipes2.joueur2 }}
+                        <br>
+                    {% endif %}</div>
                 <div class="col-sm-12 action-btn">
                     <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
                 </div>
@@ -137,6 +144,16 @@
                     }
                 }
 
+            }});
+        });
+
+        // Faire appel à un soigneur
+        $(".btn-therapist").click(function(){
+            var url = "{{ path('call_therapist', {'idRencontre': rencontre.id, 'idJoueur':'text' }) }}";
+            url = url.replace("text", $(this).data("id"));
+
+            $.ajax({url: url, success: function(result) {
+                alert(result);
             }});
         });
 
