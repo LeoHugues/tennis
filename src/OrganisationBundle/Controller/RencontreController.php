@@ -42,6 +42,14 @@ class RencontreController extends Controller
 
         $score = $pointManager->addPoint($idRencontre, $idEquipe);
 
+        if ($score['termine']) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $rencontre = $em->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
+            $rencontre->setTermine(true);
+            $em->persist($rencontre);
+            $em->flush();
+        }
+
         return new JsonResponse($score);
     }
     

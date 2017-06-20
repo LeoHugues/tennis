@@ -14,6 +14,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Matchs
 {
+    const MATCHE_PROGRAMME  = 0;
+    const MATCHE_EN_COURS   = 1;
+    const MATCHE_TERMINE    = 2;
+    
     /**
      * @var int
      *
@@ -97,9 +101,22 @@ class Matchs
      */
     private $arbitre;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="status", type="integer")
+     */
+    private $status;
+
+    /**
+     * @var array
+     */
+    private $score;
+
     public function __construct()
     {
         $this->points = new ArrayCollection();
+        $this->status = $this::MATCHE_TERMINE;
     }
 
     /**
@@ -354,6 +371,38 @@ class Matchs
     public function getArbitre()
     {
         return $this->arbitre;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param int $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return array
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * @param array $score
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
     }
 }
 

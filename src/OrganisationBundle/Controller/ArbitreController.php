@@ -37,12 +37,17 @@ class ArbitreController extends Controller
      */
     public function lancerRencontreAction(Request $request, $idRencontre)
     {
-        $rencontre = $this->getDoctrine()->getManager()->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
+        $em = $this->getDoctrine()->getManager();
+
+        $rencontre = $em->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
+        $rencontre->setStatus(Matchs::MATCHE_EN_COURS);
+        $em->persist($rencontre);
+        $em->flush();
+
         $mailer    = $this->get('mailer');
 
-        $em         = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:User');
-        $usersOrga  = $repository->getUsersOrga('ROLE_ORGA');
+        $usersOrga  = $repository->getUsersOrga('ROLE_ORGA'); // C'est pas très sexy saaaooh laaaaoh
 
         $event = new StartMatchEvent();
         $event->setMatch($rencontre);

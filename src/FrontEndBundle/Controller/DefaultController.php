@@ -2,6 +2,7 @@
 
 namespace FrontEndBundle\Controller;
 
+use OrganisationBundle\Entity\Matchs;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -24,7 +25,34 @@ class DefaultController extends Controller
                 return $this->redirectToRoute('tennis_arbitre_home');
             }
         }
-        return $this->render('FrontEndBundle:Default:index.html.twig');
+
+        $matchsRep = $this->getDoctrine()->getRepository('OrganisationBundle:Matchs');
+        
+        $matchsEnCour = $matchsRep->findBy(
+            array('status' => Matchs::MATCHE_EN_COURS),
+            array('date' => 'DESC')
+        );
+        $matchsTermine = $matchsRep->findBy(
+            array('status' => Matchs::MATCHE_TERMINE),
+            array('date' => 'DESC')
+        );
+        $matchsProgramme = $matchsRep->findBy(
+            array('status' => Matchs::MATCHE_PROGRAMME),
+            array('date' => 'DESC')
+        );
+        
+        $pointManager = $this->get('tennis.point.manager');
+        
+        /** @var Matchs $match */
+        foreach ($matchsEnCour as $match) {
+            $match->setScore($pointManager->getScore($match));
+        }
+
+        return $this->render('FrontEndBundle:Default:index.html.twig', array(
+            'matchsEnCours'     => $matchsEnCour, 
+            'matchsTermine'     => $matchsTermine,
+            'matchsProgramme'   => $matchsProgramme,
+        ));
     }
 
 }

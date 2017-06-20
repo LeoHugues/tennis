@@ -1,15 +1,5 @@
 {% block navbar %}
-    <div class="col-lg-3">
-        <div class="sidebar-nav">
-            <div class="navbar navbar-default" role="navigation">
-                <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="{{ path("tennis_home") }}">Accueil</a></li>
-                        <li><a href="{{ path("user-profile") }}">Mon compte</a></li>
-                        <li><a href="{{ path("user-logout") }}">Se déconnecter</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+<li class="active"><a href="{{ path("tennis_home") }}">Accueil</a></li>
+<li><a href="{{ path("user-profile") }}">Mon compte</a></li>
+<li><a href="{{ path("user-logout") }}">Se déconnecter</a></li>
 {% endblock %}
