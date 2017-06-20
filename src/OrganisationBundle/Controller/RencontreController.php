@@ -8,7 +8,7 @@
 
 namespace OrganisationBundle\Controller;
 
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,7 +41,58 @@ class RencontreController extends Controller
 
         $score = $pointManager->addPoint($idRencontre, $idEquipe);
 
+        if($score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('UserBundle:User');
+            $usersOrga = $repository->getUsersOrga('ROLE_ORGA');
+            $emails = array();
+
+            foreach($usersOrga as $user) {
+                $emails[] = $user->getEmail();
+            }
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject("Début d'un set")
+                ->setFrom('p.baumes@gmail.com')
+                ->setTo($emails)
+                ->setBody('Nouveau set !');
+
+            $this->get('mailer')->send($message);
+        }
+
         return new JsonResponse($score);
+    }
+
+    /**
+     *
+     * @Route("/treat/{idRencontre}/{idJoueur}", name="call_therapist")
+     */
+    public function AjaxCallTherapist(Request $request, $idRencontre, $idJoueur)
+    {
+        $em         = $this->getDoctrine()->getManager();
+        $repoUser   = $em->getRepository('UserBundle:User');
+        $repoJoueur = $em->getRepository('OrganisationBundle:Joueur');
+
+        $usersOrga  = $repoUser->getUsersOrga('ROLE_ORGA');
+        $joueur     = $repoJoueur->find($idJoueur);
+
+        var_dump($joueur->getPrenom());die;
+
+        $emails     = array();
+
+        foreach($usersOrga as $user) {
+            $emails[] = $user->getEmail();
+        }
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject("Soigneur applé pour le joueur : " . $joueur->getUsername())
+            ->setFrom('p.baumes@gmail.com')
+            ->setTo($emails)
+            ->setBody("Appel d'un soigneur !");
+
+        $this->get('mailer')->send($message);
+
+        return new JsonResponse();
     }
     
 }

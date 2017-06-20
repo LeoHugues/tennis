@@ -124,7 +124,7 @@ class ServicePointManager
                         $nbChangementService = $nbPoint / 2;
                         if ($nbPoint % 2 == 0 && $nbChangementService % 2 == 0) {
 
-                        } elseif ()
+                        }
                     }
                 } elseif ($nbjeu % 2 == 1) {
 

@@ -35,7 +35,11 @@
                 </div>
             </div>
         </div>
+
+        <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal">Faire appel à un soigneur</button>
+
     </div>
+
 
     <!-- Modal -->
     <div id="service" class="modal fade" tabindex="-1" role="dialog">
@@ -69,6 +73,38 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Appeler un soigneur</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-3">
+                    <p>Selectionner le joueur à soigner</p>
+                        <select id="selectedBox">
+                            {% if rencontre.equipes1.joueur1 %}
+                                <option value="{{ rencontre.equipes1.joueur1.id }}">{{ rencontre.equipes1.joueur1 }}</option>
+                            {% endif %}
+                            {% if rencontre.equipes1.joueur2 %}
+                                <option value="{{ rencontre.equipes1.joueur2.id }}">{{ rencontre.equipes1.joueur2 }}</option>
+                            {% endif %}
+                            {% if rencontre.equipes2.joueur1 %}
+                                <option value="{{ rencontre.equipes2.joueur1.id }}">{{ rencontre.equipes2.joueur1 }}</option>
+                            {% endif %}
+                            {% if rencontre.equipes2.joueur2 %}
+                                <option value="{{ rencontre.equipes2.joueur2.id }}">{{ rencontre.equipes2.joueur2 }}</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 {% endblock %}
 
 {% block javascripts %}
@@ -104,6 +140,18 @@
                 $("#point-1").html(result.point.equipe1);
                 $("#jeu-2").html(result.jeu.equipe2);
                 $("#point-2").html(result.point.equipe2);
+            }});
+        });
+
+        // Faire appel à un soigneur
+        $("#selectedBox").change(function(){
+            var url = "{{ path('call_therapist', {'idRencontre': rencontre.id, 'idJoueur':'text' }) }}";
+            var selected_option = $(this).find("option:selected").val();
+
+            url = url.replace("text", selected_option);
+
+            $.ajax({url: url, success: function(result) {
+                alert(result);
             }});
         });
 
