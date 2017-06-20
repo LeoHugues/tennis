@@ -47,21 +47,15 @@ class ServicePointManager
 
     public function getScore(Matchs $match)
     {
-        $equipe1 = array('set' => 0, 'jeu' => 0, 'point' => 0);
-        $equipe2 = array('set' => 0, 'jeu' => 0, 'point' => 0);
-        $score = array(
+        $equipe1    = array('set' => 0, 'jeu' => 0, 'point' => 0);
+        $equipe2    = array('set' => 0, 'jeu' => 0, 'point' => 0);
+        $score      = array(
             'set'       => array(),
             'jeu'       => array(),
             'point'     => array(),
             'termine'   => false,
             'service'   => null
         );
-
-        if ($match->getServicePremier() == $match->getEquipes1()->getId()) {
-            $score['service'] = 1;
-        } else {
-            $score['service'] = 2;
-        }
 
         /** @var Point $point */
         foreach ($match->getPoints() as $point)
@@ -72,12 +66,6 @@ class ServicePointManager
                 $equipe2['point'] += 1;
             }
             if ($this->leJeuEstTermine($equipe1, $equipe2)) {
-                if ($match->getServicePremier() == $match->getEquipes1()->getId()) {
-                    $score['service'] = 1;
-                } else {
-                    $score['service'] = 2;
-                }
-
                 $equipe1['point'] = 0;
                 $equipe2['point'] = 0;
                 if ($match->getEquipes1() == $point->getEquipe()) {
@@ -109,28 +97,82 @@ class ServicePointManager
             }
         }
 
+        $score['service'] = $this->getServeur($match, array('equipe1' => $equipe1, 'equipe2' => $equipe2));
+
         return $score;
     }
     
     public function getServeur(Matchs $matchs, $score) {
+        $service = 1;
         if ($matchs->getServicePremier() == $matchs->getEquipes1()->getId()) {
             $nbSet = $score['equipe1']['set'] + $score['equipe2']['set'];
-            if ($nbSet % 2 == 1) {
+            if ($nbSet % 2 == 1) { // L'equipe 2 sert en premier dans le set en cour
                 $nbjeu = $score['equipe1']['jeu'] + $score['equipe2']['jeu'];
 
-                if ($nbjeu == 12) { // Tibreak
+                if ($nbjeu == 12) { // Tie break (L'equipe 2 commence par servir)
                     $nbPoint = $score['equipe1']['point'] + $score['equipe2']['point'];
-                    if ($nbPoint != 0 ) {
-                        $nbChangementService = $nbPoint / 2;
-                        if ($nbPoint % 2 == 0 && $nbChangementService % 2 == 0) {
-
+                    if ($nbPoint == 0 ) {
+                        $service = 2;
+                    } else {
+                        $nbChangementService = round($nbPoint / 2, 0, PHP_ROUND_HALF_UP);
+                        if ($nbChangementService % 2 == 0) {
+                            $service = 2;
                         }
                     }
-                } elseif ($nbjeu % 2 == 1) {
+                } elseif ($nbjeu % 2 == 0) {
+                    $service = 2;
+                }
+            } else { // L'equipe 1 sert en premier
+                $nbjeu = $score['equipe1']['jeu'] + $score['equipe2']['jeu'];
 
+                if ($nbjeu == 12) { // Tie break (L'equipe 1 commence par servir)
+                    $nbPoint = $score['equipe1']['point'] + $score['equipe2']['point'];
+                    if ($nbPoint > 0 ) {
+                        $nbChangementService = round($nbPoint / 2, 0, PHP_ROUND_HALF_UP);
+                        if ($nbChangementService % 2 == 1) {
+                            $service = 2;
+                        }
+                    }
+                } elseif ($nbjeu % 2 == 0) {
+                    $service = 2;
+                }
+            }
+        } else {
+            $nbSet = $score['equipe1']['set'] + $score['equipe2']['set'];
+            if ($nbSet % 2 == 0) { // L'equipe 2 sert en premier dans le set en cour
+                $nbjeu = $score['equipe1']['jeu'] + $score['equipe2']['jeu'];
+
+                if ($nbjeu == 12) { // Tie break (L'equipe 2 commence par servir)
+                    $nbPoint = $score['equipe1']['point'] + $score['equipe2']['point'];
+                    if ($nbPoint == 0 ) {
+                        $service = 2;
+                    } else {
+                        $nbChangementService = round($nbPoint / 2, 0, PHP_ROUND_HALF_UP);
+                        if ($nbChangementService % 2 == 0) {
+                            $service = 2;
+                        }
+                    }
+                } elseif ($nbjeu % 2 == 0) {
+                    $service = 2;
+                }
+            } else { // l'equipe1 sert en premier
+                $nbjeu = $score['equipe1']['jeu'] + $score['equipe2']['jeu'];
+
+                if ($nbjeu == 12) { // Tie break (L'equipe 1 commence par servir)
+                    $nbPoint = $score['equipe1']['point'] + $score['equipe2']['point'];
+                    if ($nbPoint > 0 ) {
+                        $nbChangementService = round($nbPoint / 2, 0, PHP_ROUND_HALF_UP);
+                        if ($nbChangementService % 2 == 1) {
+                            $service = 2;
+                        }
+                    }
+                } elseif ($nbjeu % 2 == 0) {
+                    $service = 2;
                 }
             }
         }
+
+        return $service;
     }
 
     public function leJeuEstTermine($equipe1, $equipe2) {
