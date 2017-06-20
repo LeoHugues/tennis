@@ -5,33 +5,40 @@
         <h1>{{ rencontre.nvxCompet }} : {{ rencontre.terrain.nom }}</h1>
         <div class="col-sm-12">
             <div class="col-sm-6">
-                <h3>Equipe 1 :</h3>
-                {{ rencontre.equipes1.joueur1}}
-                {% if rencontre.equipes1.joueur2 != null %}
-                    <br> {{ rencontre.equipes1.joueur2 }}
-                {% endif %}
-                <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+                <div class="col-sm-12">
+                    <h3>Equipe 1 :</h3>
+                    {{ rencontre.equipes1.joueur1}}<br>
+                    {% if rencontre.equipes1.joueur2 != null %}
+                        {{ rencontre.equipes1.joueur2 }}<br>
+                    {% endif %}
+                </div>
+                <div class="col-sm-12 action-btn">
+                    <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+                </div>
             </div>
             <div class="col-sm-6">
-                <h3>Equipe 2 :</h3>
-                {{ rencontre.equipes2.joueur1}}
-                {% if rencontre.equipes2.joueur2 != null %}
-                    <br> {{ rencontre.equipes2.joueur2 }}
-                {% endif %}
-                <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
-            </div>
-            <div class="col-sm-12">
                 <div class="col-sm-12">
-                    <div class="col-sm-2" id="equipe1"> Equipe 1 </div>
-                    <div class="col-sm-3" id="set-1"></div>
-                    <div class="col-sm-1"><span id="jeu-1">0</span></div>
-                    <div class="col-sm-1"><span id="point-1">0</span></div>
+                    <h3>Equipe 2 :</h3>
+                    {{ rencontre.equipes2.joueur1}}<br>
+                    {% if rencontre.equipes2.joueur2 != null %}
+                        {{ rencontre.equipes2.joueur2 }}<br>
+                    {% endif %}</div>
+                <div class="col-sm-12 action-btn">
+                    <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
                 </div>
-                <div class="col-sm-12">
-                    <div class="col-sm-2" id="equipe2"> Equipe 2 </div>
-                    <div class="col-sm-3" id="set-2"></div>
-                    <div class="col-sm-1"><span id="jeu-2">0</span></div>
-                    <div class="col-sm-1"><span id="point-2">0</span></div>
+            </div>
+            <div class="col-sm-8 block-score">
+                <div class="col-sm-12 block-equipe">
+                    <div class="col-sm-4 block-name" id="equipe1"> Equipe 1 </div>
+                    <div class="col-sm-4" id="set-1"></div>
+                    <div class="col-sm-2"><span id="jeu-1">0</span></div>
+                    <div class="col-sm-2"><span id="point-1">0</span></div>
+                </div>
+                <div class="col-sm-12 block-equipe">
+                    <div class="col-sm-4 block-name" id="equipe2"> Equipe 2 </div>
+                    <div class="col-sm-4" id="set-2"></div>
+                    <div class="col-sm-2"><span id="jeu-2">0</span></div>
+                    <div class="col-sm-2"><span id="point-2">0</span></div>
                 </div>
             </div>
         </div>
@@ -81,7 +88,7 @@
             url = url.replace("text", $(this).data("id"));
             $.ajax({url: url, success: function(result){
                 /*$("#div1").html(result);*/
-                //$('#service').modal().hide();
+                $('#service').modal('toggle');
             }});
         });
 
