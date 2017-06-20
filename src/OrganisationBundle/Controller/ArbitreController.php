@@ -38,13 +38,17 @@ class ArbitreController extends Controller
     public function lancerRencontreAction(Request $request, $idRencontre)
     {
         $rencontre = $this->getDoctrine()->getManager()->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
-        $mailer = $this->get('mailer');
+        $mailer    = $this->get('mailer');
+
+        $em         = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('UserBundle:User');
+        $usersOrga  = $repository->getUsersOrga('ROLE_ORGA');
 
         $event = new StartMatchEvent();
         $event->setMatch($rencontre);
 
         $dispatcher = new EventDispatcher();
-        $subscriber = new StartMatchSuscriber($mailer);
+        $subscriber = new StartMatchSuscriber($mailer, $usersOrga);
         $dispatcher->addSubscriber($subscriber);
 
         $dispatcher->dispatch(OrgaEvents::START_MATCH, $event);

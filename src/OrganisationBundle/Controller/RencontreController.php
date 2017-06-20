@@ -9,11 +9,11 @@
 namespace OrganisationBundle\Controller;
 
 
+use FOS\RestBundle\Controller\Annotations\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class RencontreController extends Controller
 {
@@ -27,7 +27,6 @@ class RencontreController extends Controller
         $rencontre->setServicePremier($idEquipe);
 
         $em = $this->getDoctrine()->getManager();
-
         $em->persist($rencontre);
         $em->flush();
 
@@ -43,6 +42,57 @@ class RencontreController extends Controller
 
         $score = $pointManager->addPoint($idRencontre, $idEquipe);
 
+        if($score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('UserBundle:User');
+            $usersOrga = $repository->getUsersOrga('ROLE_ORGA');
+            $emails = array();
+
+            foreach($usersOrga as $user) {
+                $emails[] = $user->getEmail();
+            }
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject("Début d'un set")
+                ->setFrom('p.baumes@gmail.com')
+                ->setTo($emails)
+                ->setBody('Nouveau set !');
+
+            $this->get('mailer')->send($message);
+        }
+
         return new JsonResponse($score);
+    }
+
+    /**
+     *
+     * @Route("/treat/{idRencontre}/{idJoueur}", name="call_therapist")
+     */
+    public function AjaxCallTherapist(Request $request, $idRencontre, $idJoueur)
+    {
+        $em         = $this->getDoctrine()->getManager();
+        $repoUser   = $em->getRepository('UserBundle:User');
+        $repoJoueur = $em->getRepository('OrganisationBundle:Joueur');
+        $repoMatch  = $em->getRepository('OrganisationBundle:Matchs');
+
+        $usersOrga  = $repoUser->getUsersOrga('ROLE_ORGA');
+        $joueur     = $repoJoueur->find($idJoueur);
+        $match      = $repoMatch->find($idRencontre);
+
+        $emails     = array();
+
+        foreach($usersOrga as $user) {
+            $emails[] = $user->getEmail();
+        }
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject("Soigneur applé pour le joueur : " . $joueur->getPrenom() . ' ' . $joueur->getNom())
+            ->setFrom('p.baumes@gmail.com')
+            ->setTo($emails)
+            ->setBody("Appel d'un soigneur lors du match opposant " . $match->getEquipes1()->getJoueur1() . ' et ' . $match->getEquipes2()->getJoueur1() . ' sur le terrain ' . $match->getTerrain());
+
+        $this->get('mailer')->send($message);
+
+        return new JsonResponse($joueur);
     }
 }

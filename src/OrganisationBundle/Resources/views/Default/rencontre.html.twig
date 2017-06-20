@@ -5,25 +5,53 @@
         <h1>{{ rencontre.nvxCompet }} : {{ rencontre.terrain.nom }}</h1>
         <div class="col-sm-12">
             <div class="col-sm-6">
-                <h3>Equipe 1 :</h3>
-                {{ rencontre.equipes1.joueur1}}
-                {% if rencontre.equipes1.joueur2 != null %}
-                    <br> {{ rencontre.equipes1.joueur2 }}
-                {% endif %}
-                <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+                <div class="col-sm-12">
+                    <h3>Equipe 1 :</h3>
+                    <button type="button" data-id="{{ rencontre.equipes1.joueur1.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                    {{ rencontre.equipes1.joueur1}}
+                    <br>
+                    {% if rencontre.equipes1.joueur2 != null %}
+                        <button type="button" data-id="{{ rencontre.equipes1.joueur2.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                        {{ rencontre.equipes1.joueur2 }}
+                        <br>
+                    {% endif %}
+                </div>
+                <div class="col-sm-12 action-btn">
+                    <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+                </div>
             </div>
             <div class="col-sm-6">
-                <h3>Equipe 2 :</h3>
-                {{ rencontre.equipes2.joueur1}}
-                {% if rencontre.equipes2.joueur2 != null %}
-                    <br> {{ rencontre.equipes2.joueur2 }}
-                {% endif %}
-                <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+                <div class="col-sm-12">
+                    <h3>Equipe 2 :</h3>
+                    <button type="button" data-id="{{ rencontre.equipes2.joueur1.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                    {{ rencontre.equipes2.joueur1}}
+                    <br>
+                    {% if rencontre.equipes2.joueur2 != null %}
+                        <button type="button" data-id="{{ rencontre.equipes2.joueur2.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                        {{ rencontre.equipes2.joueur2 }}
+                        <br>
+                    {% endif %}</div>
+                <div class="col-sm-12 action-btn">
+                    <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+                </div>
+            </div>
+            <div class="col-sm-8 block-score">
+                <div class="col-sm-12 block-equipe">
+                    <div class="col-sm-4 block-name" id="equipe1"> Equipe 1 </div>
+                    <div class="col-sm-4" id="set-1"></div>
+                    <div class="col-sm-2"><span id="jeu-1">0</span></div>
+                    <div class="col-sm-2"><span id="point-1">0</span></div>
+                </div>
+                <div class="col-sm-12 block-equipe">
+                    <div class="col-sm-4 block-name" id="equipe2"> Equipe 2 </div>
+                    <div class="col-sm-4" id="set-2"></div>
+                    <div class="col-sm-2"><span id="jeu-2">0</span></div>
+                    <div class="col-sm-2"><span id="point-2">0</span></div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="div1"></div>
 
     <!-- Modal -->
     <div id="service" class="modal fade" tabindex="-1" role="dialog">
@@ -68,7 +96,8 @@
             var url = "{{ path('call_premier_serveur', {'idMatch': rencontre.id, 'idEquipe':'text' }) }}";
             url = url.replace("text", $(this).data("id"));
             $.ajax({url: url, success: function(result){
-                $("#div1").html(result);
+                /*$("#div1").html(result);*/
+                $('#service').modal('toggle');
             }});
         });
 
@@ -76,11 +105,58 @@
         $( ".btn-add-point" ).click(function() {
             var url = "{{ path('call_add_point', {'idRencontre': rencontre.id, 'idEquipe':'text' }) }}";
             url = url.replace("text", $(this).data("id"));
-            $.ajax({url: url, success: function(result){
-                $("#div1").html(result);
+            $.ajax({url: url, success: function(result) {
+
+                /**
+                 * Affichage des scores
+                 */
+                $('#set-1').html("");
+                $('#set-2').html("");
+                for (var i = 0; i < result.set.length; i++) {
+                    var span1 = $('<span/>');
+                    span1.text(result.set[i]['equipe1']);
+                    $('#set-1').append(span1);
+
+                    var span2 = $('<span/>');
+                    span2.text(result.set[i]['equipe2']);
+                    $('#set-2').append(span2);
+                }
+                $("#jeu-1").html(result.jeu.equipe1);
+                $("#point-1").html(result.point.equipe1);
+                $("#jeu-2").html(result.jeu.equipe2);
+                $("#point-2").html(result.point.equipe2);
+
+                /**
+                 * Affichage du serveur
+                 */
+                if (result.service == 1) {
+                    if ($('#equipe1').hasClass('serveur') == false) {
+                        $('#equipe1').addClass('serveur');
+                    }
+                    if($('#equipe2').hasClass('serveur')) {
+                        $('#equipe2').removeClass('serveur');
+                    }
+                } else {
+                    if($('#equipe2').hasClass('serveur') == false) {
+                        $('#equipe2').addClass('serveur');
+                    }
+                    if($('#equipe1').hasClass('serveur')) {
+                        $('#equipe1').removeClass('serveur');
+                    }
+                }
+
             }});
         });
 
+        // Faire appel à un soigneur
+        $(".btn-therapist").click(function(){
+            var url = "{{ path('call_therapist', {'idRencontre': rencontre.id, 'idJoueur':'text' }) }}";
+            url = url.replace("text", $(this).data("id"));
+
+            $.ajax({url: url, success: function(result) {
+                alert(result);
+            }});
+        });
 
     </script>
 {% endblock %}

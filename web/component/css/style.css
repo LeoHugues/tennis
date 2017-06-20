@@ -80,3 +80,41 @@ h1 {
     }
 }
 /*<========================================================================>*/
+
+.serveur {
+    background-color: #D27842;
+}
+
+.action-btn {
+    margin-bottom: 50px;
+    margin-top: 40px;
+}
+
+.block-score {
+    background-color: antiquewhite;
+    padding: 20px;
+    height: 8em;
+}
+
+.block-equipe {
+    height: 50%;
+}
+
+.block-equipe div {
+    height: 100%;
+    padding: 0.6%;
+}
+
+.block-equipe span {
+    height: 100%;
+    margin: 5px;
+    font-size: 1.3em;
+}
+
+.btn-add-point {
+    height: 5em;
+}
+
+.block-name {
+    font-size: 1.5em;
+}

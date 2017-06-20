@@ -72,10 +72,16 @@ class Joueur
      */
     private $classement;
 
+    /**
+     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Avertissement", mappedBy="match")
+     */
+    private $avertissements;
+
 
     public function __construct() {
-        $this->nbVictoire = 0;
-        $this->incidents = new ArrayCollection();
+        $this->nbVictoire      = 0;
+        $this->incidents       = new ArrayCollection();
+        $this->avertissements  = new ArrayCollection();
     }
 
     public function __toString()
@@ -270,6 +276,23 @@ class Joueur
     public function getClassement()
     {
         return $this->classement;
+    }
+
+    public function addAvertissement(Avertissement $avertissement)
+    {
+        $this->avertissements[] = $avertissement;
+
+        return $this;
+    }
+
+    public function removeAvertissement(Avertissement $avertissement)
+    {
+        $this->avertissements->removeElement($avertissement);
+    }
+
+    public function getAvertissements()
+    {
+        return $this->avertissements;
     }
 }
 
