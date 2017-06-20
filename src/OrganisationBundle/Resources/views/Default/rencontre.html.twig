@@ -22,13 +22,13 @@
             </div>
             <div class="col-sm-12">
                 <div class="col-sm-12">
-                    <div class="col-sm-2"> Equipe 1 </div>
+                    <div class="col-sm-2" id="equipe1"> Equipe 1 </div>
                     <div class="col-sm-3" id="set-1"></div>
                     <div class="col-sm-1"><span id="jeu-1">0</span></div>
                     <div class="col-sm-1"><span id="point-1">0</span></div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="col-sm-2"> Equipe 2 </div>
+                    <div class="col-sm-2" id="equipe2"> Equipe 2 </div>
                     <div class="col-sm-3" id="set-2"></div>
                     <div class="col-sm-1"><span id="jeu-2">0</span></div>
                     <div class="col-sm-1"><span id="point-2">0</span></div>
@@ -81,6 +81,7 @@
             url = url.replace("text", $(this).data("id"));
             $.ajax({url: url, success: function(result){
                 /*$("#div1").html(result);*/
+                //$('#service').modal().hide();
             }});
         });
 
@@ -89,6 +90,10 @@
             var url = "{{ path('call_add_point', {'idRencontre': rencontre.id, 'idEquipe':'text' }) }}";
             url = url.replace("text", $(this).data("id"));
             $.ajax({url: url, success: function(result) {
+
+                /**
+                 * Affichage des scores
+                 */
                 $('#set-1').html("");
                 $('#set-2').html("");
                 for (var i = 0; i < result.set.length; i++) {
@@ -104,6 +109,26 @@
                 $("#point-1").html(result.point.equipe1);
                 $("#jeu-2").html(result.jeu.equipe2);
                 $("#point-2").html(result.point.equipe2);
+
+                /**
+                 * Affichage du serveur
+                 */
+                if (result.service == 1) {
+                    if ($('#equipe1').hasClass('serveur') == false) {
+                        $('#equipe1').addClass('serveur');
+                    }
+                    if($('#equipe2').hasClass('serveur')) {
+                        $('#equipe2').removeClass('serveur');
+                    }
+                } else {
+                    if($('#equipe2').hasClass('serveur') == false) {
+                        $('#equipe2').addClass('serveur');
+                    }
+                    if($('#equipe1').hasClass('serveur')) {
+                        $('#equipe1').removeClass('serveur');
+                    }
+                }
+
             }});
         });
 
