@@ -57,7 +57,7 @@ class ServicePointManager
             'service'   => null
         );
 
-        if ($match->getServicePremier() == $match->getEquipes1()) {
+        if ($match->getServicePremier() == $match->getEquipes1()->getId()) {
             $score['service'] = 1;
         } else {
             $score['service'] = 2;
@@ -72,7 +72,7 @@ class ServicePointManager
                 $equipe2['point'] += 1;
             }
             if ($this->leJeuEstTermine($equipe1, $equipe2)) {
-                if ($match->getServicePremier() == $match->getEquipes1()) {
+                if ($match->getServicePremier() == $match->getEquipes1()->getId()) {
                     $score['service'] = 1;
                 } else {
                     $score['service'] = 2;
@@ -95,7 +95,7 @@ class ServicePointManager
                         $equipe2['set'] += 1;
                     }
 
-                    $score['termine'] = $this->leMatchEstTermine($match, array('equipe1' => $equipe1['set'], 'equipe2', $equipe2['set']));
+                    $score['termine'] = $this->leMatchEstTermine($match, array('equipe1' => $equipe1['set'], 'equipe2' => $equipe2['set']));
 
                     $score['jeu']   = array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);
                     $score['point'] = $this->parsePoint(array('equipe1' => $equipe1['point'], 'equipe2' => $equipe2['point']));
@@ -110,6 +110,27 @@ class ServicePointManager
         }
 
         return $score;
+    }
+    
+    public function getServeur(Matchs $matchs, $score) {
+        if ($matchs->getServicePremier() == $matchs->getEquipes1()->getId()) {
+            $nbSet = $score['equipe1']['set'] + $score['equipe2']['set'];
+            if ($nbSet % 2 == 1) {
+                $nbjeu = $score['equipe1']['jeu'] + $score['equipe2']['jeu'];
+
+                if ($nbjeu == 12) { // Tibreak
+                    $nbPoint = $score['equipe1']['point'] + $score['equipe2']['point'];
+                    if ($nbPoint != 0 ) {
+                        $nbChangementService = $nbPoint / 2;
+                        if ($nbPoint % 2 == 0 && $nbChangementService % 2 == 0) {
+
+                        } elseif ()
+                    }
+                } elseif ($nbjeu % 2 == 1) {
+
+                }
+            }
+        }
     }
 
     public function leJeuEstTermine($equipe1, $equipe2) {
