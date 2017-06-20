@@ -5,33 +5,48 @@
         <h1>{{ rencontre.nvxCompet }} : {{ rencontre.terrain.nom }}</h1>
         <div class="col-sm-12">
             <div class="col-sm-6">
-                <h3>Equipe 1 :</h3>
-                {{ rencontre.equipes1.joueur1}}
-                {% if rencontre.equipes1.joueur2 != null %}
-                    <br> {{ rencontre.equipes1.joueur2 }}
-                {% endif %}
-                <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+                <div class="col-sm-12">
+                    <h3>Equipe 1 :</h3>
+                    {{ rencontre.equipes1.joueur1}}
+                    <button type="button" data-id="{{ rencontre.equipes1.joueur1.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                    <br>
+                    {% if rencontre.equipes1.joueur2 != null %}
+                        {{ rencontre.equipes1.joueur2 }}
+                        <button type="button" data-id="{{ rencontre.equipes1.joueur2.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                        <br>
+                    {% endif %}
+                </div>
+                <div class="col-sm-12 action-btn">
+                    <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+                </div>
             </div>
             <div class="col-sm-6">
-                <h3>Equipe 2 :</h3>
-                {{ rencontre.equipes2.joueur1}}
-                {% if rencontre.equipes2.joueur2 != null %}
-                    <br> {{ rencontre.equipes2.joueur2 }}
-                {% endif %}
-                <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
-            </div>
-            <div class="col-sm-12">
                 <div class="col-sm-12">
-                    <div class="col-sm-2" id="equipe1"> Equipe 1 </div>
-                    <div class="col-sm-3" id="set-1"></div>
-                    <div class="col-sm-1"><span id="jeu-1">0</span></div>
-                    <div class="col-sm-1"><span id="point-1">0</span></div>
+                    <h3>Equipe 2 :</h3>
+                    {{ rencontre.equipes2.joueur1}}
+                    <button type="button" data-id="{{ rencontre.equipes2.joueur1.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                    <br>
+                    {% if rencontre.equipes2.joueur2 != null %}
+                        {{ rencontre.equipes2.joueur2 }}
+                        <button type="button" data-id="{{ rencontre.equipes2.joueur2.id }}" class="btn-therapist btn btn-danger"><i class="fa fa-medkit"></i></button>
+                        <br>
+                    {% endif %}</div>
+                <div class="col-sm-12 action-btn">
+                    <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
                 </div>
-                <div class="col-sm-12">
-                    <div class="col-sm-2" id="equipe2"> Equipe 2 </div>
-                    <div class="col-sm-3" id="set-2"></div>
-                    <div class="col-sm-1"><span id="jeu-2">0</span></div>
-                    <div class="col-sm-1"><span id="point-2">0</span></div>
+            </div>
+            <div class="col-sm-8 block-score">
+                <div class="col-sm-12 block-equipe">
+                    <div class="col-sm-4 block-name" id="equipe1"> Equipe 1 </div>
+                    <div class="col-sm-4" id="set-1"></div>
+                    <div class="col-sm-2"><span id="jeu-1">0</span></div>
+                    <div class="col-sm-2"><span id="point-1">0</span></div>
+                </div>
+                <div class="col-sm-12 block-equipe">
+                    <div class="col-sm-4 block-name" id="equipe2"> Equipe 2 </div>
+                    <div class="col-sm-4" id="set-2"></div>
+                    <div class="col-sm-2"><span id="jeu-2">0</span></div>
+                    <div class="col-sm-2"><span id="point-2">0</span></div>
                 </div>
             </div>
         </div>
@@ -73,38 +88,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Appeler un soigneur</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="col-sm-3">
-                    <p>Selectionner le joueur à soigner</p>
-                        <select id="selectedBox">
-                            {% if rencontre.equipes1.joueur1 %}
-                                <option value="{{ rencontre.equipes1.joueur1.id }}">{{ rencontre.equipes1.joueur1 }}</option>
-                            {% endif %}
-                            {% if rencontre.equipes1.joueur2 %}
-                                <option value="{{ rencontre.equipes1.joueur2.id }}">{{ rencontre.equipes1.joueur2 }}</option>
-                            {% endif %}
-                            {% if rencontre.equipes2.joueur1 %}
-                                <option value="{{ rencontre.equipes2.joueur1.id }}">{{ rencontre.equipes2.joueur1 }}</option>
-                            {% endif %}
-                            {% if rencontre.equipes2.joueur2 %}
-                                <option value="{{ rencontre.equipes2.joueur2.id }}">{{ rencontre.equipes2.joueur2 }}</option>
-                            {% endif %}
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
 {% endblock %}
 
 {% block javascripts %}
@@ -117,7 +100,7 @@
             url = url.replace("text", $(this).data("id"));
             $.ajax({url: url, success: function(result){
                 /*$("#div1").html(result);*/
-                //$('#service').modal().hide();
+                $('#service').modal('toggle');
             }});
         });
 
@@ -169,11 +152,9 @@
         });
 
         // Faire appel à un soigneur
-        $("#selectedBox").change(function(){
+        $(".btn-therapist").click(function(){
             var url = "{{ path('call_therapist', {'idRencontre': rencontre.id, 'idJoueur':'text' }) }}";
-            var selected_option = $(this).find("option:selected").val();
-
-            url = url.replace("text", selected_option);
+            url = url.replace("text", $(this).data("id"));
 
             $.ajax({url: url, success: function(result) {
                 alert(result);

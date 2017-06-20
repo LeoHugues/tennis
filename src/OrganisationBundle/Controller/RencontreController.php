@@ -8,7 +8,8 @@
 
 namespace OrganisationBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
+use FOS\RestBundle\Controller\Annotations\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -72,11 +73,11 @@ class RencontreController extends Controller
         $em         = $this->getDoctrine()->getManager();
         $repoUser   = $em->getRepository('UserBundle:User');
         $repoJoueur = $em->getRepository('OrganisationBundle:Joueur');
+        $repoMatch  = $em->getRepository('OrganisationBundle:Matchs');
 
         $usersOrga  = $repoUser->getUsersOrga('ROLE_ORGA');
         $joueur     = $repoJoueur->find($idJoueur);
-
-        var_dump($joueur->getPrenom());die;
+        $match      = $repoMatch->find($idRencontre);
 
         $emails     = array();
 
@@ -85,14 +86,14 @@ class RencontreController extends Controller
         }
 
         $message = \Swift_Message::newInstance()
-            ->setSubject("Soigneur applé pour le joueur : " . $joueur->getUsername())
+            ->setSubject("Soigneur applé pour le joueur : " . $joueur->getPrenom() . ' ' . $joueur->getNom())
             ->setFrom('p.baumes@gmail.com')
             ->setTo($emails)
-            ->setBody("Appel d'un soigneur !");
+            ->setBody("Appel d'un soigneur lors du match opposant " . $match->getEquipes1()->getJoueur1() . ' et ' . $match->getEquipes2()->getJoueur1() . ' sur le terrain ' . $match->getTerrain());
 
         $this->get('mailer')->send($message);
 
-        return new JsonResponse();
+        return new JsonResponse($joueur);
     }
-    
+
 }
