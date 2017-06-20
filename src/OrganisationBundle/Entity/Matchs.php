@@ -267,7 +267,7 @@ class Matchs
     }
 
     /**
-     * @return mixed
+     * @return Equipe
      */
     public function getEquipes1()
     {

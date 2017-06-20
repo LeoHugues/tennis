@@ -26,7 +26,6 @@ class RencontreController extends Controller
         $rencontre->setServicePremier($idEquipe);
 
         $em = $this->getDoctrine()->getManager();
-
         $em->persist($rencontre);
         $em->flush();
 
@@ -44,4 +43,5 @@ class RencontreController extends Controller
 
         return new JsonResponse($score);
     }
+    
 }

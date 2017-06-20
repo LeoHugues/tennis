@@ -7,14 +7,18 @@
     <div class="col-lg-11 col-sm-offset-1 content content-block" style="padding:20px;">
         <div class="row">
             <div class="col-lg-6">
-                <p><span style="font-weight:bold;">Equipe 1 :</span></p>
-                <p><span style="font-weight:bold;">Joueur 1 :</span> <span class="pull-right">{{ match.getEquipes1().getJoueur1().getNom() }}</span></p>
-                <p><span style="font-weight:bold;">Joueur 2 :</span> <span class="pull-right">{{ match.getEquipes1().getJoueur2().getNom() }}</span></p>
+                <p>Equipe 1 :</p>
+                <p>Joueur 1 : {{ match.getEquipes1().getJoueur1().getNom() }}</p>
+                {% if match.getEquipes1().getJoueur2() != null %}
+                    <p>Joueur 2 : {{ match.getEquipes1().getJoueur2().getNom() }}</p>
+                {% endif %}
             </div>
             <div class="col-lg-6">
-                <p><span style="font-weight:bold;">Equipe 2 :</span></p>
-                <p><span style="font-weight:bold;">Joueur 1 :</span> <span class="pull-right">{{ match.getEquipes2().getJoueur1().getNom() }}</span></p>
-                <p><span style="font-weight:bold;">Joueur 2 :</span> <span class="pull-right">{{ match.getEquipes2().getJoueur2().getNom() }}</span></p>
+                <p>Equipe 2 :</p>
+                <p>Joueur 1 : {{ match.getEquipes2().getJoueur1().getNom() }}</p>
+                {% if match.getEquipes1().getJoueur2() != null %}
+                    <p>Joueur 2 : {{ match.getEquipes2().getJoueur2().getNom() }}</p>
+                {% endif %}
             </div>
         </div>
 
@@ -42,9 +46,5 @@
                 {% endif %}
             </div>
         </div>
-    </div>
-    <div class="text-center">
-        <a class="btn btn-default" href="{{ path('edit_match', {'id': match.getId() }) }}" style="margin-top:10px;">Editer</a>
-        <a class="btn btn-danger" href="{{ path('remove_match', {'id': match.getId() }) }}" style="margin-top:10px;">Supprimer</a>
     </div>
 {% endblock %}
