@@ -45,6 +45,66 @@ class MatchController extends Controller
     }
 
     /**
+     * @Route("/organisation/edit-match/{id}", name="edit_match")
+     */
+    public function editMatchAction(Request $request, $id)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('OrganisationBundle:Matchs');
+        $match      = $repository->find($id);
+
+        if(!empty($match)) {
+
+            $form = $this->createForm(RencontreType::class, $match);
+
+            $form->add(
+                'submit',
+                SubmitType::class,
+                array(
+                    'label'     => 'Créer',
+                    'attr'      => array(
+                        'class' => 'col-sm-4 col-sm-offset-3 btn btn-success'
+                    )
+                )
+            );
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                /** @var Matchs $match */
+                $match = $form->getData();
+                $em    = $this->getDoctrine()->getEntityManager();
+                $em->persist($match);
+                $em->flush();
+            }
+
+            return $this->render('OrganisationBundle:Match:index.html.twig', array('form' => $form->createView()));
+        }
+    }
+
+    /**
+     * @Route("/organisation/remove-match/{id}", name="remove_match")
+     * @param int $id_match
+     */
+    public function removeMatchAction(Request $request, $id)
+    {
+        $em         = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getManager()->getRepository('OrganisationBundle:Matchs');
+        $match      = $repository->find($id);
+
+        if(!empty($match)) {
+            $em->remove($match);
+            $em->flush();
+        }
+
+        $matchs = $repository->findAllMatchs();
+
+        return $this->render('OrganisationBundle:Match:liste-matchs.html.twig', array(
+            'matchs' => $matchs,
+        ));
+    }
+
+    /**
      * @Route("/liste-match", name="list_all_match")
      *
      * Contiendra la liste des matchs
@@ -95,14 +155,20 @@ class MatchController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form['fichier']->getData();
-            $fileName = md5(uniqid()).'.xls';
+            $fileName = md5(uniqid()).'.csv';
             $file->move(
                 "/web/upload",
                 $fileName
             );
+            //$csv = new SplFileObject('web/upload/'+$fileName, 'r');
+            //$csv->setFlags(SplFileObject::READ_CSV);
         }
 
         return $this->render('OrganisationBundle:Match:import-match.html.twig', array('form' => $form->createView()));
+    }
+
+    public function createMatchByCSV(){
+
     }
 
 }

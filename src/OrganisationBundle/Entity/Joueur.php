@@ -50,6 +50,27 @@ class Joueur
      */
     private $incidents;
 
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="date_de_naissance", type="datetime", nullable=true)
+     */
+    private $naissance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nationalite", type="string", nullable=true)
+     */
+    private $nationalite;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="classement", type="integer", nullable=false)
+     */
+    private $classement;
+
 
     public function __construct() {
         $this->nbVictoire = 0;
@@ -176,6 +197,78 @@ class Joueur
     public function getIncidents()
     {
         return $this->incidents;
+    }
+
+    /**
+     * Set naissance
+     *
+     * @param datetime $naissance
+     *
+     * @return Joueur
+     */
+    public function setNaissance($naissance)
+    {
+        $this->naissance = $naissance;
+
+        return $this;
+    }
+
+    /**
+     * Get naissance
+     *
+     * @return datetime
+     */
+    public function getNaissance()
+    {
+        return $this->naissance;
+    }
+
+    /**
+     * Set nationnalite
+     *
+     * @param string $nationalite
+     *
+     * @return Joueur
+     */
+    public function setNationalite($nationalite)
+    {
+        $this->nationalite = $nationalite;
+
+        return $this;
+    }
+
+    /**
+     * Get nationalite
+     *
+     * @return string
+     */
+    public function getNationalite()
+    {
+        return $this->nationalite;
+    }
+
+    /**
+     * Set classement
+     *
+     * @param int classement
+     *
+     * @return Joueur
+     */
+    public function setClassement($classement)
+    {
+        $this->classement = $classement;
+
+        return $this;
+    }
+
+    /**
+     * Get classement
+     *
+     * @return int
+     */
+    public function getClassement()
+    {
+        return $this->classement;
     }
 }
 

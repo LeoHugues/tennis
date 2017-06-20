@@ -18,7 +18,7 @@ class ImportRencontreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fichier', FileType::class, array('label' => 'Fichier (xls)'))
+            ->add('fichier', FileType::class, array('label' => 'Fichier (csv)'))
         ;
     }
 

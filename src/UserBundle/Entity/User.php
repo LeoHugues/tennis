@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use OrganisationBundle\Entity\Matchs;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
  */
 class User extends BaseUser
