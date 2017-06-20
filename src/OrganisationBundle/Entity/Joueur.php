@@ -58,9 +58,10 @@ class Joueur
     private $naissance;
 
     /**
-     * @var string
+     * @var pays
      *
-     * @ORM\Column(name="nationalite", type="string", nullable=true)
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Pays")
+     * @ORM\JoinColumn(name="nationalite", referencedColumnName="code")
      */
     private $nationalite;
 

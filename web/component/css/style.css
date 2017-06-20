@@ -116,5 +116,10 @@ h1 {
 }
 
 .block-name {
-    font-size: 1.5em;
+    font-size: 1em;
+}
+
+.sidebar-nav {
+    position: fixed;
+    min-width: 15em;
 }

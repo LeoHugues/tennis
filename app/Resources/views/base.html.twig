@@ -7,15 +7,26 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('component/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('component/css/style.css') }}">
+         <link rel="stylesheet" type="text/css" href="{{ asset('component/css/flag-icon.css') }}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
     {% block body %}
         <div class="row">
             {% block navbar %}
-                    {% include 'FrontEndBundle:Navbar:navbar.html.twig' %}
+            <div class="col-sm-3">
+                <div class="sidebar-nav">
+                    <div class="navbar navbar-default" role="navigation">
+                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                {% include 'FrontEndBundle:Navbar:navbar.html.twig' %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {% endblock %}
-            <div class="col-lg-9 content">
+            <div class="col-sm-9 content">
                 {% block content %}
                 {% endblock %}
             </div>

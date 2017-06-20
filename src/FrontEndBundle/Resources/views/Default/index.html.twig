@@ -1,6 +1,250 @@
 {% extends "FrontEndBundle::layout.html.twig" %}
 
 {% block content %}
-page d'accueil public
+
+    <div class="container"><h1>Welcome ! </h1></div>
+    <div id="exTab1" class="container">
+        <ul  class="nav nav-pills">
+            <li class="active">
+                <a  href="#1a" data-toggle="tab">Matches en cours</a>
+            </li>
+            <li>
+                <a href="#2a" data-toggle="tab">Matches terminé</a>
+            </li>
+            <li>
+                <a href="#2c" data-toggle="tab">Matches à venir</a>
+            </li>
+        </ul>
+
+        <div class="tab-content clearfix">
+            <div class="tab-pane active" id="1a">
+                {% for match in matchsEnCours %}
+                    <div class="match-card col-sm-5" id="{{ match.id }}">
+                        <div class="head-match-card">
+                            <h3>
+                                <a href="{{ path('voir-match', {'id_match': match.getId()}) }}">
+                                    {{ match.getTerrain().getNom() }} - {{ match.nvxCompet }}
+                                </a>
+                            </h3>
+                        </div>
+                        <div class="col-sm-12 block-score">
+                            <div class="col-sm-12 block-equipe">
+                                <div class="col-sm-6 block-name" id="equipe1">
+                                    {{ match.equipes1.joueur1}}
+                                    {% if match.equipes1.joueur2 != null %}
+                                        - {{ match.equipes1.joueur2 }}
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-4" id="set-1">
+                                    {% if match.score.set|length > 0 %}
+                                        {% for set in match.score.set %}
+                                            <span>{{ set.equipe1 }}</span>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-1">
+                                    {% if match.score.jeu is not empty %}
+                                            <span id="jeu-1">
+                                                {{ match.score.jeu.equipe1 }}
+                                            </span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-1">
+                                    {% if match.score.point is not empty %}
+                                        <span id="point-1">
+                                            {{ match.score.point.equipe1 }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 block-equipe">
+                                <div class="col-sm-4 block-name" id="equipe2">
+                                    {{ match.equipes2.joueur1}}
+                                    {% if match.equipes1.joueur2 != null %}
+                                        - {{ match.equipes2.joueur2 }}
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-4" id="set-2">
+                                    {% if match.score.set|length > 0 %}
+                                        {% for set in match.score.set %}
+                                            <span>{{ set.equipe2 }}</span>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-2">
+                                    {% if match.score.jeu is not empty %}
+                                        <span id="jeu-2">
+                                            {{ match.score.jeu.equipe2 }}
+                                        </span>
+                                    {% endif %}
+                                    <div class="col-sm-2">
+                                        {% if match.score.point is not empty %}
+                                            <span id="point-2">
+                                                {{ match.score.point.equipe2 }}
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Date : {{ match.getDate()|date('Y-m-d H:i:s') }}</p>
+                        <p>Arbitre : {{ match.arbitre }}</p>
+                    </div>
+            {% endfor %}
+            </div>
+            <div class="tab-pane" id="2a">
+                {% for match in matchsTermine %}
+                    <div class="match-card col-sm-5" id="{{ match.id }}">
+                        <div class="head-match-card">
+                            <h3>
+                                <a href="{{ path('voir-match', {'id_match': match.getId()}) }}">
+                                    {{ match.getTerrain().getNom() }} - {{ match.nvxCompet }}
+                                </a>
+                            </h3>
+                        </div>
+                        <div class="col-sm-12 block-score">
+                            <div class="col-sm-12 block-equipe">
+                                <div class="col-sm-6 block-name" id="equipe1">
+                                    {{ match.equipes1.joueur1}}
+                                    {% if match.equipes1.joueur2 != null %}
+                                        - {{ match.equipes1.joueur2 }}
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-4" id="set-1">
+                                    {% if match.score.set|length > 0 %}
+                                        {% for set in match.score.set %}
+                                            <span>{{ set.equipe1 }}</span>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-1">
+                                    {% if match.score.jeu is not empty %}
+                                        <span id="jeu-1">
+                                                {{ match.score.jeu.equipe1 }}
+                                            </span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-1">
+                                    {% if match.score.point is not empty %}
+                                        <span id="point-1">
+                                            {{ match.score.point.equipe1 }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 block-equipe">
+                                <div class="col-sm-4 block-name" id="equipe2">
+                                    {{ match.equipes2.joueur1}}
+                                    {% if match.equipes1.joueur2 != null %}
+                                        - {{ match.equipes2.joueur2 }}
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-4" id="set-2">
+                                    {% if match.score.set|length > 0 %}
+                                        {% for set in match.score.set %}
+                                            <span>{{ set.equipe2 }}</span>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-2">
+                                    {% if match.score.jeu is not empty %}
+                                        <span id="jeu-2">
+                                            {{ match.score.jeu.equipe2 }}
+                                        </span>
+                                    {% endif %}
+                                    <div class="col-sm-2">
+                                        {% if match.score.point is not empty %}
+                                            <span id="point-2">
+                                                {{ match.score.point.equipe2 }}
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Date : {{ match.getDate()|date('Y-m-d H:i:s') }}</p>
+                        <p>Arbitre : {{ match.arbitre }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="tab-pane" id="2c">
+                {% for match in matchsProgramme %}
+                    <div class="match-card col-sm-5" id="{{ match.id }}">
+                        <div class="head-match-card">
+                            <h3>
+                                <a href="{{ path('voir-match', {'id_match': match.getId()}) }}">
+                                    {{ match.getTerrain().getNom() }} - {{ match.nvxCompet }}
+                                </a>
+                            </h3>
+                        </div>
+                        <div class="col-sm-12 block-score">
+                            <div class="col-sm-12 block-equipe">
+                                <div class="col-sm-6 block-name" id="equipe1">
+                                    {{ match.equipes1.joueur1}}
+                                    {% if match.equipes1.joueur2 != null %}
+                                        - {{ match.equipes1.joueur2 }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 block-equipe">
+                                <div class="col-sm-4 block-name" id="equipe2">
+                                    {{ match.equipes2.joueur1}}
+                                    {% if match.equipes1.joueur2 != null %}
+                                        - {{ match.equipes2.joueur2 }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <p>Date : {{ match.getDate()|date('Y-m-d H:i:s') }}</p>
+                        <p>Arbitre : {{ match.arbitre }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        function refreshCard(result) {
+            /**
+             * Affichage des scores
+             */
+            $('#set-1').html("");
+            $('#set-2').html("");
+            for (var i = 0; i < result.set.length; i++) {
+                var span1 = $('<span/>');
+                span1.text(result.set[i]['equipe1']);
+                $('#set-1').append(span1);
+
+                var span2 = $('<span/>');
+                span2.text(result.set[i]['equipe2']);
+                $('#set-2').append(span2);
+            }
+            $("#jeu-1").html(result.jeu.equipe1);
+            $("#point-1").html(result.point.equipe1);
+            $("#jeu-2").html(result.jeu.equipe2);
+            $("#point-2").html(result.point.equipe2);
+
+            /**
+             * Affichage du serveur
+             */
+            if (result.service == 1) {
+                if ($('#equipe1').hasClass('serveur') == false) {
+                    $('#equipe1').addClass('serveur');
+                }
+                if($('#equipe2').hasClass('serveur')) {
+                    $('#equipe2').removeClass('serveur');
+                }
+            } else {
+                if($('#equipe2').hasClass('serveur') == false) {
+                    $('#equipe2').addClass('serveur');
+                }
+                if($('#equipe1').hasClass('serveur')) {
+                    $('#equipe1').removeClass('serveur');
+                }
+            }
+        }
+    </script>
+{% endblock javascripts %}

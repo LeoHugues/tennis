@@ -45,6 +45,14 @@ class RencontreController extends Controller
 
         $score = $pointManager->addPoint($idRencontre, $idEquipe);
 
+        if ($score['termine']) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $rencontre = $em->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
+            $rencontre->setTermine(true);
+            $em->persist($rencontre);
+            $em->flush();
+        }
+
         if($score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('UserBundle:User');
