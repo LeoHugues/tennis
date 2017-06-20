@@ -1,5 +1,7 @@
 <?php
 
+namespace UserBundle\Repository;
+
 /**
  * Created by PhpStorm.
  * User: pierrebaumes
@@ -8,5 +10,15 @@
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getUsersOrga($role)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->andWhere("u.roles like :role")
+            ->setParameter('role', '%"'.$role.'"%');
 
+        $query   = $qb->getQuery();
+        $results = $query->getResult();
+
+        return $results;
+    }
 }
