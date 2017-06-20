@@ -11,9 +11,9 @@ namespace OrganisationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Advertissement
+ * Avertissement
  *
- * @ORM\Table(name="advertissement")
+ * @ORM\Table(name="avertissement")
  * @ORM\Entity(repositoryClass="OrganisationBundle\Repository\AvertissementRepository")
  */
 class Avertissement
@@ -35,13 +35,13 @@ class Avertissement
     private $motif;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Organisationbundle\Entity\Matchs", inversedBy="advertissements")
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Matchs", inversedBy="avertissements")
      * @ORM\JoinColumn(nullable=false)
      */
     private $match;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Organisationbundle\Entity\Joueur", inversedBy="advertissements")
+     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="avertissements")
      * @ORM\JoinColumn(nullable=false)
      */
     private $joueur;

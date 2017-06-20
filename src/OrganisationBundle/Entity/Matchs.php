@@ -100,12 +100,12 @@ class Matchs
     /**
      * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Avertissement", mappedBy="match")
      */
-    private $advertissements;
+    private $avertissements;
 
     public function __construct()
     {
         $this->points          = new ArrayCollection();
-        $this->advertissements = new ArrayCollection();
+        $this->avertissements = new ArrayCollection();
     }
 
     /**
@@ -371,12 +371,12 @@ class Matchs
 
     public function removeAvertissement(Avertissement $avertissement)
     {
-        $this->avertissements->removeElement($avertissement);
+        $this->adv->removeElement($avertissement);
     }
 
-    public function getAvertissements()
+    public function getApplications()
     {
-        return $this->avertissements;
+        return $this->applications;
     }
 }
 

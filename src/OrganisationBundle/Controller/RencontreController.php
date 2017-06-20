@@ -10,6 +10,9 @@ namespace OrganisationBundle\Controller;
 
 
 use FOS\RestBundle\Controller\Annotations\Route;
+use Negotiation\Match;
+use OrganisationBundle\Entity\Avertissement;
+use OrganisationBundle\Entity\Matchs;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -94,5 +97,33 @@ class RencontreController extends Controller
         $this->get('mailer')->send($message);
 
         return new JsonResponse($joueur);
+    }
+
+    /**
+     *
+     * @Route("/warning/{idRencontre}/{idJoueur}", name="add_warning")
+     */
+    public function AjaxWarning(Request $request, $idRencontre, $idJoueur)
+    {
+        $avertissement = new Avertissement();
+
+        $em        = $this->getDoctrine()->getManager();
+        $repoMatch = $em->getRepository('OrganisationBundle:Matchs');
+        $match     = $repoMatch->find($idRencontre);
+
+        $repoJoueur = $em->getRepository('OrganisationBundle:Joueur');
+        $joueur     = $repoJoueur->find($idJoueur);
+
+        $avertissement->setMatch($match);
+        $avertissement->setJoueur($joueur);
+
+        $data = $request->request->get('content');
+
+        $avertissement->setMotif($data);
+
+        $em->persist($avertissement);
+        $em->flush();
+
+        return new JsonResponse();
     }
 }

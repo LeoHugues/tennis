@@ -72,7 +72,7 @@ class Joueur
     private $classement;
 
     /**
-     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Avertissement", mappedBy="match")
+     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Avertissement", mappedBy="joueur")
      */
     private $avertissements;
 
