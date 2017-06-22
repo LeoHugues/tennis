@@ -14,9 +14,7 @@
                         <i class="fa fa-exclamation-triangle"></i>
                     </button>
                     {{ rencontre.equipes1.joueur1}}
-                    {% if rencontre.equipes1.joueur1.getAvertissements is not empty %}
-                        <i class="fa fa-exclamation-triangle"></i>
-                    {% endif %}
+                    <i class="icon fa fa-exclamation-triangle" style="visibility:hidden;"></i>
                     <br>
                     {% if rencontre.equipes1.joueur2 != null %}
                         <button type="button" data-id="{{ rencontre.equipes1.joueur2.id }}" class="btn-therapist btn btn-danger">
@@ -26,9 +24,7 @@
                             <i class="fa fa-exclamation-triangle"></i>
                         </button>
                         {{ rencontre.equipes1.joueur2 }}
-                        {% if rencontre.equipes1.joueur2.getAvertissements is not empty %}
-                            <i class="fa fa-exclamation-triangle"></i>
-                        {% endif %}
+                        <i class="icon fa fa-exclamation-triangle" style="visibility:hidden;"></i>
                         <br>
                     {% endif %}
                 </div>
@@ -46,9 +42,7 @@
                         <i class="fa fa-exclamation-triangle"></i>
                     </button>
                     {{ rencontre.equipes2.joueur1}}
-                    {% if rencontre.equipes2.joueur1.getAvertissements is not empty %}
-                        <i class="fa fa-exclamation-triangle"></i>
-                    {% endif %}
+                    <i class="icon fa fa-exclamation-triangle" style="visibility:hidden;"></i>
                     <br>
                     {% if rencontre.equipes2.joueur2 != null %}
                         <button type="button" data-id="{{ rencontre.equipes2.joueur2.id }}" class="btn-therapist btn btn-danger" data-toggle="tooltip" data-placement="top" title="Appeler un soigneur">
@@ -58,9 +52,7 @@
                             <i class="fa fa-exclamation-triangle"></i>
                         </button>
                         {{ rencontre.equipes2.joueur2 }}
-                        {% if rencontre.equipes2.joueur2.getAvertissements is not empty %}
-                            <i class="fa fa-exclamation-triangle"></i>
-                        {% endif %}
+                        <i class="icon fa fa-exclamation-triangle" style="visibility:hidden;"></i>
                         <br>
                     {% endif %}</div>
                 <div class="col-sm-12 action-btn">
@@ -212,6 +204,7 @@
         // Ajouter un avertissement
         $( ".btn-add-warning" ).click(function() {
 
+            var icon = $(this).nextAll('.icon:first');
             var idJoueur = $(this).data("id")
 
             $('#myModal').modal('show');
@@ -227,6 +220,7 @@
                     type: 'POST',
                     data: { content: motif },
                     success: function(result) {
+                        icon.css("visibility", "visible");
                     }});
             })
 
