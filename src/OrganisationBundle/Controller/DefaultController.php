@@ -85,6 +85,45 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/liste-joueur", name="affiche_joueur")
+     *
+     * Contiendra la liste des joueurs
+     */
+    public function afficheJoueurAction()
+    {
+        $joueursRep = $this->getDoctrine()->getRepository('OrganisationBundle:Joueur');
+        $joueurs    = $joueursRep->trouverTousJoueur();
+
+        return $this->render('OrganisationBundle:Default:affiche-joueur.html.twig', array(
+            'joueurs' => $joueurs,
+        ));
+    }
+
+    /**
+     * @Route("/suivre-joueur/{idUser}/{idJoueur}", name="suivre_joueur")
+     *
+     * Permet a un utilisateur de s abonner a un ou plusieurs joueur
+     */
+    public function suivreJoueurAction($idUser, $idJoueur)
+    {
+        $em          = $this->getDoctrine()->getManager();
+        $joueursRep  = $this->getDoctrine()->getRepository('OrganisationBundle:Joueur');
+        $userRep     = $this->getDoctrine()->getRepository('UserBundle:User');
+        $joueurs     = $joueursRep->find($idJoueur);
+
+        $currentUser = $userRep->find($idUser);
+        //$currentUser =  $this->get('security.token_storage')->getToken()->getUser();
+
+        $currentUser->addJoueur($joueurs);
+        $em->persist($currentUser);
+        $em->flush();
+
+        return $this->render('OrganisationBundle:Default:affiche-joueur.html.twig', array(
+            'joueurs' => $joueurs,
+        ));
+    }
+
+    /**
      * @Route("/gestion-terrain", name="gestion_terrain")
      */
     public function gestionTerrainAction(Request $request)

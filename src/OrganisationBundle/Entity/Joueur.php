@@ -73,9 +73,10 @@ class Joueur
     private $classement;
 
     /**
-     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Avertissement", mappedBy="joueur")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="joueurs")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $avertissements;
+    private $user;
 
 
     public function __construct() {
@@ -293,6 +294,22 @@ class Joueur
     public function getAvertissements()
     {
         return $this->avertissements;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 }
 
