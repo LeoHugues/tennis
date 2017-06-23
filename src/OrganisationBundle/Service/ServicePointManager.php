@@ -175,7 +175,7 @@ class ServicePointManager
         return $service;
     }
 
-    public function leJeuEstTermine($equipe1, $equipe2) {
+    public function leJeuEstTermine($equipe1, $equipe2){
 
         $jeuTermine = false;
         if ($this->tieBreak == false) {

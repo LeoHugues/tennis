@@ -110,27 +110,30 @@
                                         - {{ match.equipes1.joueur2 }}
                                     {% endif %}
                                 </div>
-                                <div class="col-sm-4" id="set-1">
-                                    {% if match.score.set|length > 0 %}
-                                        {% for set in match.score.set %}
-                                            <span>{{ set.equipe1 }}</span>
-                                        {% endfor %}
-                                    {% endif %}
-                                </div>
-                                <div class="col-sm-1">
-                                    {% if match.score.jeu is not empty %}
-                                        <span id="jeu-1">
-                                                {{ match.score.jeu.equipe1 }}
+                                {% if match.score != null %}
+                                    <div class="col-sm-4" id="set-1">
+                                            {% if match.score.set|length > 0 %}
+                                                {% for set in match.score.set %}
+                                                    <span>{{ set.equipe1 }}</span>
+                                                {% endfor %}
+                                            {% endif %}
+
+                                    </div>
+                                    <div class="col-sm-1">
+                                        {% if match.score.jeu is not empty %}
+                                            <span id="jeu-1">
+                                                    {{ match.score.jeu.equipe1 }}
+                                                </span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-sm-1">
+                                        {% if match.score.point is not empty %}
+                                            <span id="point-1">
+                                                {{ match.score.point.equipe1 }}
                                             </span>
-                                    {% endif %}
-                                </div>
-                                <div class="col-sm-1">
-                                    {% if match.score.point is not empty %}
-                                        <span id="point-1">
-                                            {{ match.score.point.equipe1 }}
-                                        </span>
-                                    {% endif %}
-                                </div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="col-sm-12 block-equipe">
                                 <div class="col-sm-4 block-name" id="equipe2">
@@ -139,27 +142,29 @@
                                         - {{ match.equipes2.joueur2 }}
                                     {% endif %}
                                 </div>
-                                <div class="col-sm-4" id="set-2">
-                                    {% if match.score.set|length > 0 %}
-                                        {% for set in match.score.set %}
-                                            <span>{{ set.equipe2 }}</span>
-                                        {% endfor %}
-                                    {% endif %}
-                                </div>
-                                <div class="col-sm-2">
-                                    {% if match.score.jeu is not empty %}
-                                        <span id="jeu-2">
-                                            {{ match.score.jeu.equipe2 }}
-                                        </span>
-                                    {% endif %}
-                                    <div class="col-sm-2">
-                                        {% if match.score.point is not empty %}
-                                            <span id="point-2">
-                                                {{ match.score.point.equipe2 }}
-                                            </span>
+                                {% if match.score != null %}
+                                    <div class="col-sm-4" id="set-2">
+                                        {% if match.score.set|length > 0 %}
+                                            {% for set in match.score.set %}
+                                                <span>{{ set.equipe2 }}</span>
+                                            {% endfor %}
                                         {% endif %}
                                     </div>
-                                </div>
+                                    <div class="col-sm-2">
+                                        {% if match.score.jeu is not empty %}
+                                            <span id="jeu-2">
+                                                {{ match.score.jeu.equipe2 }}
+                                            </span>
+                                        {% endif %}
+                                        <div class="col-sm-2">
+                                            {% if match.score.point is not empty %}
+                                                <span id="point-2">
+                                                    {{ match.score.point.equipe2 }}
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                         <p>Date : {{ match.getDate()|date('Y-m-d H:i:s') }}</p>

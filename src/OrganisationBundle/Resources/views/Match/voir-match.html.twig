@@ -8,16 +8,16 @@
         <div class="row">
             <div class="col-lg-6">
                 <p>Equipe 1 :</p>
-                <p>Joueur 1 : {{ match.getEquipes1().getJoueur1().getNom() }}</p>
+                <p>Joueur 1 : {{ match.getEquipes1().getJoueur1().__toString() }}</p>
                 {% if match.getEquipes1().getJoueur2() != null %}
-                    <p>Joueur 2 : {{ match.getEquipes1().getJoueur2().getNom() }}</p>
+                    <p>Joueur 2 : {{ match.getEquipes1().getJoueur2().__toString() }}</p>
                 {% endif %}
             </div>
             <div class="col-lg-6">
                 <p>Equipe 2 :</p>
-                <p>Joueur 1 : {{ match.getEquipes2().getJoueur1().getNom() }}</p>
+                <p>Joueur 1 : {{ match.getEquipes2().getJoueur1().__toString() }}</p>
                 {% if match.getEquipes1().getJoueur2() != null %}
-                    <p>Joueur 2 : {{ match.getEquipes2().getJoueur2().getNom() }}</p>
+                    <p>Joueur 2 : {{ match.getEquipes2().getJoueur2().__toString()}}</p>
                 {% endif %}
             </div>
         </div>
@@ -39,11 +39,45 @@
                         <ul>
                             <li>{{ incid.getMotif() }}</li>
                             {% if incid.getJoueur() != null %}
-                                <li>Joueur concerné : {{ incid.getJoueur().toString() }}</li>
+                                <li>Joueur concerné : {{ incid.getJoueur().__toString() }}</li>
                             {% endif %}
                         </ul>
                     {% endfor %}
                 {% endif %}
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div style="font-weight:bold;" class="col-lg-12 text-center">Statistiques</div>
+            </br>
+            </br>
+            <div class="col-lg-6">
+                <p style="font-weight:bold;" class="text-center">
+                    {% if match.getEquipes1().getJoueur2() == null %}
+                        {{ match.getEquipes1().getJoueur1().__toString() }}
+                    {% else %}
+                        {{ match.getEquipes1().getJoueur1().__toString() }} / {{ match.getEquipes1().getJoueur2().__toString() }}
+                    {% endif %}
+                </p>
+                <p><span style="font-weight:bold;">Balles de set :</span> <span class="pull-right">{{ nbSetE1 }}</span></p>
+                <p><span style="font-weight:bold;">Balles de break :</span> <span class="pull-right">{{ nbBreakE1 }}</span></p>
+                <p><span style="font-weight:bold;">Balles de match :</span> <span class="pull-right">{{ nbMatchE1 }}</span></p>
+                <p><span style="font-weight:bold;">Jeux blancs :</span> <span class="pull-right">{{ nbBlancE1 }}</span></p>
+            </div>
+            <div class="col-lg-6">
+                <p style="font-weight:bold;" class="text-center">
+                    {% if match.getEquipes2().getJoueur2() == null %}
+                        {{ match.getEquipes2().getJoueur1().__toString() }}
+                    {% else %}
+                        {{ match.getEquipes2().getJoueur1().__toString() }} / {{ match.getEquipes2().getJoueur2().__toString() }}
+                    {% endif %}
+                </p>
+                <p><span style="font-weight:bold;">Balles de set :</span> <span class="pull-right">{{ nbSetE2 }}</span></p>
+                <p><span style="font-weight:bold;">Balles de break :</span> <span class="pull-right">{{ nbBreakE2 }}</span></p>
+                <p><span style="font-weight:bold;">Balles de match :</span> <span class="pull-right">{{ nbMatchE2 }}</span></p>
+                <p><span style="font-weight:bold;">Jeux blancs :</span> <span class="pull-right">{{ nbBlancE2 }}</span></p>
             </div>
         </div>
     </div>
