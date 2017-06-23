@@ -36,26 +36,16 @@ class Incident
     private $datetimeDeb;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="datetime_fin", type="datetime")
-     */
-    private $datetimeFin;
-
-    /**
      * @var Matchs
      *
      * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Matchs", inversedBy="incidents", cascade={"persist", "remove"})
      */
     private $match;
 
-    /**
-     * @var Joueur
-     *
-     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="incidents", cascade={"persist", "remove"})
-     */
-    private $joueur;
-
+    public function __construct()
+    {
+        $this->datetimeDeb = new \DateTime();
+    }
 
     /**
      * Get id
@@ -116,30 +106,6 @@ class Incident
     }
 
     /**
-     * Set datetimeFin
-     *
-     * @param \DateTime $datetimeFin
-     *
-     * @return Incident
-     */
-    public function setDatetimeFin($datetimeFin)
-    {
-        $this->datetimeFin = $datetimeFin;
-
-        return $this;
-    }
-
-    /**
-     * Get datetimeFin
-     *
-     * @return \DateTime
-     */
-    public function getDatetimeFin()
-    {
-        return $this->datetimeFin;
-    }
-
-    /**
      * Set matchs
      *
      * @param Matchs $match
@@ -162,29 +128,4 @@ class Incident
     {
         return $this->match;
     }
-
-    /**
-     * Set joueur
-     *
-     * @param Joueur $joueur
-     *
-     * @return Incident
-     */
-    public function setJoueur($joueur)
-    {
-        $this->joueur = $joueur;
-
-        return $this;
-    }
-
-    /**
-     * Get Joueur
-     *
-     * @return Joueur
-     */
-    public function getJoueur()
-    {
-        return $this->joueur;
-    }
 }
-

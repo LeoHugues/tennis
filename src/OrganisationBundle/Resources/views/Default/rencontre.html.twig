@@ -10,7 +10,7 @@
                     <button type="button" data-id="{{ rencontre.equipes1.joueur1.id }}" class="btn-therapist btn btn-danger">
                         <i data-toggle="tooltip" data-placement="top" title="Appeler un soigneur" class="fa fa-medkit"></i>
                     </button>
-                    <button type="button" data-id="{{ rencontre.equipes1.joueur1.id }}" class="btn btn-warning btn-add-warning" data-toggle="tooltip" data-placement="top" title="Emettre un avertissement">
+                    <button type="button" data-id="{{ rencontre.equipes1.joueur1.id }}" class="btn btn-warning btn-add-warning" data-toggle="tooltip" data-placement="top" title="Emettre un avertissement" style="margin-left: 5px;">
                         <i class="fa fa-exclamation-triangle"></i>
                     </button>
                     {{ rencontre.equipes1.joueur1}}
@@ -20,7 +20,7 @@
                         <button type="button" data-id="{{ rencontre.equipes1.joueur2.id }}" class="btn-therapist btn btn-danger">
                             <i  data-toggle="tooltip" data-placement="top" title="Appeler un soigneur" class="fa fa-medkit"></i>
                         </button>
-                        <button type="button" data-id="{{ rencontre.equipes1.joueur2.id }}" class="btn btn-warning btn-add-warning" data-toggle="tooltip" data-placement="top" title="Emettre un avertissement">
+                        <button type="button" data-id="{{ rencontre.equipes1.joueur2.id }}" class="btn btn-warning btn-add-warning" data-toggle="tooltip" data-placement="top" title="Emettre un avertissement" style="margin-left: 5px;">
                             <i class="fa fa-exclamation-triangle"></i>
                         </button>
                         {{ rencontre.equipes1.joueur2 }}
@@ -38,7 +38,7 @@
                     <button type="button" data-id="{{ rencontre.equipes2.joueur1.id }}" class="btn-therapist btn btn-danger">
                         <i data-toggle="tooltip" data-placement="top" title="Appeler un soigneur" class="fa fa-medkit"></i>
                     </button>
-                    <button type="button" data-id="{{ rencontre.equipes2.joueur1.id }}" class="btn btn-warning btn-add-warning" data-toggle="tooltip" data-placement="top" title="Emettre un avertissement">
+                    <button type="button" data-id="{{ rencontre.equipes2.joueur1.id }}" class="btn btn-warning btn-add-warning" data-toggle="tooltip" data-placement="top" title="Emettre un avertissement" style="margin-left: 5px;">
                         <i class="fa fa-exclamation-triangle"></i>
                     </button>
                     {{ rencontre.equipes2.joueur1}}
@@ -48,7 +48,7 @@
                         <button type="button" data-id="{{ rencontre.equipes2.joueur2.id }}" class="btn-therapist btn btn-danger" data-toggle="tooltip" data-placement="top" title="Appeler un soigneur">
                             <i data-toggle="tooltip" data-placement="top" title="Appeler un soigneur" class="fa fa-medkit"></i>
                         </button>
-                        <button type="button" data-id="{{ rencontre.equipes2.joueur2.id }}" class="btn btn-warning btn-add-warning" data-toggle="tooltip" data-placement="top" title="Emettre un avertissement">
+                        <button type="button" data-id="{{ rencontre.equipes2.joueur2.id }}" class="btn btn-warning btn-add-warning" data-toggle="tooltip" data-placement="top" title="Emettre un avertissement" style="margin-left: 5px;">
                             <i class="fa fa-exclamation-triangle"></i>
                         </button>
                         {{ rencontre.equipes2.joueur2 }}
@@ -73,6 +73,9 @@
                     <div class="col-sm-2"><span id="point-2">0</span></div>
                 </div>
             </div>
+        </div>
+        <div class="col-sm-8 text-center action-btn">
+            <button type="button" data-id="{{ rencontre.id }}" class="btn-add-incident btn btn-primary">Déclarer un incident grave</button>
         </div>
     </div>
 
@@ -125,6 +128,27 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
                     <button type="button"  class="btn btn-primary" id="submitModal" data-dismiss="modal">Valider</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modalIncident" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Incident grave</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Description de l'incident :</p>
+                    <textarea class="form-control" rows="5" id="description"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    <button type="button"  class="btn btn-primary" id="submitIncident" data-dismiss="modal">Valider</button>
                 </div>
             </div>
         </div>
@@ -221,7 +245,27 @@
                     data: { content: motif },
                     success: function(result) {
                         icon.css("visibility", "visible");
-                    }});
+                }});
+            })
+
+        });
+
+        // Declarer un incident grave
+        $( ".btn-add-incident" ).click(function() {
+
+            $('#modalIncident').modal('show');
+
+            $("#submitIncident").click(function(){
+
+                var url = "{{ path('add_incident', {'idRencontre': rencontre.id }) }}";
+                var description = $('textarea#description').val();
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: { content: description },
+                        success: function(result) {
+                }});
             })
 
         });
