@@ -6,9 +6,19 @@
  * Time: 11:19
  */
 namespace OrganisationBundle\Service;
+use OrganisationBundle\Entity\Matchs;
 use Doctrine\ORM\EntityManager;
 
 class MatchStatManager{
+
+    const BALLE_SET_E1 = 1;
+    const BALLE_BREAK_E1 = 2;
+    const BALLE_SET_E2 = 3;
+    const BALLE_BREAK_E2 = 4;
+    const BALLE_MATCH_E1 = 5;
+    const BALLE_MATCH_E2 = 6;
+    const JEU_BLANC_E1 = 7;
+    const JEU_BLANC_E2 = 8;
 
     private $em;
     private $pointManager;
@@ -18,16 +28,33 @@ class MatchStatManager{
         $this->pointManager = $pm;
     }
 
-    public function getStats($match)
+    public function getStats(Matchs $match)
     {
         $equipe1 = array('set' => 0, 'jeu' => 0, 'point' => 0, 'balleSet' => 0, 'balleBreak' => 0, 'balleMatch' => 0, 'jeuBlanc' => 0);
         $equipe2 = array('set' => 0, 'jeu' => 0, 'point' => 0, 'balleSet' => 0, 'balleBreak' => 0, 'balleMatch' => 0, 'jeuBlanc' => 0);
         foreach ($match->getPoints() as $point) {
-            $this->estBalleSetBreak($match, equipe1, $equipe2, array('equipe1' => $equipe1, 'equipe2' => $equipe2));
+            if($this->estBalleSet($match, $equipe1, $equipe2, array('equipe1' => $equipe1, 'equipe2' => $equipe2)) == $this::BALLE_SET_E1){
+                $equipe1['balleSet'] += 1;
+            }elseif($this->estBalleSet($match, $equipe1, $equipe2, array('equipe1' => $equipe1, 'equipe2' => $equipe2)) == $this::BALLE_SET_E2){
+                $equipe2['balleSet'] += 1;
+            }
+            if($this->estBalleBreak($match, $equipe1, $equipe2, array('equipe1' => $equipe1, 'equipe2' => $equipe2)) == $this::BALLE_BREAK_E1){
+                $equipe1['balleBreak'] += 1;
+            }elseif($this->estBalleBreak($match, $equipe1, $equipe2, array('equipe1' => $equipe1, 'equipe2' => $equipe2)) == $this::BALLE_BREAK_E2){
+                $equipe2['balleBreak'] += 1;
+            }
             if($match->getNbSets() == 3){
-                $this->estBalleMatch3Set($equipe1, $equipe2);
+                if($this->estBalleMatch3Set($equipe1, $equipe2) == $this::BALLE_MATCH_E1){
+                    $equipe1['balleMatch'] += 1;
+                }elseif($this->estBalleMatch3Set($equipe1, $equipe2) == $this::BALLE_MATCH_E2){
+                    $equipe2['balleMatch'] += 1;
+                }
             }elseif($match->getNbSets() == 5){
-                $this->estBalleMatch5Set($equipe1, $equipe2);
+                if($this->estBalleMatch5Set($equipe1, $equipe2) == $this::BALLE_MATCH_E1){
+                    $equipe1['balleMatch'] += 1;
+                }elseif($this->estBalleMatch5Set($equipe1, $equipe2) == $this::BALLE_MATCH_E2){
+                    $equipe2['balleMatch'] += 1;
+                }
             }
             if ($match->getEquipes1() == $point->getEquipe()) {
                 $equipe1['point'] += 1;
@@ -35,10 +62,14 @@ class MatchStatManager{
                 $equipe2['point'] += 1;
             }
             if ($this->pointManager->leJeuEstTermine($equipe1, $equipe2)) {
-                $this->estJeuBlanc($equipe1, $equipe2);
+                if($this->estJeuBlanc($equipe1, $equipe2) == $this::JEU_BLANC_E1){
+                    $equipe1['jeuBlanc'] += 1;
+                }elseif($this->estJeuBlanc($equipe1, $equipe2) == $this::JEU_BLANC_E2){
+                    $equipe2['jeuBlanc'] += 1;
+                }
                 $equipe1['point'] = 0;
                 $equipe2['point'] = 0;
-                if ($match->pointManager->getEquipes1() == $point->getEquipe()) {
+                if ($match->getEquipes1() == $point->getEquipe()) {
                     $equipe1['jeu'] += 1;
                 } else {
                     $equipe2['jeu'] += 1;
@@ -72,104 +103,104 @@ class MatchStatManager{
     }
 
 
-    public function estBalleSetBreak($match, $equipe1, $equipe2, $score){
+    public function estBalleSet($match, $equipe1, $equipe2, $score){
         //Equipe 1
         //Balle de set pour equipe 1 en 6 jeu
-        if($equipe1['jeu'] = 5 && $equipe2['jeu'] <= 4){
+        if($equipe1['jeu'] == 5 && $equipe2['jeu'] <= 4){
             //Balle de jeu sans avantage
-            if($equipe1['point'] = 3 && $equipe2['point'] <= 2){
-                if($this->pointManager->getServeur($match, $score) == 1){
-                    $equipe1['balleSet'] += 1;
-                }else{
-                    $equipe1['balleBreak'] += 1;
-                }
+            if($equipe1['point'] == 3 && $equipe2['point'] <= 2){
+                return $this::BALLE_SET_E1;
             }
             //Balle de jeu avec avantage
             if($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1){
-                if($this->pointManager->getServeur($match, $score) == 1){
-                    $equipe1['balleSet'] += 1;
-                }else{
-                    $equipe1['balleBreak'] += 1;
-                }
+                return $this::BALLE_SET_E1;
+
             }
         }
         //Balle de set pour equipe 1 en 7 jeu
-        if($equipe1['jeu'] = 6 && $equipe2['jeu'] = 5){
+        elseif($equipe1['jeu'] == 6 && $equipe2['jeu'] = 5){
             //Balle de jeu sans avantage
-            if($equipe1['point'] = 3 && $equipe2['point'] <= 2){
-                if($this->pointManager->getServeur($match, $score) == 1){
-                    $equipe1['balleSet'] += 1;
-                }else{
-                    $equipe1['balleBreak'] += 1;
-                }
+            if($equipe1['point'] == 3 && $equipe2['point'] <= 2){
+                return $this::BALLE_SET_E1;
+
             }
             //Balle de jeu avec avantage
             if($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1){
-                if($this->pointManager->getServeur($match, $score) == 1){
-                    $equipe1['balleSet'] += 1;
-                }else{
-                    $equipe1['balleBreak'] += 1;
-                }
+                return $this::BALLE_SET_E1;
+
             }
         }
         //Balle de set pour equipe 1 avec tie break
-        if($equipe1['jeu'] = 6 && $equipe2['jeu'] = 6){
+        elseif($equipe1['jeu'] == 6 && $equipe2['jeu'] == 6){
             if($equipe1['point'] >= 6 && ($equipe1['point'] - $equipe2['point']) == 1){
-                if($this->pointManager->getServeur($match, $score) == 1){
-                    $equipe1['balleSet'] += 1;
-                }else{
-                    $equipe1['balleBreak'] += 1;
-                }
+                return $this::BALLE_SET_E1;
+
             }
         }
         //Equipe 2
         //Balle de set pour equipe 2 en 6 jeu
-        if($equipe2['jeu'] = 5 && $equipe1['jeu'] <= 4){
+        elseif($equipe2['jeu'] == 5 && $equipe1['jeu'] <= 4){
             //Balle de jeu sans avantage
-            if($equipe2['point'] = 3 && $equipe1['point'] <= 2){
-                if($this->pointManager->getServeur($match, $score) == 2){
-                    $equipe2['balleSet'] += 1;
-                }else{
-                    $equipe2['balleBreak'] += 1;
-                }
+            if($equipe2['point'] == 3 && $equipe1['point'] <= 2){
+                return $this::BALLE_SET_E2;
+
             }
             //Balle de jeu avec avantage
             if($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1){
-                if($this->pointManager->getServeur($match, $score) == 2){
-                    $equipe2['balleSet'] += 1;
-                }else{
-                    $equipe2['balleBreak'] += 1;
-                }
+                return $this::BALLE_SET_E2;
+
             }
         }
         //Balle de set pour equipe 2 en 7 jeu
-        if($equipe2['jeu'] = 6 && $equipe1['jeu'] = 5){
+        elseif($equipe2['jeu'] == 6 && $equipe1['jeu'] == 5){
             //Balle de jeu sans avantage
-            if($equipe2['point'] = 3 && $equipe1['point'] <= 2){
-                if($this->pointManager->getServeur($match, $score) == 2){
-                    $equipe2['balleSet'] += 1;
-                }else{
-                    $equipe2['balleBreak'] += 1;
-                }
+            if($equipe2['point'] == 3 && $equipe1['point'] <= 2){
+                return $this::BALLE_SET_E2;
+
             }
             //Balle de jeu avec avantage
             if($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1){
-                if($this->pointManager->getServeur($match, $score) == 2){
-                    $equipe2['balleSet'] += 1;
-                }else{
-                    $equipe2['balleBreak'] += 1;
-                }
+                return $this::BALLE_SET_E2;
+
             }
         }
-        //Balle de set pour equipe 1 avec tie break
-        if($equipe2['jeu'] = 6 && $equipe1['jeu'] = 6){
+        //Balle de set pour equipe 2 avec tie break
+        elseif($equipe2['jeu'] == 6 && $equipe1['jeu'] == 6){
             if($equipe2['point'] >= 6 && ($equipe2['point'] - $equipe1['point']) == 1){
-                if($this->pointManager->getServeur($match, $score) == 2){
-                    $equipe2['balleSet'] += 1;
-                }else{
-                    $equipe2['balleBreak'] += 1;
-                }
+                return $this::BALLE_SET_E2;
+
             }
+        }else{
+            return 0;
+        }
+
+    }
+
+    public function estBalleBreak($match, $equipe1, $equipe2, $score){
+
+        //Equipe1
+        if($equipe1['point'] == 3 && $equipe2['point'] <= 2){
+            if($this->pointManager->getServeur($match, $score) == 1){
+                return $this::BALLE_BREAK_E1;
+            }
+        }
+        //Balle de jeu avec avantage
+        elseif($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1){
+            if($this->pointManager->getServeur($match, $score) == 1){
+                return $this::BALLE_BREAK_E1;
+            }
+        }elseif($equipe2['point'] == 3 && $equipe1['point'] <= 2){
+            if($this->pointManager->getServeur($match, $score) == 2){
+                return $this::BALLE_BREAK_E2;
+            }
+        }
+        //Balle de jeu avec avantage
+        elseif($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1){
+            if($this->pointManager->getServeur($match, $score) == 2){
+                return $this::BALLE_BREAK_E2;
+            }
+        }else{
+            return 0;
         }
     }
 
@@ -177,64 +208,66 @@ class MatchStatManager{
         //Equipe1
         if(($equipe1['set'] == 1 && $equipe2['set'] <= 1)){
             //Balle de match en 6 jeu
-            if($equipe1['jeu'] = 5 && $equipe2['jeu'] <= 4){
+            if($equipe1['jeu'] == 5 && $equipe2['jeu'] <= 4){
                 //Balle de match sans avantage
-                if ($equipe1['point'] = 3 && $equipe2['point'] <= 2) {
-                    $equipe1['balleMatch'] += 1;
+                if ($equipe1['point'] == 3 && $equipe2['point'] <= 2) {
+                    return $this::BALLE_MATCH_E1;
                 }
                 //Balle de jeu avec avantage
-                if($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1){
-                    $equipe1['balleMatch'] += 1;
+                elseif($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1){
+                    return $this::BALLE_MATCH_E1;
                 }
             }
             //Balle de match en 7 jeu
-            if($equipe1['jeu'] = 6 && $equipe2['jeu'] = 5){
+            elseif($equipe1['jeu'] == 6 && $equipe2['jeu'] == 5){
                 //Balle de match sans avantage
-                if ($equipe1['point'] = 3 && $equipe2['point'] <= 2) {
-                    $equipe1['balleMatch'] += 1;
+                if ($equipe1['point'] == 3 && $equipe2['point'] <= 2) {
+                    return $this::BALLE_MATCH_E1;
                 }
                 //Balle de jeu avec avantage
-                if ($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1) {
-                    $equipe1['balleMatch'] += 1;
+                elseif ($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1) {
+                    return $this::BALLE_MATCH_E1;
                 }
             }
             //Balle de match avec tie break
-            if($equipe1['jeu'] = 6 && $equipe2['jeu'] = 6) {
+            elseif($equipe1['jeu'] == 6 && $equipe2['jeu'] == 6) {
                 if ($equipe1['point'] >= 6 && ($equipe1['point'] - $equipe2['point']) == 1) {
-                    $equipe1['balleMatch'] += 1;
+                    return $this::BALLE_MATCH_E1;
                 }
             }
         }
         //Equipe2
-        if(($equipe2['set'] == 1 && $equipe1['set'] <= 1)){
+        elseif(($equipe2['set'] == 1 && $equipe1['set'] <= 1)){
             //Balle de match en 6 jeu
-            if($equipe2['jeu'] = 5 && $equipe1['jeu'] <= 4){
+            if($equipe2['jeu'] == 5 && $equipe1['jeu'] <= 4){
                 //Balle de match sans avantage
-                if ($equipe2['point'] = 3 && $equipe1['point'] <= 2) {
-                    $equipe2['balleMatch'] += 1;
+                if ($equipe2['point'] == 3 && $equipe1['point'] <= 2) {
+                    return $this::BALLE_MATCH_E2;
                 }
                 //Balle de jeu avec avantage
-                if($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1){
-                    $equipe2['balleMatch'] += 1;
+                elseif($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1){
+                    return $this::BALLE_MATCH_E2;
                 }
             }
             //Balle de match en 7 jeu
-            if($equipe2['jeu'] = 6 && $equipe1['jeu'] = 5){
+            elseif($equipe2['jeu'] == 6 && $equipe1['jeu'] == 5){
                 //Balle de match sans avantage
-                if ($equipe2['point'] = 3 && $equipe1['point'] <= 2) {
-                    $equipe2['balleMatch'] += 1;
+                if ($equipe2['point'] == 3 && $equipe1['point'] <= 2) {
+                    return $this::BALLE_MATCH_E2;
                 }
                 //Balle de jeu avec avantage
-                if ($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1) {
-                    $equipe2['balleMatch'] += 1;
+                elseif ($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1) {
+                    return $this::BALLE_MATCH_E2;
                 }
             }
             //Balle de match avec tie break
-            if($equipe2['jeu'] = 6 && $equipe1['jeu'] = 6) {
+            elseif($equipe2['jeu'] == 6 && $equipe1['jeu'] == 6) {
                 if ($equipe2['point'] >= 6 && ($equipe2['point'] - $equipe1['point']) == 1) {
-                    $equipe2['balleMatch'] += 1;
+                    return $this::BALLE_MATCH_E2;
                 }
             }
+        }else{
+            return 0;
         }
     }
 
@@ -242,74 +275,75 @@ class MatchStatManager{
         //Equipe1
         if(($equipe1['set'] == 2 && $equipe2['set'] <= 2)){
             //Balle de match en 6 jeu
-            if($equipe1['jeu'] = 5 && $equipe2['jeu'] <= 4){
+            if($equipe1['jeu'] == 5 && $equipe2['jeu'] <= 4){
                 //Balle de match sans avantage
-                if ($equipe1['point'] = 3 && $equipe2['point'] <= 2) {
-                    $equipe1['balleMatch'] += 1;
+                if ($equipe1['point'] == 3 && $equipe2['point'] <= 2) {
+                    return $this::BALLE_MATCH_E1;
                 }
                 //Balle de jeu avec avantage
-                if($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1){
-                    $equipe1['balleMatch'] += 1;
+                elseif($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1){
+                    return $this::BALLE_MATCH_E1;
                 }
             }
             //Balle de match en 7 jeu
-            if($equipe1['jeu'] = 6 && $equipe2['jeu'] = 5){
+            elseif($equipe1['jeu'] == 6 && $equipe2['jeu'] == 5){
                 //Balle de match sans avantage
-                if ($equipe1['point'] = 3 && $equipe2['point'] <= 2) {
-                    $equipe1['balleMatch'] += 1;
+                if ($equipe1['point'] == 3 && $equipe2['point'] <= 2) {
+                    return $this::BALLE_MATCH_E1;
                 }
                 //Balle de jeu avec avantage
-                if ($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1) {
-                    $equipe1['balleMatch'] += 1;
+                elseif ($equipe1['point'] > 3 && ($equipe1['point'] - $equipe2['point']) == 1) {
+                    return $this::BALLE_MATCH_E1;
                 }
             }
             //Balle de match avec tie break
-            if($equipe1['jeu'] = 6 && $equipe2['jeu'] = 6) {
+            elseif($equipe1['jeu'] == 6 && $equipe2['jeu'] == 6) {
                 if ($equipe1['point'] >= 6 && ($equipe1['point'] - $equipe2['point']) == 1) {
-                    $equipe1['balleMatch'] += 1;
+                    return $this::BALLE_MATCH_E1;
                 }
             }
         }
         //Equipe2
-        if(($equipe2['set'] == 2 && $equipe1['set'] <= 2)){
+        elseif(($equipe2['set'] == 2 && $equipe1['set'] <= 2)){
             //Balle de match en 6 jeu
-            if($equipe2['jeu'] = 5 && $equipe1['jeu'] <= 4){
+            if($equipe2['jeu'] == 5 && $equipe1['jeu'] <= 4){
                 //Balle de match sans avantage
-                if ($equipe2['point'] = 3 && $equipe1['point'] <= 2) {
-                    $equipe2['balleMatch'] += 1;
+                if ($equipe2['point'] == 3 && $equipe1['point'] <= 2) {
+                    return $this::BALLE_MATCH_E2;
                 }
                 //Balle de jeu avec avantage
-                if($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1){
-                    $equipe2['balleMatch'] += 1;
+                elseif($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1){
+                    return $this::BALLE_MATCH_E2;
                 }
             }
             //Balle de match en 7 jeu
-            if($equipe2['jeu'] = 6 && $equipe1['jeu'] = 5){
+            elseif($equipe2['jeu'] == 6 && $equipe1['jeu'] == 5){
                 //Balle de match sans avantage
-                if ($equipe2['point'] = 3 && $equipe1['point'] <= 2) {
-                    $equipe2['balleMatch'] += 1;
+                if ($equipe2['point'] == 3 && $equipe1['point'] <= 2) {
+                    return $this::BALLE_MATCH_E2;
                 }
                 //Balle de jeu avec avantage
-                if ($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1) {
-                    $equipe2['balleMatch'] += 1;
+                elseif ($equipe2['point'] > 3 && ($equipe2['point'] - $equipe1['point']) == 1) {
+                    return $this::BALLE_MATCH_E2;
                 }
             }
             //Balle de match avec tie break
-            if($equipe2['jeu'] = 6 && $equipe1['jeu'] = 6) {
+            elseif($equipe2['jeu'] == 6 && $equipe1['jeu'] = 6) {
                 if ($equipe2['point'] >= 6 && ($equipe2['point'] - $equipe1['point']) == 1) {
-                    $equipe2['balleMatch'] += 1;
+                    return $this::BALLE_MATCH_E2;
                 }
             }
+        }else{
+            return 0;
         }
     }
 
     public function estJeuBlanc($equipe1, $equipe2){
         if($equipe1['point'] == 0){
-            $equipe2['jeuBlanc'] += 1;
+            return $this::JEU_BLANC_E2;
         }elseif($equipe2['point'] == 0){
-            $equipe1['jeuBlanc'] += 1;
+            return $this::JEU_BLANC_E1;
         }
-
     }
 
 
