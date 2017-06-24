@@ -10,6 +10,7 @@ namespace OrganisationBundle\Controller;
 
 
 use FOS\RestBundle\Controller\Annotations\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use OrganisationBundle\Entity\Matchs;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,10 +24,36 @@ class RencontreController extends Controller
      * @Route("/rencontre/{idMatch}/service/{idEquipe}", name="call_premier_serveur")
      */
     public function AjaxCallPremierService(Request $request, $idMatch, $idEquipe) {
+
         $rencontre = $this->getDoctrine()->getEntityManager()->getRepository('OrganisationBundle:Matchs')->find($idMatch);
         $rencontre->setServicePremier($idEquipe);
 
-        $em = $this->getDoctrine()->getManager();
+        $em         = $this->getDoctrine()->getManager();
+        $repoMatch  = $em->getRepository('OrganisationBundle:Matchs');
+        $match      = $repoMatch->find($idMatch);
+        $equipe1    = $match->getEquipes1();
+        $equipe2    = $match->getEquipes2();
+        $emails     = array();
+        $joueurs    = array($equipe1->getJoueur1(), $equipe2->getJoueur1());
+
+        if(!empty($equipe1->getJoueur2()) and !empty($equipe2->getJoueur2())) {
+            $joueurs[] = $equipe1->getJoueur2();
+            $joueurs[] = $equipe2->getJoueur2();
+        }
+
+        // On verifie si un joueur est lié a un user si oui on envoi un mail
+        foreach($joueurs as $joueur) {
+            if(!empty($joueur->getUser())) {
+                $message = \Swift_Message::newInstance()
+                    ->setSubject("Début d'un match")
+                    ->setFrom('p.baumes@gmail.com')
+                    ->setTo($joueur->getUser()->getEmail())
+                    ->setBody('Début du match pour ' . $joueur->getPrenom() . " " . $joueur->getNom());
+
+                $this->get('mailer')->send($message);
+            }
+        }
+
         $em->persist($rencontre);
         $em->flush();
 
