@@ -44,7 +44,6 @@ class LoadMatchsData extends AbstractFixture implements OrderedFixtureInterface
         $dateDeb->format('d-m-Y');
         $dateFin->format('d-m-Y');
         $incident->setDatetimeDeb($dateDeb);
-        $incident->setDatetimeFin($dateFin);
 
         $joueur2->setNom('Federer');
         $joueur2->setPrenom('Roger');

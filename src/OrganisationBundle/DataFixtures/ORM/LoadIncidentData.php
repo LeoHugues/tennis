@@ -21,9 +21,7 @@ class LoadIncidentData extends AbstractFixture implements OrderedFixtureInterfac
 
         $incident->setMotif('Doute sur la position de la trace de la balle.');
         $dateDeb = new DateTime('2016-02-19 16:45:00');
-        $dateFin = new DateTime('2016-02-19 16:50:00');
         $incident->setDatetimeDeb($dateDeb);
-        $incident->setDatetimeFin($dateFin);
 
         $this->addReference('Incident', $incident);
 
