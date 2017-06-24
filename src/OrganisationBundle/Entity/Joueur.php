@@ -78,6 +78,11 @@ class Joueur
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Avertissement", mappedBy="joueur")
+     */
+    private $avertissements;
+
 
     public function __construct() {
         $this->nbVictoire      = 0;
