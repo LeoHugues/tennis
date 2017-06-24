@@ -113,7 +113,6 @@ class DefaultController extends Controller
         $joueurs     = $joueursRep->find($idJoueur);
 
         $currentUser = $userRep->find($idUser);
-        //$currentUser =  $this->get('security.token_storage')->getToken()->getUser();
 
         $currentUser->addJoueur($joueurs);
         $em->persist($currentUser);

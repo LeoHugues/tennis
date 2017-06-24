@@ -71,6 +71,8 @@ class User extends BaseUser
     {
         $this->joueurs[] = $joueur;
 
+        $joueur->setUser($this);
+
         return $this;
     }
 

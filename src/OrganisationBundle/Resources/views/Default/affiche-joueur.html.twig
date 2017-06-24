@@ -15,7 +15,11 @@
                         <p class="">
                             Nombre de victoire : {{ joueur.getNbVictoire() }}
                         </p>
-                        <a data-id="{{ joueur.id }}" class="subscribe-player">Suivre</a>
+                        {% if joueur.user is empty %}
+                            <a data-id="{{ joueur.id }}" class="subscribe-player">Suivre</a>
+                        {% else %}
+                            <i class='fa fa-check'></i>
+                        {% endif %}
                     </div>
                 </li>
             {% endfor %}
@@ -27,6 +31,8 @@
     <script type="text/javascript">
         $( ".subscribe-player" ).click(function() {
 
+            var link = $(this);
+
             var url = "{{ path('suivre_joueur', {'idUser': app.user.id , 'idJoueur':'text' }) }}";
             url = url.replace("text", $(this).data("id"));
 
@@ -34,7 +40,7 @@
                 url: url,
                 type: 'POST',
                 success: function(result) {
-                    $(this).replaceWith("<i class='fa fa-check'></i>");
+                    link.replaceWith("<i class='fa fa-check'></i>");
                 }});
         });
     </script>
