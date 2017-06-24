@@ -15,12 +15,27 @@
                         <p class="">
                             Nombre de victoire : {{ joueur.getNbVictoire() }}
                         </p>
-                        <a href="{{ path("suivre_joueur", {'idUser': app.user.id , 'idJoueur': joueur.id }) }}">Suivre</a>
+                        <a data-id="{{ joueur.id }}" class="subscribe-player">Suivre</a>
                     </div>
                 </li>
             {% endfor %}
         </ul>
     </div>
 
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        $( ".subscribe-player" ).click(function() {
 
+            var url = "{{ path('suivre_joueur', {'idUser': app.user.id , 'idJoueur':'text' }) }}";
+            url = url.replace("text", $(this).data("id"));
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                success: function(result) {
+                    $(this).replaceWith("<i class='fa fa-check'></i>");
+                }});
+        });
+    </script>
 {% endblock %}
