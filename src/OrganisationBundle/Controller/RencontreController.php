@@ -68,26 +68,28 @@ class RencontreController extends Controller
 
             $this->get('mailer')->send($message);
         }
+
         if(count($score['set']) > 0 and $score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('UserBundle:User');
             $usersOrga = $repository->getUsersOrga('ROLE_ORGA');
             $emails = array();
 
-        if($score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
 
+            if ($score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
 
-            foreach($usersOrga as $user) {
-                $emails[] = $user->getEmail();
+                foreach ($usersOrga as $user) {
+                    $emails[] = $user->getEmail();
+                }
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject("Début d'un set")
+                    ->setFrom('p.baumes@gmail.com')
+                    ->setTo($emails)
+                    ->setBody('Nouveau set !');
+
+                $this->get('mailer')->send($message);
             }
-
-            $message = \Swift_Message::newInstance()
-                ->setSubject("Début d'un set")
-                ->setFrom('p.baumes@gmail.com')
-                ->setTo($emails)
-                ->setBody('Nouveau set !');
-
-            $this->get('mailer')->send($message);
         }
 
         return new JsonResponse($score);
@@ -130,16 +132,17 @@ class RencontreController extends Controller
      * @Route("/score/{idRencontre}", name="call_get_score")
      */
     public function AjaxCallGetScore(Request $request, $idRencontre)
-        {
-            $em = $this->getDoctrine()->getManager();
-            $repoMatch = $em->getRepository('OrganisationBundle:Matchs');
-            $match = $repoMatch->find($idRencontre);
+
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repoMatch = $em->getRepository('OrganisationBundle:Matchs');
+        $match = $repoMatch->find($idRencontre);
 
             $pointManager = $this->get('tennis.point.manager');
 
-            return new JsonResponse($pointManager->getScore($match));
-        }
-        /**
+        return new JsonResponse($pointManager->getScore($match));
+    }
+    /**
      * @Route("/warning/{idRencontre}/{idJoueur}", name="add_warning")
      */
     public function AjaxWarning(Request $request, $idRencontre, $idJoueur)
@@ -206,6 +209,5 @@ class RencontreController extends Controller
         $this->get('mailer')->send($message);
 
         return new JsonResponse();
-
     }
 }

@@ -275,7 +275,9 @@ class MatchController extends Controller
                         $arbitre = new User();
                         $arbitre->setEmail($emailArbitre);
                         $arbitre->setUsername($usernameArbitre);
-                        $arbitre->setPassWord($mdpArbitre);
+                        $arbitre->setPlainPassword($mdpArbitre);git
+                        $arbitre->setEnabled(true);
+                        $arbitre->addRole('ROLE_ARBITRE');
                         $arb = $em->getRepository('UserBundle:User')->findOneby(array('username' => $usernameArbitre));
                         if($arb == null){
                             $em->persist($arbitre);
