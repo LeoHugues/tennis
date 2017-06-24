@@ -10,6 +10,7 @@ namespace OrganisationBundle\Controller;
 
 
 use FOS\RestBundle\Controller\Annotations\Route;
+use OrganisationBundle\Entity\Matchs;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,12 +46,12 @@ class RencontreController extends Controller
         if ($score['termine']) {
             $em = $this->getDoctrine()->getEntityManager();
             $rencontre = $em->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
-            $rencontre->setTermine(true);
+            $rencontre->setStatus(Matchs::MATCHE_TERMINE);
             $em->persist($rencontre);
             $em->flush();
         }
 
-        if($score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
+        if(count($score['set']) > 0 and $score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('UserBundle:User');
             $usersOrga = $repository->getUsersOrga('ROLE_ORGA');
@@ -102,5 +103,20 @@ class RencontreController extends Controller
         $this->get('mailer')->send($message);
 
         return new JsonResponse($joueur);
+    }
+
+    /**
+     *
+     * @Route("/score/{idRencontre}", name="call_get_score")
+     */
+    public function AjaxCallGetScore(Request $request, $idRencontre)
+    {
+        $em         = $this->getDoctrine()->getManager();
+        $repoMatch  = $em->getRepository('OrganisationBundle:Matchs');
+        $match      = $repoMatch->find($idRencontre);
+
+        $pointManager = $this->get('tennis.point.manager');
+
+        return new JsonResponse($pointManager->getScore($match));
     }
 }

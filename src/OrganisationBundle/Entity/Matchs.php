@@ -38,6 +38,7 @@ class Matchs
      * @var Terrain
      *
      * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Terrain", inversedBy="matchs")
+     * @Assert\NotBlank()
      */
     private $terrain;
 
@@ -121,7 +122,7 @@ class Matchs
     public function __construct()
     {
         $this->points = new ArrayCollection();
-        $this->status = $this::MATCHE_TERMINE;
+        $this->status = $this::MATCHE_PROGRAMME;
         $this->advertissements = new ArrayCollection();
     }
 
