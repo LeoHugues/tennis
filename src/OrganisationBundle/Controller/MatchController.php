@@ -130,8 +130,18 @@ class MatchController extends Controller
     */
     public function voirMatchAction($id_match){
         $match = $this->getDoctrine()->getManager()->find(Matchs::class, $id_match);
+        $stats = $this->get('tennis.stat.manager')->getStats($match);
+        $nbSetE1 = $stats[0];
+        $nbBreakE1 = $stats[1];
+        $nbMatchE1 = $stats[2];
+        $nbBlancE1 = $stats[3];
+        $nbSetE2 = $stats[4];
+        $nbBreakE2 = $stats[5];
+        $nbMatchE2 = $stats[6];
+        $nbBlancE2 = $stats[7];
         return $this->render('OrganisationBundle:Match:voir-match.html.twig',
-            array('match' => $match));
+            array('match' => $match, 'nbSetE1' => $nbSetE1, 'nbBreakE1' => $nbBreakE1, 'nbMatchE1' => $nbMatchE1,
+                'nbBlancE1' => $nbBlancE1, 'nbSetE2' => $nbSetE2, 'nbBreakE2' => $nbBreakE2, 'nbMatchE2' => $nbMatchE2, 'nbBlancE2' => $nbBlancE2));
     }
 
     /**
@@ -200,7 +210,9 @@ class MatchController extends Controller
                         $joueur1_2->setNationalite($nationaliteJ1_2);
                         $J1_2 = $em->getRepository('OrganisationBundle:Joueur')->findOneby(array('nom' => $nomJ1_2, 'prenom' => $prenomJ1_2));
                         if($J1_2 == null){
-                           $em->persist($joueur1_2);
+                            if($joueur1_2->getNom() != "") {
+                                $em->persist($joueur1_2);
+                            }
                         }else{
                             $joueur1_2 = $J1_2;
                         }
@@ -224,7 +236,9 @@ class MatchController extends Controller
                         $joueur2_1->setNationalite($nationaliteJ2_1);
                         $J2_1 = $em->getRepository('OrganisationBundle:Joueur')->findOneby(array('nom' => $nomJ2_1, 'prenom' => $prenomJ2_1));
                         if($J2_1 == null){
-                            $em->persist($joueur2_1);
+
+                                $em->persist($joueur2_1);
+
                         }else{
                             $joueur2_1 = $J2_1;
                         }
@@ -243,8 +257,9 @@ class MatchController extends Controller
                         $joueur2_2->setNationalite($nationaliteJ2_2);
                         $J2_2 = $em->getRepository('OrganisationBundle:Joueur')->findOneby(array('nom' => $nomJ2_2, 'prenom' => $prenomJ2_2));
                         if($J2_2 == null){
-                            $em->persist($joueur2_2);
-
+                            if($joueur2_2->getNom() != "") {
+                                $em->persist($joueur2_2);
+                            }
                         }else{
                             $joueur2_2 = $J2_2;
                         }
@@ -254,14 +269,14 @@ class MatchController extends Controller
                             $equipe2->setJoueur2($joueur2_2);
                         }
 
-                        $emailArbitre = $data[20];
-                        $usernameArbitre = $data[21];
+                        $emailArbitre = $data[21];
+                        $usernameArbitre = $data[20];
                         $mdpArbitre = $data[22];
                         $arbitre = new User();
                         $arbitre->setEmail($emailArbitre);
                         $arbitre->setUsername($usernameArbitre);
                         $arbitre->setPassWord($mdpArbitre);
-                        $arb = $em->getRepository('UserBundle:User')->findOneby(array('email' => $emailArbitre));
+                        $arb = $em->getRepository('UserBundle:User')->findOneby(array('username' => $usernameArbitre));
                         if($arb == null){
                             $em->persist($arbitre);
                         }else{

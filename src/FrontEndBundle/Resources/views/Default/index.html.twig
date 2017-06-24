@@ -48,7 +48,7 @@
                                     <span id="jeu-1-{{ match.id }}">
                                     {% if match.score.jeu is not empty %}
 
-                                                {{ match.score.jeu.equipe1 }}
+                                        {{ match.score.jeu.equipe1 }}
 
                                     {% endif %}
                                     </span>
@@ -57,7 +57,7 @@
                                     <span id="point-1-{{ match.id }}">
                                     {% if match.score.point is not empty %}
 
-                                            {{ match.score.point.equipe1 }}
+                                        {{ match.score.point.equipe1 }}
 
                                     {% endif %}
                                     </span>
@@ -80,7 +80,7 @@
                                 <div class="col-sm-1">
                                     <span id="jeu-2-{{ match.id }}">
                                         {% if match.score.jeu is not empty %}
-                                                {{ match.score.jeu.equipe2 }}
+                                            {{ match.score.jeu.equipe2 }}
                                         {% endif %}
                                     </span>
                                 </div>
@@ -89,7 +89,7 @@
                                     <span id="point-2-{{ match.id }}">
                                     {% if match.score.point is not empty %}
 
-                                            {{ match.score.point.equipe2 }}
+                                        {{ match.score.point.equipe2 }}
 
                                     {% endif %}
                                     </span>
@@ -99,7 +99,7 @@
                         <p>Date : {{ match.getDate()|date('Y-m-d H:i:s') }}</p>
                         <p>Arbitre : {{ match.arbitre }}</p>
                     </div>
-            {% endfor %}
+                {% endfor %}
             </div>
             <div class="tab-pane" id="2a">
                 {% for match in matchsTermine %}
@@ -246,8 +246,8 @@
                 $.ajax({url: url, success: function(result) {
 
                     /**
-                    * Affichage des scores
-                    */
+                     * Affichage des scores
+                     */
                     $('#set-1-' + idMatch).html("");
                     $('#set-2-' + idMatch).html("");
                     for (var i = 0; i < result.set.length; i++) {

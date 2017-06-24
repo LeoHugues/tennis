@@ -31,9 +31,8 @@ class Pays
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     * @ORM\Id
      */
-//    private $name;
+    private $name;
 
 
     /**
@@ -50,8 +49,8 @@ class Pays
 
     public function __toString()
     {
-        // TODO: Implement __toString() method.
-        return $this->getCode();
+        $string = $this->getName() . "  (" . $this->getCode() . ")";
+        return $string;
     }
 
     /**
@@ -91,6 +90,8 @@ class Pays
     public function getName(){
         return $this->name;
     }
+
+
 
 
 }

@@ -6,3 +6,7 @@ services:
     tennis.start.match.event:
         class: OrganisationBundle\EventListener\StartMatchSuscriber
         arguments: ['@swiftmailer.mailer']
+
+    tennis.stat.manager:
+            class: OrganisationBundle\Service\MatchStatManager
+            arguments: ['@doctrine.orm.entity_manager','@tennis.point.manager']

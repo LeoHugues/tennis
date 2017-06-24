@@ -17,7 +17,7 @@ class Matchs
     const MATCHE_PROGRAMME  = 0;
     const MATCHE_EN_COURS   = 1;
     const MATCHE_TERMINE    = 2;
-    
+
     /**
      * @var int
      *
@@ -117,13 +117,18 @@ class Matchs
     /**
      * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Avertissement", mappedBy="match")
      */
-    private $advertissements;
-    
+    private $avertissements;
+
     public function __construct()
     {
         $this->points = new ArrayCollection();
+<<<<<<< HEAD
         $this->status = $this::MATCHE_PROGRAMME;
         $this->advertissements = new ArrayCollection();
+=======
+        $this->status = $this::MATCHE_TERMINE;
+        $this->avertissements = new ArrayCollection();
+>>>>>>> e8569ff088db28e6a024ac943b3810b9078a1054
     }
 
     /**
@@ -421,12 +426,12 @@ class Matchs
 
     public function removeAvertissement(Avertissement $avertissement)
     {
-        $this->avertissements->removeElement($avertissement);
+        $this->adv->removeElement($avertissement);
     }
 
-    public function getAvertissements()
+    public function getApplications()
     {
-        return $this->avertissements;
+        return $this->applications;
     }
 }
 

@@ -2,8 +2,10 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use OrganisationBundle\Entity\Joueur;
 use OrganisationBundle\Entity\Matchs;
 
 /**
@@ -26,10 +28,15 @@ class User extends BaseUser
      */
     private $matchs;
 
+    /**
+     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Joueur", mappedBy="user")
+     */
+    private $joueurs;
+
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->joueurs = new ArrayCollection();
     }
 
     public function getRoleString(){
@@ -58,5 +65,22 @@ class User extends BaseUser
     public function setMatchs($matchs)
     {
         $this->matchs = $matchs;
+    }
+
+    public function addJoueur(Joueur $joueur)
+    {
+        $this->joueurs[] = $joueur;
+
+        return $this;
+    }
+
+    public function removeJoueur(Joueur $joueur)
+    {
+        $this->joueurs->removeElement($joueur);
+    }
+
+    public function getJoueurs()
+    {
+        return $this->joueurs;
     }
 }
