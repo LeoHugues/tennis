@@ -9,15 +9,55 @@
             <div class="col-lg-6">
                 <p>Equipe 1 :</p>
                 <p>Joueur 1 : {{ match.getEquipes1().getJoueur1().__toString() }}</p>
+                {% if match.getEquipes1().getJoueur1().getAvertissements is not empty %}
+                    <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Avertissement(s) :
+                        <ul>
+                            {% for avertissement in match.getEquipes1().getJoueur1().getAvertissements %}
+                                <li>{{ avertissement.motif }}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                {% endif %}
                 {% if match.getEquipes1().getJoueur2() != null %}
                     <p>Joueur 2 : {{ match.getEquipes1().getJoueur2().__toString() }}</p>
+                    {% if match.getEquipes1().getJoueur2().getAvertissements is not empty %}
+                        <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Avertissement(s) :
+                            <ul>
+                                {% for avertissement in match.getEquipes1().getJoueur1().getAvertissements %}
+                                    <li>{{ avertissement.motif }}</li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                    {% endif %}
                 {% endif %}
             </div>
             <div class="col-lg-6">
                 <p>Equipe 2 :</p>
                 <p>Joueur 1 : {{ match.getEquipes2().getJoueur1().__toString() }}</p>
+                {% if match.getEquipes2().getJoueur1().getAvertissements is not empty %}
+                    {% for avertissement in match.getEquipes1().getJoueur1().getAvertissements %}
+                        <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Avertissement(s) :
+                            <ul>
+                                {% for avertissement in match.getEquipes1().getJoueur1().getAvertissements %}
+                                    <li>{{ avertissement.motif }}</li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                    {% endfor %}
+                {% endif %}
                 {% if match.getEquipes1().getJoueur2() != null %}
                     <p>Joueur 2 : {{ match.getEquipes2().getJoueur2().__toString()}}</p>
+                    {% if match.getEquipes1().getJoueur2().getAvertissements is not empty %}
+                        {% for avertissement in match.getEquipes1().getJoueur1().getAvertissements %}
+                            <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Avertissement(s) :
+                                <ul>
+                                    {% for avertissement in match.getEquipes1().getJoueur1().getAvertissements %}
+                                        <li>{{ avertissement.motif }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </p>
+                        {% endfor %}
+                    {% endif %}
                 {% endif %}
             </div>
         </div>

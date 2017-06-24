@@ -44,13 +44,6 @@ class Joueur
     private $nbVictoire;
 
     /**
-     * @var Incident
-     *
-     * @ORM\OneToMany(targetEntity="OrganisationBundle\Entity\Incident", mappedBy="joueur",cascade={"persist", "remove"})
-     */
-    private $incidents;
-
-    /**
      * @var datetime
      *
      * @ORM\Column(name="date_de_naissance", type="datetime", nullable=true)
@@ -86,7 +79,6 @@ class Joueur
 
     public function __construct() {
         $this->nbVictoire      = 0;
-        $this->incidents       = new ArrayCollection();
         $this->avertissements  = new ArrayCollection();
     }
 
@@ -176,40 +168,6 @@ class Joueur
     public function getNbVictoire()
     {
         return $this->nbVictoire;
-    }
-
-    /**
-     * Add Incident
-     *
-     * @param Incident $incid
-     */
-    public function addIncident(Incident $incid)
-    {
-        $incid->setJoueur($this);
-        if (!$this->incidents->contains($incid)) {
-            $this->incidents->add($incid);
-        }
-    }
-
-    /**
-     * Remove Incident
-     *
-     * @param Incident $incid
-     */
-    public function removeIncident(Incident $incid)
-    {
-        $this->incidents->removeElement($incid);
-    }
-
-
-    /**
-     * Get Incident
-     *
-     * @return Incident
-     */
-    public function getIncidents()
-    {
-        return $this->incidents;
     }
 
     /**

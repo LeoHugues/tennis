@@ -74,6 +74,21 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-8 text-center" id="text-incident" style="display: none; margin-top: 5px;">
+            <div class="alert alert-success">
+                <strong>Succès!</strong> Incident bien enregistré.
+            </div>
+        </div>
+        <div class="col-sm-8 text-center" id="text-avertissement" style="display: none; margin-top: 5px;">
+            <div class="alert alert-success">
+                <strong>Succès!</strong> Avertissement bien enregistré.
+            </div>
+        </div>
+        <div class="col-sm-8 text-center" id="text-therapist" style="display: none; margin-top: 5px;">
+            <div class="alert alert-success">
+                <strong>Succès!</strong> Joueur soigné.
+            </div>
+        </div>
         <div class="col-sm-8 text-center action-btn">
             <button type="button" data-id="{{ rencontre.id }}" class="btn-add-incident btn btn-primary">Déclarer un incident grave</button>
         </div>
@@ -153,6 +168,7 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
 
 {% block javascripts %}
@@ -222,6 +238,9 @@
             url = url.replace("text", $(this).data("id"));
 
             $.ajax({url: url, success: function(result) {
+                $('#text-therapist').css('opacity', 1);
+                $('#text-therapist').show();
+                $('#text-therapist').delay(1000).fadeTo("slow", 0, function() { $(this).remove(); });
             }});
         });
 
@@ -245,6 +264,9 @@
                     data: { content: motif },
                     success: function(result) {
                         icon.css("visibility", "visible");
+                        $('#text-avertissement').css('opacity', 1);
+                        $('#text-avertissement').show();
+                        $('#text-avertissement').delay(1000).fadeTo("slow", 0, function() { $(this).remove(); });
                 }});
             })
 
@@ -265,6 +287,9 @@
                     type: 'POST',
                     data: { content: description },
                         success: function(result) {
+                            $('#text-incident').css('opacity', 1);
+                            $('#text-incident').show();
+                            $('#text-incident').delay(1000).fadeTo("slow", 0, function() { $(this).remove(); });
                 }});
             })
 
