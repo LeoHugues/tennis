@@ -10,15 +10,8 @@ namespace OrganisationBundle\Controller;
 
 
 use FOS\RestBundle\Controller\Annotations\Route;
-<<<<<<< HEAD
-=======
-use Negotiation\Match;
-use OrganisationBundle\Entity\Avertissement;
-use OrganisationBundle\Entity\Incident;
->>>>>>> e8569ff088db28e6a024ac943b3810b9078a1054
 use OrganisationBundle\Entity\Matchs;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -75,16 +68,14 @@ class RencontreController extends Controller
 
             $this->get('mailer')->send($message);
         }
-
-<<<<<<< HEAD
         if(count($score['set']) > 0 and $score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('UserBundle:User');
             $usersOrga = $repository->getUsersOrga('ROLE_ORGA');
             $emails = array();
-=======
+
         if($score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
->>>>>>> e8569ff088db28e6a024ac943b3810b9078a1054
+
 
             foreach($usersOrga as $user) {
                 $emails[] = $user->getEmail();
@@ -136,19 +127,19 @@ class RencontreController extends Controller
 
     /**
      *
-<<<<<<< HEAD
      * @Route("/score/{idRencontre}", name="call_get_score")
      */
     public function AjaxCallGetScore(Request $request, $idRencontre)
-    {
-        $em         = $this->getDoctrine()->getManager();
-        $repoMatch  = $em->getRepository('OrganisationBundle:Matchs');
-        $match      = $repoMatch->find($idRencontre);
+        {
+            $em = $this->getDoctrine()->getManager();
+            $repoMatch = $em->getRepository('OrganisationBundle:Matchs');
+            $match = $repoMatch->find($idRencontre);
 
-        $pointManager = $this->get('tennis.point.manager');
+            $pointManager = $this->get('tennis.point.manager');
 
-        return new JsonResponse($pointManager->getScore($match));
-=======
+            return new JsonResponse($pointManager->getScore($match));
+        }
+        /**
      * @Route("/warning/{idRencontre}/{idJoueur}", name="add_warning")
      */
     public function AjaxWarning(Request $request, $idRencontre, $idJoueur)
@@ -215,6 +206,6 @@ class RencontreController extends Controller
         $this->get('mailer')->send($message);
 
         return new JsonResponse();
->>>>>>> e8569ff088db28e6a024ac943b3810b9078a1054
+
     }
 }

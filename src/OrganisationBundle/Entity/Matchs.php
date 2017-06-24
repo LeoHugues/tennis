@@ -122,13 +122,8 @@ class Matchs
     public function __construct()
     {
         $this->points = new ArrayCollection();
-<<<<<<< HEAD
         $this->status = $this::MATCHE_PROGRAMME;
         $this->advertissements = new ArrayCollection();
-=======
-        $this->status = $this::MATCHE_TERMINE;
-        $this->avertissements = new ArrayCollection();
->>>>>>> e8569ff088db28e6a024ac943b3810b9078a1054
     }
 
     /**
@@ -364,7 +359,7 @@ class Matchs
     /**
      * Set arbitre
      *
-     * @param Arbitre $arbitre
+     * @param User $arbitre
      *
      * @return Matchs
      */
@@ -378,7 +373,7 @@ class Matchs
     /**
      * Get arbitre
      *
-     * @return Arbitre
+     * @return User
      */
     public function getArbitre()
     {
@@ -426,12 +421,12 @@ class Matchs
 
     public function removeAvertissement(Avertissement $avertissement)
     {
-        $this->adv->removeElement($avertissement);
+        $this->avertissements->removeElement($avertissement);
     }
 
-    public function getApplications()
+    public function getAvertissements()
     {
-        return $this->applications;
+        return $this->avertissements;
     }
 }
 
