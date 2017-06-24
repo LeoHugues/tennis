@@ -74,7 +74,7 @@ class Joueur
 
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="joueurs")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 

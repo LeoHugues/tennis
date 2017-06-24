@@ -5,6 +5,7 @@ namespace OrganisationBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use OrganisationBundle\Entity\Terrain;
 use OrganisationBundle\Form\TerrainType;
@@ -118,9 +119,7 @@ class DefaultController extends Controller
         $em->persist($currentUser);
         $em->flush();
 
-        return $this->render('OrganisationBundle:Default:affiche-joueur.html.twig', array(
-            'joueurs' => $joueurs,
-        ));
+        return new JsonResponse();
     }
 
     /**
