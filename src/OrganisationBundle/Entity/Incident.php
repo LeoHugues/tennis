@@ -42,12 +42,6 @@ class Incident
      */
     private $match;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Joueur", inversedBy="incidents")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $joueur;
-
     public function __construct()
     {
         $this->datetimeDeb = new \DateTime();
@@ -133,21 +127,5 @@ class Incident
     public function getMatch()
     {
         return $this->match;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getJoueur()
-    {
-        return $this->joueur;
-    }
-
-    /**
-     * @param mixed $joueur
-     */
-    public function setJoueur($joueur)
-    {
-        $this->joueur = $joueur;
     }
 }
