@@ -52,7 +52,7 @@ class DefaultController extends Controller
         $match = new Matchs();
         $form = $this->createForm(RencontreType::class, $match);
         $form->add('submit', SubmitType::class, array(
-            'label' => 'Commencer la rencontre',
+            'label' => 'Programmer une rencontre',
             'attr' => array(
                 'class' => 'col-sm-4 col-sm-offset-3 btn btn-default'
             )
