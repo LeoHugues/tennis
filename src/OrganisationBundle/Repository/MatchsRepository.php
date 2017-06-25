@@ -15,4 +15,13 @@ class MatchsRepository extends \Doctrine\ORM\EntityRepository
                 ->leftJoin('m.arbitre', 'arbitre');
         return $qb->getQuery()->getResult();
     }
+
+    public function findMatchsOfDay(\DateTime $dateDeb, \DateTime $dateFin)
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->andWhere('m.date BETWEEN :dateDeb AND :dateFin')
+            ->setParameter('dateDeb', $dateDeb->format('Y-m-d H:i:s'))
+            ->setParameter('dateFin', $dateFin->format('Y-m-d H:i:s'));
+        return $qb->getQuery()->getResult();
+    }
 }
