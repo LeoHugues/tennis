@@ -35,7 +35,6 @@ class RencontreController extends Controller
         $match      = $repoMatch->find($idMatch);
         $equipe1    = $match->getEquipes1();
         $equipe2    = $match->getEquipes2();
-        $emails     = array();
         $joueurs    = array($equipe1->getJoueur1(), $equipe2->getJoueur1());
 
         if(!empty($equipe1->getJoueur2()) and !empty($equipe2->getJoueur2())) {
@@ -72,17 +71,31 @@ class RencontreController extends Controller
         $em           = $this->getDoctrine()->getManager();
         $repository   = $em->getRepository('UserBundle:User');
         $usersOrga    = $repository->getUsersOrga('ROLE_ORGA');
+        $usersPublic  = $repository->getUsersOrga('ROLE_USER');
+        $usersPress   = $repository->getUsersOrga('ROLE_PRESS');
         $emails       = array();
+        $mails       = array();
         $em           = $this->getDoctrine()->getManager();
         $repoMatch    = $em->getRepository('OrganisationBundle:Matchs');
         $match        = $repoMatch->find($idRencontre);
         $terrain      = $match->getTerrain();
 
+        $stats     = $this->get('tennis.stat.manager')->getStats($match);
+        $nbSetE1   = $stats[0];
+        $nbBreakE1 = $stats[1];
+        $nbMatchE1 = $stats[2];
+        $nbBlancE1 = $stats[3];
+        $nbSetE2   = $stats[4];
+        $nbBreakE2 = $stats[5];
+        $nbMatchE2 = $stats[6];
+        $nbBlancE2 = $stats[7];
+
         if ($score['termine']) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $rencontre = $em->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
-            $rencontre->setStatus(Matchs::MATCHE_TERMINE);
-            $em->persist($rencontre);
+            $dateFin = new \DateTime();
+            $match->setDateFin($dateFin);
+
+            $match->setStatus(Matchs::MATCHE_TERMINE);
+            $em->persist($match);
             $em->flush();
 
             foreach($usersOrga as $user) {
@@ -93,9 +106,41 @@ class RencontreController extends Controller
                 ->setSubject("Fin de match")
                 ->setFrom('p.baumes@gmail.com')
                 ->setTo($emails)
-                ->setBody('Fin du match : ' . $terrain->getNom() . " se jouant le : " . $match->getDate()->format('d-m-Y H:i:s'));
+                ->setBody('Fin du match : ' . $terrain->getNom() . " se jouant le : " . $match->getDate()->format('d-m-Y H:i:s') . "\n");
 
             $this->get('mailer')->send($message);
+
+            foreach($usersPress as $user) {
+                $mails[] = $user->getEmail();
+            }
+
+            foreach($usersPublic as $user) {
+                $mails[] = $user->getEmail();
+            }
+
+            $message2 = \Swift_Message::newInstance()
+                ->setSubject("Fin de match")
+                ->setFrom('p.baumes@gmail.com')
+                ->setTo($mails)
+                ->setBody(
+                    $this->renderView(
+                        'OrganisationBundle:Match:voir-match.html.twig',
+                        array(
+                            'match'     => $match,
+                            'nbSetE1'   => $nbSetE1,
+                            'nbBreakE1' => $nbBreakE1,
+                            'nbMatchE1' => $nbMatchE1,
+                            'nbBlancE1' => $nbBlancE1,
+                            'nbSetE2'   => $nbSetE2,
+                            'nbBreakE2' => $nbBreakE2,
+                            'nbMatchE2' => $nbMatchE2,
+                            'nbBlancE2' => $nbBlancE2
+                        )
+                    ),
+                    'text/html'
+                );
+
+            $this->get('mailer')->send($message2);
         }
 
         if(count($score['set']) > 0 and $score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {

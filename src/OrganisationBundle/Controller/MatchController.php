@@ -140,8 +140,16 @@ class MatchController extends Controller
         $nbMatchE2 = $stats[6];
         $nbBlancE2 = $stats[7];
         return $this->render('OrganisationBundle:Match:voir-match.html.twig',
-            array('match' => $match, 'nbSetE1' => $nbSetE1, 'nbBreakE1' => $nbBreakE1, 'nbMatchE1' => $nbMatchE1,
-                'nbBlancE1' => $nbBlancE1, 'nbSetE2' => $nbSetE2, 'nbBreakE2' => $nbBreakE2, 'nbMatchE2' => $nbMatchE2, 'nbBlancE2' => $nbBlancE2));
+            array(
+                'match'     => $match,
+                'nbSetE1'   => $nbSetE1,
+                'nbBreakE1' => $nbBreakE1,
+                'nbMatchE1' => $nbMatchE1,
+                'nbBlancE1' => $nbBlancE1,
+                'nbSetE2'   => $nbSetE2,
+                'nbBreakE2' => $nbBreakE2,
+                'nbMatchE2' => $nbMatchE2,
+                'nbBlancE2' => $nbBlancE2));
     }
 
     /**
