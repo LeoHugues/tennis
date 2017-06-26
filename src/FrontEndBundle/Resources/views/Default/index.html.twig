@@ -300,17 +300,14 @@
                 $.ajax({
                     url: url,
                     success: function(result) {
-                        if(result >= 60)
+                        heures = Math.floor(result / 60);
+                        minutes = result % 60;
+                        if(heures == 1)
                         {
-                            heures++;
-                            minutes = result - 60;
-                            if(heures == 1)
-                            {
-                                result = heures + ' heure ' + minutes;
-                            } else
-                            {
-                                result = heures + ' heures ' + minutes;
-                            }
+                            result = heures + ' heure ' + minutes;
+                        } else
+                        {
+                            result = heures + ' heures ' + minutes;
                         }
                         debut.text(result);
                 }});
