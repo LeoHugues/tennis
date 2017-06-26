@@ -451,5 +451,16 @@ class Matchs
     {
         $this->dateFin = $dateFin;
     }
+
+    public function getDateDiff()
+    {
+        $duree = '-';
+
+        if(!empty($this->getDateFin())) {
+            $duree = date_diff($this->getDate(), $this->getDateFin());
+        }
+
+        return $duree;
+    }
 }
 
