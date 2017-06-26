@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Date : {{ match.getDate()|date('Y-m-d H:i:s') }}</p>
+                        <p>Temps : <span id="dateDebut"></span> minutes</p>
                         <p>Arbitre : {{ match.arbitre }}</p>
                     </div>
                 {% endfor %}
@@ -221,6 +221,7 @@
 
         function refresh() {
             refreshCard();
+            refreshTimeMatch();
             setTimeout(refresh, 5000);
         }
 
@@ -283,6 +284,35 @@
                         }
                     }
 
+                }});
+            });
+        }
+
+        function refreshTimeMatch() {
+
+            $('.match-en-cour').each(function () {
+                var minutes, heures = 0;
+                var debut = $('#dateDebut');
+                var idMatch = $(this).data('id');
+                var url = "{{ path('call_get_time', {'idRencontre': 'idMatch'}) }}";
+                url = url.replace('idMatch', idMatch);
+
+                $.ajax({
+                    url: url,
+                    success: function(result) {
+                        if(result >= 60)
+                        {
+                            heures++;
+                            minutes = result - 60;
+                            if(heures == 1)
+                            {
+                                result = heures + ' heure ' + minutes;
+                            } else
+                            {
+                                result = heures + ' heures ' + minutes;
+                            }
+                        }
+                        debut.text(result);
                 }});
             });
         }

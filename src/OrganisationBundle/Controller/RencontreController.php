@@ -219,6 +219,23 @@ class RencontreController extends Controller
 
         return new JsonResponse($pointManager->getScore($match));
     }
+
+    /**
+     * @Route("/time/{idRencontre}", name="call_get_time")
+     */
+    public function AjaxCallGetTime(Request $request, $idRencontre)
+
+    {
+        $em        = $this->getDoctrine()->getManager();
+        $repoMatch = $em->getRepository('OrganisationBundle:Matchs');
+        $match     = $repoMatch->find($idRencontre);
+
+        $now      = new \DateTime();
+        $dateDiff = round(abs($now->getTimestamp() - $match->getDate()->getTimestamp()) / 60);
+
+        return new JsonResponse($dateDiff);
+    }
+
     /**
      * @Route("/warning/{idRencontre}/{idJoueur}", name="add_warning")
      */
