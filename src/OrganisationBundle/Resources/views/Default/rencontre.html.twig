@@ -29,7 +29,7 @@
                     {% endif %}
                 </div>
                 <div class="col-sm-12 action-btn">
-                    <button type="button" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+                    <button type="button" id="btn-add-1" data-id="{{ rencontre.equipes1.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -56,7 +56,7 @@
                         <br>
                     {% endif %}</div>
                 <div class="col-sm-12 action-btn">
-                    <button type="button" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
+                    <button type="button" id="btn-add-2" data-id="{{ rencontre.equipes2.id }}" class="btn-add-point btn btn-primary">Ajouter un point</button>
                 </div>
             </div>
             <div class="col-sm-8 block-score">
@@ -179,6 +179,21 @@
         </div>
     </div>
 
+    <div id="modalFin" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Rencontre terminée</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="submitFin" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block javascripts %}
@@ -195,11 +210,21 @@
             }});
         });
 
+        $("#submitFin").click(function(){
+            var url = "{{ path('tennis_arbitre_home')}}";
+            $.ajax({url: url, success: function(result){
+
+            }});
+        });
+
         // Fin du temps de pause
         $( "#fin-pause" ).click(function() {
             var url = "{{ path('call_fin_pause')}}";
             $.ajax({url: url, success: function(result){
                 $('#show-timer').css('visibility', 'hidden');
+                document.getElementById("btn-add-1").removeAttribute('disabled');
+                document.getElementById("btn-add-2").removeAttribute('disabled');
+                clearInterval(timerInterval);
             }});
         });
 
@@ -217,17 +242,20 @@
             }
 
         }
-
+        var timerInterval = null;
         // Ajouter un point à l'équipe
         $( ".btn-add-point" ).click(function() {
             var url = "{{ path('call_add_point', {'idRencontre': rencontre.id, 'idEquipe':'text' }) }}";
             url = url.replace("text", $(this).data("id"));
             $.ajax({url: url, success: function(result) {
                 if(result.finJeu == true){
-                    $('#show-timer').css('visibility', 'visible');
+                    clearInterval(timerInterval);
                     value = 0;
                     minute = 0;
-                    setInterval(changeValue, 1000);
+                    timerInterval = setInterval(changeValue, 1000);
+                    document.getElementById("btn-add-1").setAttribute('disabled', true);
+                    document.getElementById("btn-add-2").setAttribute('disabled', true);
+                    $('#show-timer').css('visibility', 'visible');
                 }
                 /**
                  * Affichage des scores
@@ -265,6 +293,9 @@
                     if($('#equipe1').hasClass('serveur')) {
                         $('#equipe1').removeClass('serveur');
                     }
+                }
+                if(result.termine){
+                    $('#modalFin').modal('show');
                 }
 
             }});

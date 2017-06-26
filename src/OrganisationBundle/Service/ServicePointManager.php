@@ -372,16 +372,21 @@ class ServicePointManager
     }
 
     public function leMatchEstTermine(Matchs $matchs, $score) {
+        $resultat = false;
         if($matchs->getNbSets() == 5) {
-            if ($score['equipe1']['set'] - $score['equipe2']['set'] > 3) {
-                return true;
-            } elseif ($score['equipe2']['set'] - $score['equipe1']['set'] > 3) {
-                return true;
-            } elseif ($score['equipe1'] + $score['equipe2'] = 5) {
-                return true;
+            if ($score['equipe1'] == 3) {
+                $resultat = true;
+            } elseif ($score['equipe2'] == 3) {
+                $resultat = true;
             }
-
-            return false;
+        }elseif($matchs->getNbSets() == 3) {
+            if($score['equipe1'] == 2) {
+                $resultat = true;
+            }elseif($score['equipe2'] == 2) {
+                $resultat = true;
+            }
         }
+            return $resultat;
+
     }
 }

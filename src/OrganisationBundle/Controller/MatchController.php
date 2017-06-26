@@ -41,7 +41,7 @@ class MatchController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Matchs $match */
             $match = $form->getData();
-
+            $match->setStatus(Matchs::MATCHE_PROGRAMME);
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($match);
             $em->flush();
@@ -315,6 +315,7 @@ class MatchController extends Controller
                         $match->setNvxCompet($nvxCompet);
                         $match->setTerrain($terrain);
                         $match->setArbitre($arbitre);
+                        $match->setStatus(Matchs::MATCHE_PROGRAMME);
                         $em->persist($match);
                     }
                     $row++;
