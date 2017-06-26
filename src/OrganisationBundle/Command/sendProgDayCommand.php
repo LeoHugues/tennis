@@ -45,9 +45,10 @@ class SendProgDayCommand extends ContainerAwareCommand
             $mails[] = $user->getEmail();
         }
 
-        $message = \Swift_Message::newInstance()
-                    ->setSubject('Programmation de la journée')
-                    ->setFrom('pierre.baumes@epsi.fr');
+        $message = new \Swift_Message();
+
+        $message->setSubject('Programmation de la journée')
+                ->setFrom('pierre.baumes@epsi.fr');
 
         $str = null;
         foreach($matchs as $match) {
