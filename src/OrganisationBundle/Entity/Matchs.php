@@ -451,5 +451,22 @@ class Matchs
     {
         $this->dateFin = $dateFin;
     }
+
+    public function getDateDiff()
+    {
+        $duree = '-';
+        $str = '';
+
+        if(!empty($this->getDateFin())) {
+            $duree = $this->getDateFin()->getTimestamp() - $this->getDate()->getTimestamp();
+            $s = abs($duree%60);
+            $m = floor(abs(($duree%3600)/60));
+            $h = floor(abs(($duree%86400)/3600));
+
+            $str = $h . ' heure(s) ' . $m . ' minute(s) ' . $s . 'seconde(s)';
+        }
+
+        return $str;
+    }
 }
 

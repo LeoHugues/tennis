@@ -3,7 +3,6 @@
 {% block content %}
 
     <div class="container"><h1>Welcome ! </h1>
-        <button type="button" id="test" class="btn-service btn btn-primary">test</button>
     </div>
     <div id="exTab1" class="container">
         <ul  class="nav nav-pills">
@@ -171,7 +170,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Date : {{ match.getDate()|date('Y-m-d H:i:s') }}</p>
+                        <p>Durée du match : {{ match.dateDiff }}</p>
                         <p>Arbitre : {{ match.arbitre }}</p>
                     </div>
                 {% endfor %}
@@ -300,17 +299,14 @@
                 $.ajax({
                     url: url,
                     success: function(result) {
-                        if(result >= 60)
+                        heures = Math.floor(result / 60);
+                        minutes = result % 60;
+                        if(heures == 1)
                         {
-                            heures++;
-                            minutes = result - 60;
-                            if(heures == 1)
-                            {
-                                result = heures + ' heure ' + minutes;
-                            } else
-                            {
-                                result = heures + ' heures ' + minutes;
-                            }
+                            result = heures + ' heure ' + minutes;
+                        } else
+                        {
+                            result = heures + ' heures ' + minutes;
                         }
                         debut.text(result);
                 }});
