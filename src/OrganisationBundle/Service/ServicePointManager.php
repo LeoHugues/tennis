@@ -18,6 +18,12 @@ class ServicePointManager
 {
     /** @var  EntityManager */
     private $em;
+    private $premierTour = true;
+    /** @var  Point */
+    private $ancienPoint;
+
+    private $debutPose;
+    private $finPose;
 
     private $tieBreak = false;
     private $service;
@@ -27,18 +33,121 @@ class ServicePointManager
         $this->em = $em;
     }
 
+    public function initFinPause(){
+        $this->finPose = new \DateTime();
+    }
+
+    public function estFinJeu($match)
+    {
+        $equipe1    = array('set' => 0, 'jeu' => 0, 'point' => 0);
+        $equipe2    = array('set' => 0, 'jeu' => 0, 'point' => 0);
+        $resultat = false;
+
+        /** @var Point $point */
+        foreach ($match->getPoints() as $point)
+        {
+            if ($match->getEquipes1() == $point->getEquipe()) {
+                $equipe1['point'] += 1;
+            } else {
+                $equipe2['point'] += 1;
+            }
+            if ($this->leJeuEstTermine($equipe1, $equipe2)) {
+                $equipe1['point'] = 0;
+                $equipe2['point'] = 0;
+                if ($match->getEquipes1() == $point->getEquipe()) {
+                    $equipe1['jeu'] += 1;
+                } else {
+                    $equipe2['jeu'] += 1;
+                }
+                if ($this->leSetEstTermine($equipe1, $equipe2)) {
+                    $score['set'][] = array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);
+                    $equipe1['jeu'] = 0;
+                    $equipe2['jeu'] = 0;
+                    if ($match->getEquipes1() == $point->getEquipe()) {
+                        $equipe1['set'] += 1;
+                    } else {
+                        $equipe2['set'] += 1;
+                    }
+                }
+                $resultat = true;
+            }else{
+                $resultat = false;
+            }
+        }
+        return $resultat;
+    }
+
+    public function estPremierPointJeu($match){
+        $equipe1    = array('set' => 0, 'jeu' => 0, 'point' => 0);
+        $equipe2    = array('set' => 0, 'jeu' => 0, 'point' => 0);
+        $premierPoint = false;
+        $nbPoint    = 0;
+        $resultat = false;
+        /** @var Point $point */
+        foreach ($match->getPoints() as $point)
+        {
+            if ($match->getEquipes1() == $point->getEquipe()) {
+                $equipe1['point'] += 1;
+            } else {
+                $equipe2['point'] += 1;
+            }
+            $nbPoint++;
+            if($nbPoint == 1 && $premierPoint == true){
+                $resultat = true;
+            }else{
+                $resultat = false;
+            }
+            if ($this->leJeuEstTermine($equipe1, $equipe2)) {
+                $equipe1['point'] = 0;
+                $equipe2['point'] = 0;
+                if ($match->getEquipes1() == $point->getEquipe()) {
+                    $equipe1['jeu'] += 1;
+                } else {
+                    $equipe2['jeu'] += 1;
+                }
+                if ($this->leSetEstTermine($equipe1, $equipe2)) {
+                    $score['set'][] = array('equipe1' => $equipe1['jeu'], 'equipe2' => $equipe2['jeu']);
+                    $equipe1['jeu'] = 0;
+                    $equipe2['jeu'] = 0;
+                    if ($match->getEquipes1() == $point->getEquipe()) {
+                        $equipe1['set'] += 1;
+                    } else {
+                        $equipe2['set'] += 1;
+                    }
+                }
+                $nbPoint = 0;
+                $premierPoint = true;
+            }else{
+                $premierPoint = false;
+            }
+        }
+        return $resultat;
+    }
+
+
     public function addPoint($idRencontre, $idEquipe) {
         /** @var Matchs $rencontre */
         $rencontre = $this->em->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
+        $point = new Point();
+        if($this->premierTour == true){
+            $this->premierTour = false;
+            $point->setDatetimeDeb($rencontre->getDate());
+        }elseif($this->estPremierPointJeu($rencontre) == false && $this->estFinJeu($rencontre) == false){
+            $point->setDatetimeDeb($this->ancienPoint->getDatetimeFin());
+        }elseif($this->estPremierPointJeu($rencontre) == true){
+            $point->setDatetimeDeb($this->finPose);
+        }elseif($this->estFinJeu($rencontre) == true){
+            $this->debutPose = new \Datetime();
+        }
         /** @var Equipe $equipe */
         $equipe = $this->em->getRepository('OrganisationBundle:Equipe')->find($idEquipe);
-
-        $point = new Point();
+        $point->setDatetimeFin(new \DateTime());
         $point->setEquipe($equipe);
         $point->setMatch($rencontre);
         $this->em->persist($point);
 
         $rencontre->addPoint($point);
+        $this->ancienPoint = $point;
         $this->em->persist($rencontre);
         $this->em->flush();
 
@@ -54,18 +163,21 @@ class ServicePointManager
             'jeu'       => array(),
             'point'     => array(),
             'termine'   => false,
-            'service'   => null
+            'service'   => null,
+            'finJeu'    => false
         );
 
         /** @var Point $point */
         foreach ($match->getPoints() as $point)
         {
+            $score['finJeu'] = false;
             if ($match->getEquipes1() == $point->getEquipe()) {
                 $equipe1['point'] += 1;
             } else {
                 $equipe2['point'] += 1;
             }
             if ($this->leJeuEstTermine($equipe1, $equipe2)) {
+                $score['finJeu'] = true;
                 $equipe1['point'] = 0;
                 $equipe2['point'] = 0;
                 if ($match->getEquipes1() == $point->getEquipe()) {

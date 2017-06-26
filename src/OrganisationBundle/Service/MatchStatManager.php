@@ -345,7 +345,4 @@ class MatchStatManager{
             return $this::JEU_BLANC_E1;
         }
     }
-
-
-
 }

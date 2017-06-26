@@ -91,6 +91,16 @@
         </div>
         <div class="col-sm-8 text-center action-btn">
             <button type="button" data-id="{{ rencontre.id }}" class="btn-add-incident btn btn-primary">Déclarer un incident grave</button>
+            </br>
+            </br>
+        </div>
+
+        <div  id="show-timer"  class="col-sm-offset-1 col-sm-6 text-center" style="visibility: hidden">
+            <div class="col-sm-offset-2 col-sm-4 text-center inline-block">Temps de pause : </div>
+            <div id="start-timer" class="col-sm-4 text-center inline-block">0:00</div>
+            </br>
+            </br>
+            <button id="fin-pause" type="button" class="btn btn-primary">Début du jeu</button>
         </div>
     </div>
 
@@ -185,12 +195,40 @@
             }});
         });
 
+        // Fin du temps de pause
+        $( "#fin-pause" ).click(function() {
+            var url = "{{ path('call_fin_pause')}}";
+            $.ajax({url: url, success: function(result){
+                $('#show-timer').css('visibility', 'hidden');
+            }});
+        });
+
+        //affichage valeur timer
+        function changeValue() {
+            var newValue = ++value;
+            if(newValue == 60){
+                minute++;
+                value = 0;
+            }
+            if(value < 10){
+                document.getElementById("start-timer").innerHTML = minute+":0"+value;
+            }else{
+                document.getElementById("start-timer").innerHTML = minute+":"+value;
+            }
+
+        }
+
         // Ajouter un point à l'équipe
         $( ".btn-add-point" ).click(function() {
             var url = "{{ path('call_add_point', {'idRencontre': rencontre.id, 'idEquipe':'text' }) }}";
             url = url.replace("text", $(this).data("id"));
             $.ajax({url: url, success: function(result) {
-
+                if(result.finJeu == true){
+                    $('#show-timer').css('visibility', 'visible');
+                    value = 0;
+                    minute = 0;
+                    setInterval(changeValue, 1000);
+                }
                 /**
                  * Affichage des scores
                  */

@@ -64,6 +64,16 @@ class RencontreController extends Controller
 
     /**
      *
+     * @Route("/rencontre/finPause", name="call_fin_pause")
+     */
+    public function AjaxCallFinPause() {
+        $pointManager = $this->get('tennis.point.manager');
+        $pointManager->initFinPause();
+        return new Response('success');
+    }
+
+    /**
+     *
      * @Route("/rencontre/{idRencontre}/addPoint/{idEquipe}", name="call_add_point")
      */
     public function AjaxCallAddPoint(Request $request, $idRencontre, $idEquipe) {
