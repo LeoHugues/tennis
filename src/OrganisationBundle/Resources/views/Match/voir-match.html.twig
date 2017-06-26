@@ -78,9 +78,6 @@
                     {% for incid in match.getIncidents() %}
                         <ul>
                             <li>{{ incid.getMotif() }}</li>
-                            {% if incid.getJoueur() != null %}
-                                <li>Joueur concerné : {{ incid.getJoueur().__toString() }}</li>
-                            {% endif %}
                         </ul>
                     {% endfor %}
                 {% endif %}

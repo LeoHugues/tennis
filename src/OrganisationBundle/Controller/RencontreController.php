@@ -35,7 +35,6 @@ class RencontreController extends Controller
         $match      = $repoMatch->find($idMatch);
         $equipe1    = $match->getEquipes1();
         $equipe2    = $match->getEquipes2();
-        $emails     = array();
         $joueurs    = array($equipe1->getJoueur1(), $equipe2->getJoueur1());
 
         if(!empty($equipe1->getJoueur2()) and !empty($equipe2->getJoueur2())) {
@@ -46,11 +45,11 @@ class RencontreController extends Controller
         // On verifie si un joueur est lié a un user si oui on envoi un mail
         foreach($joueurs as $joueur) {
             if(!empty($joueur->getUser())) {
-                $message = \Swift_Message::newInstance()
-                    ->setSubject("Début d'un match")
-                    ->setFrom('p.baumes@gmail.com')
-                    ->setTo($joueur->getUser()->getEmail())
-                    ->setBody('Début du match pour ' . $joueur->getPrenom() . " " . $joueur->getNom());
+                $message = new \Swift_Message();
+                $message->setSubject("Début d'un match")
+                        ->setFrom('p.baumes@gmail.com')
+                        ->setTo($joueur->getUser()->getEmail())
+                        ->setBody('Début du match pour ' . $joueur->getPrenom() . " " . $joueur->getNom());
 
                 $this->get('mailer')->send($message);
             }
@@ -82,30 +81,78 @@ class RencontreController extends Controller
         $em           = $this->getDoctrine()->getManager();
         $repository   = $em->getRepository('UserBundle:User');
         $usersOrga    = $repository->getUsersOrga('ROLE_ORGA');
+        $usersPublic  = $repository->getUsersOrga('ROLE_USER');
+        $usersPress   = $repository->getUsersOrga('ROLE_PRESS');
         $emails       = array();
+        $mails        = array();
         $em           = $this->getDoctrine()->getManager();
         $repoMatch    = $em->getRepository('OrganisationBundle:Matchs');
         $match        = $repoMatch->find($idRencontre);
         $terrain      = $match->getTerrain();
 
+        $stats     = $this->get('tennis.stat.manager')->getStats($match);
+        $nbSetE1   = $stats[0];
+        $nbBreakE1 = $stats[1];
+        $nbMatchE1 = $stats[2];
+        $nbBlancE1 = $stats[3];
+        $nbSetE2   = $stats[4];
+        $nbBreakE2 = $stats[5];
+        $nbMatchE2 = $stats[6];
+        $nbBlancE2 = $stats[7];
+
         if ($score['termine']) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $rencontre = $em->getRepository('OrganisationBundle:Matchs')->find($idRencontre);
-            $rencontre->setStatus(Matchs::MATCHE_TERMINE);
-            $em->persist($rencontre);
+            $dateFin = new \DateTime();
+            $match->setDateFin($dateFin);
+
+            $match->setStatus(Matchs::MATCHE_TERMINE);
+            $em->persist($match);
             $em->flush();
 
             foreach($usersOrga as $user) {
                 $emails[] = $user->getEmail();
             }
 
-            $message = \Swift_Message::newInstance()
-                ->setSubject("Fin de match")
-                ->setFrom('p.baumes@gmail.com')
-                ->setTo($emails)
-                ->setBody('Fin du match : ' . $terrain->getNom() . " se jouant le : " . $match->getDate()->format('d-m-Y H:i:s'));
+            $message = new \Swift_Message();
+
+            $message->setSubject("Fin de match")
+                    ->setFrom('p.baumes@gmail.com')
+                    ->setTo($emails)
+                    ->setBody('Fin du match : ' . $terrain->getNom() . " se jouant le : " . $match->getDate()->format('d-m-Y H:i:s') . "\n");
 
             $this->get('mailer')->send($message);
+
+            foreach($usersPress as $user) {
+                $mails[] = $user->getEmail();
+            }
+
+            foreach($usersPublic as $user) {
+                $mails[] = $user->getEmail();
+            }
+
+            $message2 = new \Swift_Message();
+
+            $message2->setSubject("Fin de match")
+                     ->setFrom('p.baumes@gmail.com')
+                     ->setTo($mails)
+                     ->setBody(
+                        $this->renderView(
+                            'OrganisationBundle:Match:voir-match.html.twig',
+                            array(
+                                'match'     => $match,
+                                'nbSetE1'   => $nbSetE1,
+                                'nbBreakE1' => $nbBreakE1,
+                                'nbMatchE1' => $nbMatchE1,
+                                'nbBlancE1' => $nbBlancE1,
+                                'nbSetE2'   => $nbSetE2,
+                                'nbBreakE2' => $nbBreakE2,
+                                'nbMatchE2' => $nbMatchE2,
+                                'nbBlancE2' => $nbBlancE2
+                            )
+                        ),
+                    'text/html'
+                );
+
+            $this->get('mailer')->send($message2);
         }
 
         if(count($score['set']) > 0 and $score['point']['equipe1'] == 0 and $score['jeu']['equipe1'] == 0 and $score['point']['equipe2'] == 0 and $score['jeu']['equipe1'] == 0) {
@@ -121,11 +168,12 @@ class RencontreController extends Controller
                     $emails[] = $user->getEmail();
                 }
 
-                $message = \Swift_Message::newInstance()
-                    ->setSubject("Début d'un set")
-                    ->setFrom('p.baumes@gmail.com')
-                    ->setTo($emails)
-                    ->setBody('Nouveau set !');
+                $message = new \Swift_Message();
+
+                $message->setSubject("Début d'un set")
+                        ->setFrom('p.baumes@gmail.com')
+                        ->setTo($emails)
+                        ->setBody('Nouveau set !');
 
                 $this->get('mailer')->send($message);
             }
@@ -155,11 +203,11 @@ class RencontreController extends Controller
             $emails[] = $user->getEmail();
         }
 
-        $message = \Swift_Message::newInstance()
-            ->setSubject("Soigneur applé pour le joueur : " . $joueur->getPrenom() . ' ' . $joueur->getNom())
-            ->setFrom('p.baumes@gmail.com')
-            ->setTo($emails)
-            ->setBody("Appel d'un soigneur lors du match opposant " . $match->getEquipes1()->getJoueur1() . ' et ' . $match->getEquipes2()->getJoueur1() . ' sur le terrain ' . $match->getTerrain());
+        $message = new \Swift_Message();
+        $message->setSubject("Soigneur applé pour le joueur : " . $joueur->getPrenom() . ' ' . $joueur->getNom())
+                ->setFrom('p.baumes@gmail.com')
+                ->setTo($emails)
+                ->setBody("Appel d'un soigneur lors du match opposant " . $match->getEquipes1()->getJoueur1() . ' et ' . $match->getEquipes2()->getJoueur1() . ' sur le terrain ' . $match->getTerrain());
 
         $this->get('mailer')->send($message);
 
@@ -181,6 +229,23 @@ class RencontreController extends Controller
 
         return new JsonResponse($pointManager->getScore($match));
     }
+
+    /**
+     * @Route("/time/{idRencontre}", name="call_get_time")
+     */
+    public function AjaxCallGetTime(Request $request, $idRencontre)
+
+    {
+        $em        = $this->getDoctrine()->getManager();
+        $repoMatch = $em->getRepository('OrganisationBundle:Matchs');
+        $match     = $repoMatch->find($idRencontre);
+
+        $now      = new \DateTime();
+        $dateDiff = round(abs($now->getTimestamp() - $match->getDate()->getTimestamp()) / 60);
+
+        return new JsonResponse($dateDiff);
+    }
+
     /**
      * @Route("/warning/{idRencontre}/{idJoueur}", name="add_warning")
      */
@@ -188,10 +253,9 @@ class RencontreController extends Controller
     {
         $avertissement = new Avertissement();
 
-        $em        = $this->getDoctrine()->getManager();
-        $repoMatch = $em->getRepository('OrganisationBundle:Matchs');
-        $match     = $repoMatch->find($idRencontre);
-
+        $em         = $this->getDoctrine()->getManager();
+        $repoMatch  = $em->getRepository('OrganisationBundle:Matchs');
+        $match      = $repoMatch->find($idRencontre);
         $repoJoueur = $em->getRepository('OrganisationBundle:Joueur');
         $joueur     = $repoJoueur->find($idJoueur);
 
@@ -221,7 +285,6 @@ class RencontreController extends Controller
         $repoMatchs = $em->getRepository('OrganisationBundle:Matchs');
         $match      = $repoMatchs->find($idRencontre);
         $terrain    = $match->getTerrain();
-
         $usersOrga  = $repoUser->getUsersOrga('ROLE_ORGA');
 
         $incident->setMatch($match);
@@ -239,11 +302,11 @@ class RencontreController extends Controller
             $emails[] = $user->getEmail();
         }
 
-        $message = \Swift_Message::newInstance()
-            ->setSubject("Incident grave déclaré.")
-            ->setFrom('p.baumes@gmail.com')
-            ->setTo($emails)
-            ->setBody("Incident grave déclaré le " . $incident->getDatetimeDeb()->format('d-m-Y H:i:s') . " sur le match se jouant à : " . $terrain->getNom());
+        $message = new \Swift_Message();
+        $message->setSubject("Incident grave déclaré.")
+                ->setFrom('p.baumes@gmail.com')
+                ->setTo($emails)
+                ->setBody("Incident grave déclaré le " . $incident->getDatetimeDeb()->format('d-m-Y H:i:s') . " sur le match se jouant à : " . $terrain->getNom());
 
         $this->get('mailer')->send($message);
 

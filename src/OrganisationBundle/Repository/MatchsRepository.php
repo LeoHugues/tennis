@@ -10,9 +10,42 @@ namespace OrganisationBundle\Repository;
  */
 class MatchsRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return array
+     */
     public function findAllMatchs(){
         $qb = $this->createQueryBuilder('m')
                 ->leftJoin('m.arbitre', 'arbitre');
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param \DateTime $dateDeb
+     * @param \DateTime $dateFin
+     * @return array
+     */
+    public function findMatchsOfDay(\DateTime $dateDeb, \DateTime $dateFin)
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->andWhere('m.date BETWEEN :dateDeb AND :dateFin')
+            ->setParameter('dateDeb', $dateDeb->format('Y-m-d H:i:s'))
+            ->setParameter('dateFin', $dateFin->format('Y-m-d H:i:s'));
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param $status
+     * @return array
+     */
+    public function findMatchsByStatus($status, \DateTime $dateDeb, \DateTime $dateFin)
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->andWhere('m.status = :status')
+            ->andWhere('m.date BETWEEN :dateDeb AND :dateFin')
+            ->setParameter('status', $status)
+            ->setParameter('dateDeb', $dateDeb->format('Y-m-d H:i:s'))
+            ->setParameter('dateFin', $dateFin->format('Y-m-d H:i:s'));
+
         return $qb->getQuery()->getResult();
     }
 }

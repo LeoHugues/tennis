@@ -35,6 +35,13 @@ class Matchs
     private $date;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_fin", type="datetime",nullable=true)
+     */
+    private $dateFin;
+
+    /**
      * @var Terrain
      *
      * @ORM\ManyToOne(targetEntity="OrganisationBundle\Entity\Terrain", inversedBy="matchs")
@@ -427,6 +434,22 @@ class Matchs
     public function getAvertissements()
     {
         return $this->avertissements;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateFin()
+    {
+        return $this->dateFin;
+    }
+
+    /**
+     * @param \DateTime $dateFin
+     */
+    public function setDateFin($dateFin)
+    {
+        $this->dateFin = $dateFin;
     }
 }
 
