@@ -131,7 +131,7 @@ class ServicePointManager
         $point = new Point();
         if($this->premierTour == true){
             $this->premierTour = false;
-            $point->setDatetimeDeb($rencontre->getDate());
+            $point->setDatetimeDeb(new \Datetime());
         }elseif($this->estPremierPointJeu($rencontre) == false && $this->estFinJeu($rencontre) == false){
             $point->setDatetimeDeb($this->ancienPoint->getDatetimeFin());
         }elseif($this->estPremierPointJeu($rencontre) == true){
