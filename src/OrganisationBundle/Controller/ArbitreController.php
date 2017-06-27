@@ -26,7 +26,7 @@ class ArbitreController extends Controller
         $today = new \DateTime();
         /** @var Matchs $match */
         foreach ($arbitre->getMatchs() as $match) {
-            if ( $match->getDate() > $today) {
+            if ( $match->getStatus() == Matchs::MATCHE_PROGRAMME) {
                 $matchs[] = $match;
             }
         }

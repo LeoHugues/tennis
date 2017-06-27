@@ -188,7 +188,9 @@
                     <h4 class="modal-title">Rencontre terminée</h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" id="submitFin" data-dismiss="modal">Fermer</button>
+                    <a href="{{ path('tennis_arbitre_home') }}">
+                    <button type="button" class="btn btn-default" id="submitFin" >Fermer</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -210,12 +212,13 @@
             }});
         });
 
-        $("#submitFin").click(function(){
-            var url = "{{ path('tennis_arbitre_home')}}";
-            $.ajax({url: url, success: function(result){
+       // $("#submitFin").click(function(){
+         //   var url = "{{ path('tennis_arbitre_home')}}";
+          //  $.ajax({url: url, success: function(msg){
+           // }
 
-            }});
-        });
+          //  });
+        //});
 
         // Fin du temps de pause
         $( "#fin-pause" ).click(function() {
