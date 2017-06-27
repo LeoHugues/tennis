@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Temps : <span id="dateDebut"></span> minutes</p>
+                        <p>Temps : <span class="dateDebut" id="{{ match.id }}"></span> minutes</p>
                         <p>Arbitre : {{ match.arbitre }}</p>
                     </div>
                 {% endfor %}
@@ -291,7 +291,7 @@
 
             $('.match-en-cour').each(function () {
                 var minutes, heures = 0;
-                var debut = $('#dateDebut');
+                var debut = $('.dateDebut');
                 var idMatch = $(this).data('id');
                 var url = "{{ path('call_get_time', {'idRencontre': 'idMatch'}) }}";
                 url = url.replace('idMatch', idMatch);
@@ -308,7 +308,7 @@
                         {
                             result = heures + ' heures ' + minutes;
                         }
-                        debut.text(result);
+                        $('#'+idMatch).text(result);
                 }});
             });
         }
